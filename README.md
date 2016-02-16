@@ -15,9 +15,11 @@
 
 * Active virtualenv: http://docs.python-guide.org/en/latest/dev/virtualenvs/
 * Install dependencies.
+
 	```sh
 	pip install -r requirements.txt
 	```
+
 * Initialize the local database
 	
 	```sh
