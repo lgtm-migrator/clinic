@@ -1,0 +1,60 @@
+{% extends "home/_base.html" %}
+{{ store }}
+
+{% block content %}
+<div class="container">
+    <form id="reserve-form" class="form-horizontal" action="" method="post">
+      <fieldset>
+      <legend class="text-center">予約内容入力</legend>
+        <table class="table table-bordered">
+          <!-- 予約日時-->
+          <tr>
+              <th>予約日時</th>
+              <td colspan="3">
+                2016年 1月15日(金) 14:00-
+                <input id="date" name="date" type="hidden" value="2016-1-15 14:00" />
+              </td>
+          </tr>
+
+            <!-- 氏名・電話番号-->
+          <tr>
+              <th>氏名</th>
+              <td class="clear-xs">
+                <input id="name" name="name" type="text" placeholder="氏名" class="form-control">
+              </td>
+
+              <th>電話番号</th>
+              <td>
+                <input id="telephone" name="telephone" type="text" placeholder="電話番号" class="form-control">
+              </td>
+          </tr>
+
+            <!-- 連絡先-->
+            <tr>
+              <th>連絡先</th>
+              <td colspan="3">
+                <input id="email" name="email" type="text" placeholder="連絡先" class="form-control">
+              </td>
+            </tr>
+
+            <!-- Message body -->
+            <tr>
+              <th>症状など</th>
+              <td colspan="3">
+                <textarea class="form-control" id="message"
+                          name="message" placeholder="症状などをご入力ください"
+                          rows="5"></textarea>
+              </td>
+            </tr>
+        </table>
+        <!-- Form actions -->
+          <div class="form-group">
+            <div class="text-center">
+              <input type="submit" id="btn-submit" class="btn btn-lightblue btn-default" value="予約">
+              <input type="submit" id="btn-back" class="btn btn-lightblue btn-default" value="戻る">
+            </div>
+          </div>
+      </fieldset>
+    </form>
+</div>
+{% endblock %}
