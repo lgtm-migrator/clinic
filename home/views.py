@@ -5,14 +5,41 @@ from django.views import generic
 
 from .models import Store
 
+import django_filters
+
+class StoreFilter(django_filters.FilterSet):
+	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
+	name = django_filters.CharFilter(lookup_type='icontains')
+	phone = django_filters.NumberFilter(lookup_type='icontains')
+	class Meta:
+		model = Store
+		fields = ['name', 'phone',]
+		order_by = ( [ 'name', 'phone' ], ['access', 'comment'])
+
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
 	context_object_name = 'stores'
+	paginate_by = 10
+	model = Store
 
 	def get_queryset(self):
-		return Store.objects.order_by('-created')[:5]
+		try:
+			q = self.request.GET['q']
+		except:
+			q = ''
+
+		if (q != ''):
+			store_list = self.model.objects.filter(name__icontains = q)
+		else:
+			store_list = self.model.objects.order_by('-created')[:5]
+		return store_list
+
+	def get_context_data(self, **kwargs):
+		context = super(IndexView, self).get_context_data(**kwargs)
+		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.all())
+		return context
+
 
 class DetailView(generic.DetailView):
 	model = Store
 	template_name = 'home/detail.html'
-	

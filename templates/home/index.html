@@ -5,12 +5,22 @@
 
 {% block content %}
 	<div class="row">
-
+		<form action="" method="get">
+			<table class="table">
+				<!-- See: https://docs.djangoproject.com/en/1.9/topics/forms/ -->
+				{{ filter.form.as_table }}
+				<tr>
+					<td></td>
+					<td><button type="submit" class="btn">submit</button></td>
+				</tr>
+			</table>
+			
+		</form>
 	</div>
 	<div class="row">
 		<div class="store-list">
-			{% if stores %}
-			    {% for store in stores %}
+			{% if filter %} 
+			    {% for store in filter %}
 			    	<div class="panel panel-default">
 			    		<div class="panel-heading">
 			    			{{ store.name }}

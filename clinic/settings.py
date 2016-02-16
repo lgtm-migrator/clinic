@@ -53,6 +53,8 @@ CLINIC_APPS = (
     # Thumbnails
     'sorl.thumbnail',
 
+    'django_filters',
+
     # Frontend user app
     'home',
 )
