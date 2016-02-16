@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class City(models.Model):
     code = models.CharField(max_length=25)
@@ -14,14 +15,14 @@ class Sortkey(models.Model):
     key2 = models.CharField(max_length=25)
 
 class Store(models.Model):
-    id = models.CharField(max_length=254, unique=True, primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=254)
     mail = models.EmailField()
     image = models.ImageField(upload_to = 'static/upload/')
     access = models.TextField(max_length=500)
     comment = models.TextField(max_length=500)
     phone = models.IntegerField()
-    created = models.DateTimeField('date created')
+    created = models.DateTimeField(auto_now_add=True)
         
     def __str__(self):
         return self.name

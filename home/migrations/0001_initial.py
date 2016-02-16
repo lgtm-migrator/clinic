@@ -71,14 +71,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Store',
             fields=[
-                ('id', models.CharField(max_length=254, unique=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=254)),
                 ('mail', models.EmailField(max_length=254)),
                 ('image', models.ImageField(upload_to=b'static/upload/')),
                 ('access', models.TextField(max_length=500)),
                 ('comment', models.TextField(max_length=500)),
                 ('phone', models.IntegerField()),
-                ('created', models.DateTimeField(verbose_name=b'date created')),
+                ('created', models.DateTimeField(auto_now_add=True)),
             ],
         ),
         migrations.CreateModel(

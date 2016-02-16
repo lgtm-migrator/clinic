@@ -1,14 +1,13 @@
 from django.contrib import admin
 from django.conf.urls import url
 from django.template.response import TemplateResponse
-from models import Store, WorkingDay, HolidayWorking
+from models import Store, WorkingDay, HolidayWorking, City, Station, Sortkey
 
 class StoreAmin(admin.ModelAdmin):
 	list_display = ( 'name', 'image', 'comment', 'phone', 'mail', 'access')
 	list_filter = ('id', 'name', 'phone')
 	fieldsets = [
 		(None, { 'fields': [ 'id', 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
-		('More', { 'fields': [ 'created' ], 'classes': ['collapse'] })
 	]
 
 	readonly_fields = ('image_show', )
@@ -39,3 +38,8 @@ class HolidayWorkingAdmin(admin.ModelAdmin):
 admin.site.register(Store, StoreAmin)
 admin.site.register(WorkingDay, WorkingDayAdmin)
 admin.site.register(HolidayWorking, HolidayWorkingAdmin)
+
+
+admin.site.register(City)
+admin.site.register(Station)
+admin.site.register(Sortkey)
