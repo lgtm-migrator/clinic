@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf.urls import url
 from django.template.response import TemplateResponse
-from models import Store, WorkingDay, HolidayWorking, City, Station, Sortkey
+from .models import Store, WorkingDay, HolidayWorking, City, Station, Sortkey
 
 class WorkingDayInline(admin.TabularInline):
 	model = WorkingDay
