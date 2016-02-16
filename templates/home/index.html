@@ -1,0 +1,33 @@
+{% extends "home/_base.html" %}
+{% load static %}
+
+<!-- Draft -->
+
+{% block content %}
+	<div class="row">
+		<div class="store-list">
+			{% if stores %}
+			    {% for store in stores %}
+			    	<div class="panel panel-default">
+			    		<div class="panel-heading">
+			    			{{ store.name }}
+			    		</div>
+  						<div class="panel-body">
+	  						<div class="col-md-12 col-md-5">
+	  							<img src="{{ store.image.url }}" class="img-responsive">
+	  						</div>
+	  						<div class="col-xs-12 col-md-7">
+	  							{{ store.access }} <hr />
+	  							{{ store.comment }} <hr />
+	  							{{ store.phone }} <hr />
+	  						</div>
+  						</div>
+  					</div>
+			    {% endfor %}
+			    </ul>
+			{% else %}
+			    <p>No store are available.</p>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
