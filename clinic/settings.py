@@ -15,7 +15,7 @@ import os
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = dirname(dirname(abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 DJANGO_APPS = (
@@ -41,7 +40,7 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 )
 
-DUYETDEV_APPS = (
+CLINIC_APPS = (
     # Useful template tags:
     'django.contrib.humanize',
 
@@ -56,10 +55,9 @@ DUYETDEV_APPS = (
 
     # Frontend user app
     'home',
-
 )
 
-INSTALLED_APPS = DJANGO_APPS + DUYETDEV_APPS
+INSTALLED_APPS = DJANGO_APPS + CLINIC_APPS
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
@@ -109,7 +107,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'clinic.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
@@ -155,13 +152,15 @@ path.append(DJANGO_ROOT)
 
 ########## STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = normpath(join(DJANGO_ROOT, 'static'))
-
+STATIC_ROOT = normpath(join(SITE_ROOT, 'static'))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_URL = '/static/'
 
+########## MEDIA FILE CONFIGURATION
+MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+MEDIA_URL='/media/'
 
 ########## TOOLBAR CONFIGURATION
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
