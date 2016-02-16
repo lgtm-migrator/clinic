@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 from .models import Store
+from .models import Schedule
 
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
@@ -15,3 +16,8 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
 	model = Store
 	template_name = 'home/detail.html'
+
+class CreateView(generic.CreateView):
+	model = Schedule
+	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
+	template_name = 'home/booking.html'
