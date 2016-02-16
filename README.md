@@ -37,3 +37,10 @@
 	python manage.py runserver
 	```
 
+-------------------------------
+
+* Import data 
+
+	```sh
+	python manage.py loaddata initial-data.yaml
+	```
