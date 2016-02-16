@@ -3,12 +3,20 @@ from django.conf.urls import url
 from django.template.response import TemplateResponse
 from models import Store, WorkingDay, HolidayWorking, City, Station, Sortkey
 
+class WorkingDayInline(admin.TabularInline):
+	model = WorkingDay
+class HolidayWorkingInline(admin.TabularInline):
+	model = HolidayWorking
+
 class StoreAmin(admin.ModelAdmin):
+	readonly_fields=('id',)
+
 	list_display = ( 'name', 'image', 'comment', 'phone', 'mail', 'access')
 	list_filter = ('id', 'name', 'phone')
 	fieldsets = [
-		(None, { 'fields': [ 'id', 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
+		(None, { 'fields': [ 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
 	]
+	inlines = [ WorkingDayInline, HolidayWorkingInline, ]
 
 	readonly_fields = ('image_show', )
 	def image_show(self, instance):

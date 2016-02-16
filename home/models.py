@@ -22,16 +22,26 @@ class Store(models.Model):
     comment = models.TextField(max_length=500)
     phone = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
-        
+
     def __str__(self):
         return self.name
 
     def get_store_code(self):
         return self.id
 
+WORKING_DAY = (
+    ('Mo', 'Monday'),
+    ('Tu', 'Tuesday'),
+    ('We', 'Webnesday'),
+    ('Th', 'Thursday'),
+    ('Fr', 'Friday'),
+    ('Sa', 'Saturday'),
+    ('Su', 'Sunday')
+)
+
 class WorkingDay(models.Model):
     store = models.ForeignKey(Store)
-    type = models.CharField(max_length=2)
+    type = models.CharField(max_length=2, choices=WORKING_DAY)
 
     hour_8 = models.IntegerField(default = -1) # -1, 0, 1
     hour_9 = models.IntegerField(default = -1)
