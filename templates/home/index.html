@@ -5,6 +5,9 @@
 
 {% block content %}
 	<div class="row">
+
+	</div>
+	<div class="row">
 		<div class="store-list">
 			{% if stores %}
 			    {% for store in stores %}
@@ -14,12 +17,16 @@
 			    		</div>
   						<div class="panel-body">
 	  						<div class="col-md-12 col-md-5">
-	  							<img src="{{ store.image.url }}" class="img-responsive">
+	  							<a href="{% url 'detail' store.id %}">
+	  								<img src="{{ store.image.url }}" class="img-responsive">
+	  							</a>
 	  						</div>
 	  						<div class="col-xs-12 col-md-7">
 	  							{{ store.access }} <hr />
 	  							{{ store.comment }} <hr />
-	  							{{ store.phone }} <hr />
+	  							{{ store.phone }} 
+	  							<a href="{% url 'detail' store.id %}" class="btn btn-primary">select</a>
+	  							<hr />
 	  						</div>
   						</div>
   					</div>
