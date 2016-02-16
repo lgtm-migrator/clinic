@@ -16,19 +16,6 @@ class StoreAmin(admin.ModelAdmin):
 	image_show.allow_tags = True
 	image_show.short_description = 'Image'
 
-	def get_urls(self):
-		urls = super(StoreAmin, self).get_urls()
-		my_urls = [
-			url(r'^store_view/$', self.store_list_view),
-		]
-		return my_urls + urls
-
-	def store_list_view(self, request):
-		context = dict(
-			self.admin_site.each_context(request),
-		)
-		return TemplateResponse(request, "admin/store_view_plate.html", context)
-
 class WorkingDayAdmin(admin.ModelAdmin):
 	pass
 

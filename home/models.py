@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 class City(models.Model):
     code = models.CharField(max_length=25)
