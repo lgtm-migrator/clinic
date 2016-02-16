@@ -1,1 +1,105 @@
-2
+/* 予約日時選択 */
+#reserve-table {
+    border-collapse: collapse;
+}
+
+#reserve-table thead tr{
+    background-color: #fff5ee;
+}
+
+#reserve-table td , #reserve-table th{
+    padding: 6px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #666;
+}
+
+#reserve-table td {
+    font-size: 16px;
+}
+
+#reserve-table td.date-selected {
+    background-color: #e3e2e0;
+}
+
+
+#reserve-table td.date-available {
+    cursor: pointer;
+}
+
+#reserve-table td.date-available:hover {
+    background-color: #e3e2e0;
+}
+
+.color-saturday {
+    color: #1e90ff;
+}
+
+.color-holiday {
+    color: red;
+}
+
+
+/* 予約内容入力 */
+
+#reserve-form table {
+    border-collapse: collapse;
+}
+
+#reserve-form table td , #reserve-form table th {
+    vertical-align: middle;
+}
+
+#reserve-form table th{
+    background-color: #fff5ee;
+}
+
+#reserve-form table  .form-control{
+    margin: 10px auto;
+}
+
+#reserve-form legend {
+    border: 0;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.form-horizontal .form-control {
+    margin-bottom: 20px;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.clear-xs:after{
+    clear: both;
+}
+
+@media(max-width:767px){
+    #reserve-form table td , #reserve-form table th {
+        display: block;
+        border: 0;
+    }
+}
+
+@media(min-width:768px){
+    #reserve-form table th {
+        width: 100px;
+    }
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.btn-lightblue {
+    background-color: #b0c4de;
+    border-color: #333;
+}
+
+#btn-submit {
+    margin-right: 40px;
+}

@@ -64,7 +64,7 @@ class WorkingDay(models.Model):
 class HolidayWorking(models.Model):
     store = models.ForeignKey(Store)
     date = models.DateField('holiday date')
-    
+
     hour_8 = models.IntegerField(default = -1) # -1, 0, 1
     hour_9 = models.IntegerField(default = -1)
     hour_10 = models.IntegerField(default = -1)
@@ -86,6 +86,5 @@ class Schedule(models.Model):
     hour = models.IntegerField()
     name = models.CharField(max_length=254)
     phone = models.CharField(max_length=15)
-    email = models.EmailField()
     email = models.EmailField()
     symptom = models.TextField(max_length=500)

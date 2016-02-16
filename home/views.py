@@ -15,4 +15,3 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
 	model = Store
 	template_name = 'home/detail.html'
-	
