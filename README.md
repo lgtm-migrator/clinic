@@ -20,6 +20,12 @@
 	```sh
 	python manage.py migrate
 	```
+* Create admin user
+	
+	```sh
+	python manage.py createsuperuser
+	```
+
 * Start the development server.
 	
 	```sh
