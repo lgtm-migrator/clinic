@@ -4,6 +4,7 @@
 
 - **Pip** - a python package manager
 - **virtualenv** - python virtual environments
+- http://tutorial.djangogirls.org/en/django_installation/index.html
 
 # Setup 
 
