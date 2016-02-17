@@ -41,6 +41,7 @@ class StoreAmin(admin.ModelAdmin):
 	list_filter = ('id', 'name', 'phone')
 	fieldsets = [
 		(None, { 'fields': [ 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
+		(None, { 'fields': [ 'region', 'nearest_station'], 'classes': ('wide', ) }),
 	]
 	inlines = [ WorkingDayInline, HolidayWorkingInline, ]
 	prepopulated_fields = { 'name': ['name'] }

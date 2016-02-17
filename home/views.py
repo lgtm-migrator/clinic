@@ -11,21 +11,20 @@ from django_select2.forms import Select2Widget
 
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
-	name = django_filters.ModelChoiceFilter(
+	region = django_filters.ModelChoiceFilter(
 		queryset=Region.objects.all(),
 		widget=Select2Widget,
 		lookup_type='icontains'
 	)
-	phone = django_filters.ModelChoiceFilter(
+	nearest_station = django_filters.ModelChoiceFilter(
 		queryset=NearestStation.objects.all(),
 		widget=Select2Widget,
 		lookup_type='icontains'
 	)
 	class Meta:
 		model = Store
-		fields = ['name', 'phone',]
-		# order_by = ( [ 'name', 'phone' ], ['access', 'comment'])
-
+		fields = ['region', 'nearest_station',]
+	
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
 	context_object_name = 'stores'
@@ -34,7 +33,7 @@ class IndexView(generic.ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(IndexView, self).get_context_data(**kwargs)
-		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.all())
+		context['filter'] = StoreFilter(self.request.GET)
 		return context
 
 class DetailView(generic.DetailView):

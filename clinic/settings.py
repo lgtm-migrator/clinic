@@ -188,4 +188,4 @@ MIDDLEWARE_CLASSES += (
 ############## SELECT2 CONFIG
 SELECT2_JS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'
 SELECT2_CSS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css'
-SELECT2_CACHE_BACKEND = 'default'
+SELECT2_CACHE_BACKEND = u'default'
