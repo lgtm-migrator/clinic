@@ -24,7 +24,15 @@ class StoreFilter(django_filters.FilterSet):
 	class Meta:
 		model = Store
 		fields = ['region', 'nearest_station',]
-	
+		
+	def get_order_by(self, order_value):
+		sort_key = Sortkey.objects.filter(sorttype='001')[0]
+		if sort_key:
+			return [sort_key.key1, sort_key.key2]
+			# return []
+		else:
+			return super(StoreFilter, self).get_order_by(order_value)
+
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
 	context_object_name = 'stores'

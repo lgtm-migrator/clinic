@@ -17,10 +17,15 @@ class NearestStation(models.Model):
     def __str__(self):
         return self.name
 
+# ソートキーテーブル
+SORT_KEY = (('name', 'Store name'), ('phone', 'Phone number'), ('mail', 'Email'), ('region', 'region'), ('nearest_station', 'Nearest Station'));
 class Sortkey(models.Model):
-    sorttype = models.CharField(max_length=25, editable=False)
-    key1 = models.CharField(max_length=25)
-    key2 = models.CharField(max_length=25)
+    sorttype = models.CharField(default='001', max_length=25, editable=False, unique=True) # unique=True prevent from create sortkey
+    key1 = models.CharField(max_length=25, choices= SORT_KEY, default='name')
+    key2 = models.CharField(max_length=25, choices=SORT_KEY, default='phone')
+
+    def __str__(self):
+        return 'Sort key. Click to edit'
 
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
