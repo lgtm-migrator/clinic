@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
-class City(models.Model):
+# 地域テーブル
+class Region(models.Model):
     code = models.CharField(max_length=25)
     name = models.CharField(max_length=254)
 
-class Station(models.Model):
+# 最寄り駅テーブル
+class NearestStation(models.Model):
     code = models.CharField(max_length=25)
     name = models.CharField(max_length=254)
 
 class Sortkey(models.Model):
-    column1 = models.CharField(max_length=25)
+    sorttype = models.CharField(max_length=25, editable=False)
     key1 = models.CharField(max_length=25)
     key2 = models.CharField(max_length=25)
 
@@ -18,6 +21,7 @@ class Store(models.Model):
     name = models.CharField(max_length=254)
     mail = models.EmailField()
     image = models.ImageField(upload_to = 'static/upload/')
+    # image = models.CharField(max_length=25)
     access = models.TextField(max_length=500)
     comment = models.TextField(max_length=500)
     phone = models.IntegerField()
@@ -88,3 +92,6 @@ class Schedule(models.Model):
     phone = models.CharField(max_length=15)
     email = models.EmailField()
     symptom = models.TextField(max_length=500)
+
+    class Meta:
+        unique_together = (('store', 'date', 'hour'), )

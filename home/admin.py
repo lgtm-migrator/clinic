@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.conf.urls import url
 from django.template.response import TemplateResponse
-from .models import Store, WorkingDay, HolidayWorking, City, Station, Sortkey
+from .models import Store, WorkingDay, HolidayWorking, Region, NearestStation, Sortkey
 
 class WorkingDayInline(admin.TabularInline):
 	model = WorkingDay
+	extra = 8
 class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking
+	extra = 30
 
 class StoreAmin(admin.ModelAdmin):
 	readonly_fields=('id',)
@@ -35,6 +37,6 @@ admin.site.register(WorkingDay, WorkingDayAdmin)
 admin.site.register(HolidayWorking, HolidayWorkingAdmin)
 
 
-admin.site.register(City)
-admin.site.register(Station)
+admin.site.register(Region)
+admin.site.register(NearestStation)
 admin.site.register(Sortkey)
