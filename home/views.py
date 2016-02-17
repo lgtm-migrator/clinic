@@ -3,15 +3,24 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 
-from .models import Store
-from .models import Schedule
+from .models import Store, Schedule, Region, \
+	NearestStation, Sortkey
 
 import django_filters
+from django_select2.forms import Select2Widget
 
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
-	name = django_filters.CharFilter(lookup_type='icontains')
-	phone = django_filters.NumberFilter(lookup_type='icontains')
+	name = django_filters.ModelChoiceFilter(
+		queryset=Region.objects.all(),
+		widget=Select2Widget,
+		lookup_type='icontains'
+	)
+	phone = django_filters.ModelChoiceFilter(
+		queryset=NearestStation.objects.all(),
+		widget=Select2Widget,
+		lookup_type='icontains'
+	)
 	class Meta:
 		model = Store
 		fields = ['name', 'phone',]
@@ -36,3 +45,6 @@ class CreateView(generic.CreateView):
 	model = Schedule
 	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
 	template_name = 'home/booking.html'
+
+
+

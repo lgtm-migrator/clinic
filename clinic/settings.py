@@ -53,10 +53,13 @@ CLINIC_APPS = (
     # Thumbnails
     'sorl.thumbnail',
 
+    # From frontend
     'django_filters',
+    'django_select2',
 
     # Frontend user app
     'home',
+    'home.templatetags'
 )
 
 INSTALLED_APPS = DJANGO_APPS + CLINIC_APPS
@@ -181,3 +184,8 @@ MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 ########## END TOOLBAR CONFIGURATION
+
+############## SELECT2 CONFIG
+SELECT2_JS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'
+SELECT2_CSS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css'
+SELECT2_CACHE_BACKEND = 'default'
