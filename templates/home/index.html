@@ -34,7 +34,7 @@
 	  						<div class="col-xs-12 col-md-7">
 	  							{{ store.access }} <hr />
 	  							{{ store.comment }} <hr />
-	  							{{ store.phone }} 
+	  							<a href="tel:{{ store.phone }} ">{{ store.phone }} </a>
 	  							<a href="{% url 'detail' store.id %}" class="btn btn-primary">select</a>
 	  							<hr />
 	  						</div>

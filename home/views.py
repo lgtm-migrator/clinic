@@ -15,12 +15,12 @@ class StoreFilter(django_filters.FilterSet):
 	class Meta:
 		model = Store
 		fields = ['name', 'phone',]
-		order_by = ( [ 'name', 'phone' ], ['access', 'comment'])
+		# order_by = ( [ 'name', 'phone' ], ['access', 'comment'])
 
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
 	context_object_name = 'stores'
-	paginate_by = 10
+	paginate_by = 20
 	model = Store
 
 	def get_queryset(self):
@@ -38,6 +38,7 @@ class IndexView(generic.ListView):
 	def get_context_data(self, **kwargs):
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.all())
+		# context['filter'] = self.model.objects.all()
 		return context
 
 
