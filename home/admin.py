@@ -37,7 +37,7 @@ class HolidayWorkingInline(admin.TabularInline):
 class StoreAmin(admin.ModelAdmin):
 	readonly_fields=('id',)
 
-	list_display = ( 'name', 'image', 'comment', 'phone', 'mail', 'access')
+	list_display = ( 'name', 'phone', 'mail', 'access')
 	list_filter = ('id', 'name', 'phone')
 	fieldsets = [
 		(None, { 'fields': [ 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
@@ -61,7 +61,14 @@ admin.site.register(Store, StoreAmin)
 admin.site.register(WorkingDay, WorkingDayAdmin)
 admin.site.register(HolidayWorking, HolidayWorkingAdmin)
 
+###################################33
 
-admin.site.register(Region)
-admin.site.register(NearestStation)
+class RegionAmin(admin.ModelAdmin):
+	list_display = ('code', 'name')
+
+class NearestStationAmin(admin.ModelAdmin):
+	list_display = ('code', 'name')
+
+admin.site.register(Region, RegionAmin)
+admin.site.register(NearestStation, NearestStationAmin)
 admin.site.register(Sortkey)

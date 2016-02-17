@@ -6,10 +6,16 @@ class Region(models.Model):
     code = models.CharField(max_length=25)
     name = models.CharField(max_length=254)
 
+    def __str__(self):
+        return self.name
+
 # 最寄り駅テーブル
 class NearestStation(models.Model):
     code = models.CharField(max_length=25)
     name = models.CharField(max_length=254)
+    
+    def __str__(self):
+        return self.name
 
 class Sortkey(models.Model):
     sorttype = models.CharField(max_length=25, editable=False)
