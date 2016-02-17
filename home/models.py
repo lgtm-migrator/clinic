@@ -40,7 +40,8 @@ WORKING_DAY = (
     ('Th', 'Thursday'),
     ('Fr', 'Friday'),
     ('Sa', 'Saturday'),
-    ('Su', 'Sunday')
+    ('Su', 'Sunday'),
+    ('No', 'Holiday')
 )
 
 class WorkingDay(models.Model):

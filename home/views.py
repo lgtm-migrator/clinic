@@ -23,24 +23,10 @@ class IndexView(generic.ListView):
 	paginate_by = 20
 	model = Store
 
-	def get_queryset(self):
-		try:
-			q = self.request.GET['q']
-		except:
-			q = ''
-
-		if (q != ''):
-			store_list = self.model.objects.filter(name__icontains = q)
-		else:
-			store_list = self.model.objects.order_by('-created')[:5]
-		return store_list
-
 	def get_context_data(self, **kwargs):
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.all())
-		# context['filter'] = self.model.objects.all()
 		return context
-
 
 class DetailView(generic.DetailView):
 	model = Store
