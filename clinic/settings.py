@@ -56,7 +56,8 @@ CLINIC_APPS = (
 
     # Frontend user app
     'home',
-    'home.templatetags'
+    'home.templatetags',
+    'home.middleware.force_default_language',
 )
 
 INSTALLED_APPS = DJANGO_APPS + CLINIC_APPS
@@ -78,6 +79,7 @@ CACHES = {
 MIDDLEWARE_CLASSES = (
     # Use GZip compression to reduce bandwidth.
     'django.middleware.gzip.GZipMiddleware',
+    'home.middleware.force_default_language.ForceDefaultLanguageMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,13 +131,13 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja' #'en-us'
 
 TIME_ZONE = None
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -193,7 +195,7 @@ SELECT2_CACHE_BACKEND = u'default'
 ############ I18N 
 LANGUAGES = (
     ('en', _('English')),
-    ('jp', _('Japanese')),
+    ('ja', _('Japanese')),
 )
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
