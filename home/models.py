@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
-# 地域テーブル
+# # 地域テーブル
 class Region(models.Model):
-    code = models.CharField(max_length=25)
+    code = models.CharField(max_length=25, unique=True)
     name = models.CharField(max_length=254)
 
     def __str__(self):
         return self.name
 
-# 最寄り駅テーブル
+# # 最寄り駅テーブル
 class NearestStation(models.Model):
-    code = models.CharField(max_length=25)
+    code = models.CharField(max_length=25, unique=True)
     name = models.CharField(max_length=254)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class NearestStation(models.Model):
 # ソートキーテーブル
 SORT_KEY = (('name', 'Store name'), ('phone', 'Phone number'), ('mail', 'Email'), ('region', 'region'), ('nearest_station', 'Nearest Station'));
 class Sortkey(models.Model):
-    sorttype = models.CharField(default='001', max_length=25, editable=False, unique=True) # unique=True prevent from create sortkey
+    sorttype = models.CharField(default='001', max_length=25, editable=False, unique=True)
     key1 = models.CharField(max_length=25, choices= SORT_KEY, default='name')
     key2 = models.CharField(max_length=25, choices=SORT_KEY, default='phone')
 
@@ -28,7 +28,8 @@ class Sortkey(models.Model):
         return 'Sort key. Click to edit'
 
 class Store(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, unique=True)
+    store_id = models.CharField(max_length=254, unique=True)
     name = models.CharField(max_length=254)
     phone = models.IntegerField()
     mail = models.EmailField()
@@ -37,8 +38,8 @@ class Store(models.Model):
     access = models.TextField(max_length=500, blank=True)
     comment = models.TextField(max_length=500, blank=True)
     
-    region = models.CharField(max_length=254, blank=True)
-    nearest_station = models.CharField(max_length=254, blank=True)
+    region = models.ForeignKey(Region, null=True)
+    nearest_station = models.ForeignKey(NearestStation, null=True)
 
     created = models.DateTimeField(auto_now_add=True)
 
@@ -46,7 +47,7 @@ class Store(models.Model):
         return self.name
 
     def get_store_code(self):
-        return self.id
+        return self.store_id
 
 WORKING_DAY = (
     ('Mo', 'Monday'),
@@ -78,8 +79,8 @@ class WorkingDay(models.Model):
     hour_20 = models.IntegerField(default = -1)
     hour_21 = models.IntegerField(default = -1)
 
-    def get_store_code(self):
-        pass
+    class Meta:
+        unique_together = (('store', 'type'), )
 
 class HolidayWorking(models.Model):
     store = models.ForeignKey(Store)
@@ -99,6 +100,9 @@ class HolidayWorking(models.Model):
     hour_19 = models.IntegerField(default = -1)
     hour_20 = models.IntegerField(default = -1)
     hour_21 = models.IntegerField(default = -1)
+
+    class Meta:
+        unique_together = (('store', 'date'), )
 
 class Schedule(models.Model):
     store = models.ForeignKey(Store)
