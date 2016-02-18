@@ -14,12 +14,9 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = dirname(dirname(abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_q4j2$ur6ce*4z(m-jy2rm1gn9(x#d!mbpy1td-2ki4kim1g=x'
@@ -90,6 +87,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 ROOT_URLCONF = 'clinic.urls'
@@ -105,6 +104,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -189,3 +189,12 @@ MIDDLEWARE_CLASSES += (
 SELECT2_JS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'
 SELECT2_CSS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css'
 SELECT2_CACHE_BACKEND = u'default'
+
+############ I18N 
+LANGUAGES = (
+    ('en', _('English')),
+    ('jp', _('Japanese')),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)

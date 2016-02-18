@@ -17,7 +17,10 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="panel panel-default panel-clinic">
-				<div class="panel-heading text-center">{{ _('Store finder') }}</div>
+				<div class="panel-heading text-left">
+					{{ _('Store finder: ') }}
+					<span class="helper-text">{{ _('please select the regional or the nearest station') }}</span>
+				</div>
 				<div class="panel-body">
 					<form action="" method="get" class="form-horizontal col-md-8 col-md-offset-2">
 						{% for field in filter.form %}
@@ -27,13 +30,17 @@
 						        	{% trans field.label_tag %}
 						        </label>
 						        <div class="col-sm-8">
-						        	{{ field|addcss:"form-control" }}
+						        	{% with input_field=field|addcss:"form-control" %}
+						        		{{input_field}}
+						        	{% endwith %}
 						        </div>
 						    </div>
 						{% endfor %}
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8">
-									<button type="submit" class="btn btn-default">Search</button>
+									<button type="submit" class="btn btn-default">
+										{{ _('Search') }}
+									</button>
 								</div>
 							</div>
 					</form>
@@ -48,7 +55,7 @@
 				{% if filter %} 
 				    {% for store in filter %}
 				    	<div class="panel panel-default panel-clinic">
-				    		<div class="panel-heading text-center">
+				    		<div class="panel-heading text-left">
 				    			{{ store.name }}
 				    		</div>
 	  						<div class="panel-body">
@@ -69,7 +76,11 @@
 				    {% endfor %}
 				    </ul>
 				{% else %}
-				    <p>No store are available.</p>
+					<div class="panel panel-default panel-clinic panel-nostore">
+				    	<div class="panel-body text-center">
+			   				 <h4>{{ _('No store are available') }}</h4>
+			   			</div>
+			   		</div>
 				{% endif %}
 			</div>
 		</div>

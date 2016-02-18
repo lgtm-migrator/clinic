@@ -20,14 +20,21 @@
 
 <body>
 	<div class="container">
-		<div class="header clearfix">
-			<h3 class="text-muted">
-				<a href="/">{{ _('鍼灸接骨師予約') }}</a>
-			</h3>
-			{% include "home/includes/_navigation.html" %}
-			<p>{{ _('鍼灸接骨院予約') }} {% block header_title %}- 店舗選択 {% endblock %}</p>
-		</div>
-
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-md-4">
+        <div class="header clearfix">
+          <h3 class="text-muted">
+            <a href="/">{{ _('Clinic') }}</a>
+          </h3>
+          <p>{{ _('Acupuncture orthopedic clinic reservation') }}
+          {% block header_title %}- {{ _('Select store') }} {% endblock %}</p>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-8 col-md-8 text-right">
+        {% include 'home/includes/_navigation.html' %}
+      </div>
+    </div>
+		
 	</div>
 
 	<div class="container">

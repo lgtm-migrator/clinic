@@ -21,6 +21,9 @@
     background: #fff;
     font-size: 2rem;
 }
+.panel-clinic .panel-heading .helper-text {
+    font-size: 0.8em;
+}
 
 /* 予約日時選択 */
 #reserve-table {
