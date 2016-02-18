@@ -1,3 +1,27 @@
+/* header */
+.header {
+    padding: 25px 0;
+}
+
+.header h3.text-muted {
+    font-size: 3rem;
+}
+
+.header h3 a {
+    text-decoration: none;
+    color: #6B6B6B; 
+}
+
+/* Panel */
+.panel-clinic {
+    border-radius: none;
+}
+
+.panel-clinic .panel-heading {
+    background: #fff;
+    font-size: 2rem;
+}
+
 /* 予約日時選択 */
 #reserve-table {
     border-collapse: collapse;

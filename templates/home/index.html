@@ -15,15 +15,15 @@
 {% block content %}
 
 	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">{{ _('Store finder') }}</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="panel panel-default panel-clinic">
+				<div class="panel-heading text-center">{{ _('Store finder') }}</div>
 				<div class="panel-body">
-					<form action="" method="get" class="form-horizontal">
+					<form action="" method="get" class="form-horizontal col-md-8 col-md-offset-2">
 						{% for field in filter.form %}
 						    <div class="form-group">
 						        {{ field.errors }}
-						        <label class="col-sm-4 control-label">
+						        <label class="col-sm-4 control-label text-right">
 						        	{% trans field.label_tag %}
 						        </label>
 						        <div class="col-sm-8">
@@ -43,33 +43,35 @@
 	</div>
 
 	<div class="row">
-		<div class="store-list">
-			{% if filter %} 
-			    {% for store in filter %}
-			    	<div class="panel panel-default">
-			    		<div class="panel-heading">
-			    			{{ store.name }}
-			    		</div>
-  						<div class="panel-body">
-	  						<div class="col-md-12 col-md-5">
-	  							<a href="{% url 'detail' store.id %}">
-	  								<img src="{{ store.image.url }}" class="img-responsive">
-	  							</a>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="store-list">
+				{% if filter %} 
+				    {% for store in filter %}
+				    	<div class="panel panel-default panel-clinic">
+				    		<div class="panel-heading text-center">
+				    			{{ store.name }}
+				    		</div>
+	  						<div class="panel-body">
+		  						<div class="col-md-12 col-md-5">
+		  							<a href="{% url 'detail' store.id %}">
+		  								<img src="{{ store.image.url }}" class="img-responsive">
+		  							</a>
+		  						</div>
+		  						<div class="col-xs-12 col-md-7">
+		  							{{ store.access }} <hr />
+		  							{{ store.comment }} <hr />
+		  							<a href="tel:{{ store.phone }} ">{{ store.phone }} </a>
+		  							<a href="{% url 'detail' store.id %}" class="btn btn-primary">select</a>
+		  							<hr />
+		  						</div>
 	  						</div>
-	  						<div class="col-xs-12 col-md-7">
-	  							{{ store.access }} <hr />
-	  							{{ store.comment }} <hr />
-	  							<a href="tel:{{ store.phone }} ">{{ store.phone }} </a>
-	  							<a href="{% url 'detail' store.id %}" class="btn btn-primary">select</a>
-	  							<hr />
-	  						</div>
-  						</div>
-  					</div>
-			    {% endfor %}
-			    </ul>
-			{% else %}
-			    <p>No store are available.</p>
-			{% endif %}
+	  					</div>
+				    {% endfor %}
+				    </ul>
+				{% else %}
+				    <p>No store are available.</p>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

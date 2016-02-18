@@ -9,15 +9,19 @@
     </title>
     {% block stylesheets %}
     <link rel="stylesheet" href="{% static "lib/bootstrap/dist/css/bootstrap.min.css" %}" type="text/css" />
-    <link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" /> {% endblock %} {% block extra_head %}{% endblock %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}" type="text/css" />
+    {% endblock %}
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body>
 	<div class="container">
 		<div class="header clearfix">
-			<h3 class="text-muted">{{ _('鍼灸接骨師予約') }}</h3>
+			<h3 class="text-muted">
+				<a href="/">{{ _('鍼灸接骨師予約') }}</a>
+			</h3>
 			{% include "home/includes/_navigation.html" %}
-			<p>{{ _('鍼灸接骨院予約 － 店舗選択') }}</p>
+			<p>{{ _('鍼灸接骨院予約') }} {% block header_title %}- 店舗選択 {% endblock %}</p>
 		</div>
 
 	</div>
