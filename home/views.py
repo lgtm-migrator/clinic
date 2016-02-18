@@ -13,9 +13,6 @@ import sys
 import django_filters
 import calendar
 
-
-
-
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 	region = django_filters.ModelChoiceFilter(
@@ -50,7 +47,7 @@ class IndexView(generic.ListView):
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET)
 		return context
-
+		
 class DetailView(generic.DetailView):
 	model = Store
 	template_name = 'home/detail.html'
