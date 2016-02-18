@@ -13,9 +13,6 @@ import sys
 import django_filters
 import calendar
 
-
-
-
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 	region = django_filters.ModelChoiceFilter(
@@ -153,9 +150,74 @@ class DetailView(generic.DetailView):
 
 		return mat
 
+BOOKING_ERROR = (
+	('0', 'No Error'),
+	('1', 'No Store'),
+    ('2', 'Invalid Date'),
+    ('3', 'Invalid Hour'),
+    ('4', 'Schedule exited'),
+)
 
+def CheckDataSchedule(store_id, date, hour):
+	store = Store.objects.filter(pk=store_id)
+	if not store:
+		return BOOKING_ERROR[1]
+
+	if int(hour) <= 6 or int(hour) >= 22:
+		return BOOKING_ERROR[3]
+
+	try:
+		date = datetime.strptime(date, "%Y%m%d").date()
+		schedule = Schedule.objects.filter(store=store, date=date, hour=hour)
+		if schedule:
+			return BOOKING_ERROR[4]
+	except ValueError as e:
+		return BOOKING_ERROR[2]
+
+	return BOOKING_ERROR[0]
 
 class CreateView(generic.CreateView):
 	model = Schedule
 	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
 	template_name = 'home/booking.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(CreateView, self).get_context_data(**kwargs)
+		if self.request.method == "GET":
+			context['store'] = self.kwargs['store']
+			context['hour'] = int(self.kwargs['hour'])
+			context['date'] = self.kwargs['date']
+
+			check_url = CheckDataSchedule(context['store'], context['date'], context['hour'])
+			if check_url == BOOKING_ERROR[1]:
+				context['get_error'] = "Store is not exist."
+			elif check_url == BOOKING_ERROR[2]:
+				context['get_error'] = "Invalid date."
+			elif check_url == BOOKING_ERROR[3]:
+				context['get_error'] = "Time is over."
+			elif check_url == BOOKING_ERROR[4]:
+				context['get_error'] = "This time is registed by another patient. Please choose another time!"
+			else:
+				context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
+				
+		else:
+			context['store'] = self.request.POST['store']
+			context['date'] = datetime.strptime(self.request.POST['date'], "%Y%m%d").date()
+			context['hour'] = int(self.request.POST['hour'])
+			context['name'] = self.request.POST['name']
+			context['phone'] = self.request.POST['phone']
+			context['email'] = self.request.POST['email']
+			context['symptom'] = self.request.POST['symptom']
+
+			store=Store(pk=context['store'])
+
+			schedule = Schedule.objects.filter(store=store, date=context['date'], hour=context['hour'])
+			if schedule:
+				context['error'] = "This time is registed by another patient. Please choose another time!"
+			else:
+				schedule = Schedule(store=store, date=context['date'], hour=context['hour'], 
+									name=context['name'], phone=context['phone'], 
+									email=context['email'], symptom=context['symptom'])
+				schedule.save()
+				context['success'] = "The registration process was successful, Please check email for more information!"
+		return context
