@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 03:23+0700\n"
+"POT-Creation-Date: 2016-02-19 04:31+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: clinic/settings.py:195
+#: clinic/settings.py:197
 msgid "English"
 msgstr "English"
+
+#: clinic/settings.py:198
+msgid "Japanese"
+msgstr ""
 
 #: templates/home/_base.html:12 templates/home/_base.html.py:27
 msgid "Clinic"
@@ -39,18 +43,36 @@ msgstr "店舗選択 "
 msgid "%(t)s"
 msgstr ""
 
-#: templates/home/index.html:21
+#: templates/home/includes/_navigation.html:4
+msgid "Logout"
+msgstr "ログオフ"
+
+#: templates/home/index.html:22
 msgid "Store finder: "
 msgstr "店舗検索 "
 
-#: templates/home/index.html:22
+#: templates/home/index.html:23
 msgid "please select the regional or the nearest station"
 msgstr "地域または、最寄り駅を選択してください。"
 
-#: templates/home/index.html:42
+#: templates/home/index.html:43
 msgid "Search"
 msgstr "検索"
 
-#: templates/home/index.html:81
+#: templates/home/index.html:95
+msgid "Phone"
+msgstr "電話番号"
+
+#: templates/home/index.html:96
+msgid "Reservation"
+msgstr "予約"
+
+#: templates/home/index.html:109
 msgid "No store are available"
 msgstr "利用できない保存"
+
+#~ msgid "Region"
+#~ msgstr "地域"
+
+#~ msgid "Nearest station"
+#~ msgstr "最寄り駅"
