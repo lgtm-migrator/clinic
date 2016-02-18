@@ -13,16 +13,105 @@
 }
 
 /* Panel */
-.panel-clinic {
+.panel-clinic, .panel-clinic-store {
     border-radius: none;
+}
+
+.panel-clinic-store {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-radius: 0;
+}
+
+.well-white {
+    background-color: #fff !important;
+    box-shadow: none;
+}
+
+.well-no-radius {
+    border-radius: 0;
+}
+
+.well-no-border {
+    border: 0;
+}
+
+.store-phone {
+    padding: 19px;
+    line-height: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.store-phone a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #333;
+}
+
+.store-select {
+    padding-top: 0 !important;
+    padding-right: 0;
+}
+
+.store-select .btn {
+    border-radius: 0;
+    height: 60px;
+    line-height: 38px;
+}
+
+.store-image {
+    max-height: 350px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.btn-clinic-select:hover {
+    background-color: #FFF;
+    border-width: 2px;
 }
 
 .panel-clinic .panel-heading {
     background: #fff;
+    font-size: 1.75rem;
+    color: #DD1746;
+    font-weight: 700;
+}
+.panel-clinic .panel-heading.store-heading {
     font-size: 2rem;
 }
+
 .panel-clinic .panel-heading .helper-text {
     font-size: 0.8em;
+    color: #333;
+    font-weight: 300;
+}
+
+/* Admin box */
+.admin-nav {
+    margin-top: 25px;
+    padding: 30px;
+}
+
+.btn-no-radius {
+    border-radius: 0; 
+}
+
+.btn-clinic {
+    border-radius: 0; 
+}
+.btn-clinic:hover {
+    border-width: 2px;
+    background-color: #FFF;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #E6E6E6;
+    background: #F7F7F7;
+    font-size: 1.1rem;
 }
 
 /* 予約日時選択 */
