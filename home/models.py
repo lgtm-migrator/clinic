@@ -63,20 +63,21 @@ WORKING_DAY = (
 class WorkingDay(models.Model):
     store = models.ForeignKey(Store)
     type = models.CharField(max_length=2, choices=WORKING_DAY)
-    hour_8 = models.IntegerField(default = -1) # -1, 0, 1
-    hour_9 = models.IntegerField(default = -1)
-    hour_10 = models.IntegerField(default = -1)
-    hour_11 = models.IntegerField(default = -1)
-    hour_12 = models.IntegerField(default = -1)
-    hour_13 = models.IntegerField(default = -1)
-    hour_14 = models.IntegerField(default = -1)
-    hour_15 = models.IntegerField(default = -1)
-    hour_16 = models.IntegerField(default = -1)
-    hour_17 = models.IntegerField(default = -1)
-    hour_18 = models.IntegerField(default = -1)
-    hour_19 = models.IntegerField(default = -1)
-    hour_20 = models.IntegerField(default = -1)
-    hour_21 = models.IntegerField(default = -1)
+    
+    hour_8 = models.BooleanField(default = False) # -1, 0, 1
+    hour_9 = models.BooleanField(default = False)
+    hour_10 = models.BooleanField(default = False)
+    hour_11 = models.BooleanField(default = False)
+    hour_12 = models.BooleanField(default = False)
+    hour_13 = models.BooleanField(default = False)
+    hour_14 = models.BooleanField(default = False)
+    hour_15 = models.BooleanField(default = False)
+    hour_16 = models.BooleanField(default = False)
+    hour_17 = models.BooleanField(default = False)
+    hour_18 = models.BooleanField(default = False)
+    hour_19 = models.BooleanField(default = False)
+    hour_20 = models.BooleanField(default = False)
+    hour_21 = models.BooleanField(default = False)
 
     def is_dayoff(self,time_range):
         dayoff = True
@@ -93,20 +94,20 @@ class HolidayWorking(models.Model):
     store = models.ForeignKey(Store)
     date = models.DateField('holiday date')
 
-    hour_8 = models.IntegerField(default = -1) # -1, 0, 1
-    hour_9 = models.IntegerField(default = -1)
-    hour_10 = models.IntegerField(default = -1)
-    hour_11 = models.IntegerField(default = -1)
-    hour_12 = models.IntegerField(default = -1)
-    hour_13 = models.IntegerField(default = -1)
-    hour_14 = models.IntegerField(default = -1)
-    hour_15 = models.IntegerField(default = -1)
-    hour_16 = models.IntegerField(default = -1)
-    hour_17 = models.IntegerField(default = -1)
-    hour_18 = models.IntegerField(default = -1)
-    hour_19 = models.IntegerField(default = -1)
-    hour_20 = models.IntegerField(default = -1)
-    hour_21 = models.IntegerField(default = -1)
+    hour_8 = models.BooleanField(default = False) # -1, 0, 1
+    hour_9 = models.BooleanField(default = False)
+    hour_10 = models.BooleanField(default = False)
+    hour_11 = models.BooleanField(default = False)
+    hour_12 = models.BooleanField(default = False)
+    hour_13 = models.BooleanField(default = False)
+    hour_14 = models.BooleanField(default = False)
+    hour_15 = models.BooleanField(default = False)
+    hour_16 = models.BooleanField(default = False)
+    hour_17 = models.BooleanField(default = False)
+    hour_18 = models.BooleanField(default = False)
+    hour_19 = models.BooleanField(default = False)
+    hour_20 = models.BooleanField(default = False)
+    hour_21 = models.BooleanField(default = False)
 
     def is_dayoff(self,time_range):
         dayoff = True

@@ -7,7 +7,6 @@ from django.forms.models import BaseModelFormSet
 from .models import Store, WorkingDay, HolidayWorking, Region, NearestStation, Sortkey, Holiday
 
 class WorkingDayInlineAdminForm(forms.ModelForm):
-
 	class Meta:
 		model = WorkingDay
 		exclude = []
@@ -29,7 +28,7 @@ class WorkingDayInline(admin.TabularInline):
 	extra = 8
 	form = WorkingDayInlineAdminForm
 	# formset = WorkingDayInlineFormSet
-
+	
 class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking
 	extra = 30
