@@ -34,10 +34,10 @@ class Store(models.Model):
     phone = models.IntegerField()
     mail = models.EmailField()
     image = models.ImageField(upload_to = 'static/upload/', blank=True)
-    
+
     access = models.TextField(max_length=500, blank=True)
     comment = models.TextField(max_length=500, blank=True)
-    
+
     region = models.ForeignKey(Region, null=True)
     nearest_station = models.ForeignKey(NearestStation, null=True)
 
@@ -63,7 +63,6 @@ WORKING_DAY = (
 class WorkingDay(models.Model):
     store = models.ForeignKey(Store)
     type = models.CharField(max_length=2, choices=WORKING_DAY)
-
     hour_8 = models.IntegerField(default = -1) # -1, 0, 1
     hour_9 = models.IntegerField(default = -1)
     hour_10 = models.IntegerField(default = -1)
@@ -79,6 +78,14 @@ class WorkingDay(models.Model):
     hour_20 = models.IntegerField(default = -1)
     hour_21 = models.IntegerField(default = -1)
 
+    def is_dayoff(self,time_range):
+        dayoff = True
+        for i in time_range:
+            if getattr(self, "hour_"+str(i)) == 1:
+                return False
+        return dayoff
+    def __str__(self):
+        return self.type
     class Meta:
         unique_together = (('store', 'type'), )
 
@@ -101,6 +108,13 @@ class HolidayWorking(models.Model):
     hour_20 = models.IntegerField(default = -1)
     hour_21 = models.IntegerField(default = -1)
 
+    def is_dayoff(self,time_range):
+        dayoff = True
+        for i in time_range:
+            if getattr(self, "hour_"+str(i)) == 1:
+                return False
+        return dayoff
+
     class Meta:
         unique_together = (('store', 'date'), )
 
@@ -115,3 +129,8 @@ class Schedule(models.Model):
 
     class Meta:
         unique_together = (('store', 'date', 'hour'), )
+
+class Holiday(models.Model):
+    date = models.DateField('holiday')
+    def __str__(self):
+        return self.date.strftime("%d/%m/%Y")

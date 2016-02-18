@@ -4,17 +4,17 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.template.response import TemplateResponse
 from django.forms.models import BaseModelFormSet
-from .models import Store, WorkingDay, HolidayWorking, Region, NearestStation, Sortkey
+from .models import Store, WorkingDay, HolidayWorking, Region, NearestStation, Sortkey, Holiday
 
 class WorkingDayInlineAdminForm(forms.ModelForm):
-	
+
 	class Meta:
 		model = WorkingDay
 		exclude = []
 
 	def __init__(self, *args, **kwargs):
 		super(WorkingDayInlineAdminForm, self).__init__(*args, **kwargs)
-		
+
 class WorkingDayInlineFormSet(BaseModelFormSet):
 	form = WorkingDayInlineAdminForm
 	model = WorkingDay
@@ -29,7 +29,7 @@ class WorkingDayInline(admin.TabularInline):
 	extra = 8
 	form = WorkingDayInlineAdminForm
 	# formset = WorkingDayInlineFormSet
-	
+
 class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking
 	extra = 30
@@ -58,9 +58,13 @@ class WorkingDayAdmin(admin.ModelAdmin):
 class HolidayWorkingAdmin(admin.ModelAdmin):
 	pass
 
+class HolidayAdmin(admin.ModelAdmin):
+	pass
+
 admin.site.register(Store, StoreAmin)
 admin.site.register(WorkingDay, WorkingDayAdmin)
 admin.site.register(HolidayWorking, HolidayWorkingAdmin)
+admin.site.register(Holiday, HolidayAdmin)
 
 ###################################33
 
