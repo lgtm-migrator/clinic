@@ -48,7 +48,7 @@
     text-align: center;
 }
 
-.store-phone a {
+ a .store-phone {
     text-decoration: none;
     font-weight: 700;
     color: #333;
