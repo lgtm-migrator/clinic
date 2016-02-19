@@ -1,14 +1,16 @@
 {% extends "home/_base.html" %}
 
 {% block alert %}
-  {{ get_error }}
-  {{ error }}
-  {{ success }}
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+  {% if success %}
+    <div class="alert alert-success">{{ success }}</div>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
   {% if not get_error %}
-  <div class="container">
       <form id="reserve-form" class="form-horizontal" action="" method="post"> {% csrf_token %}
         <fieldset>
         <legend class="text-center">予約内容入力</legend>
@@ -65,6 +67,5 @@
             </div>
         </fieldset>
       </form>
-  </div>
   {% endif %}
 {% endblock %}

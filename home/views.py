@@ -3,16 +3,23 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.http import HttpResponse
-
 from django.utils.translation import ugettext as _
 from user_agents import parse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Store, Schedule, Region, Holiday, \
 	NearestStation, Sortkey, HolidayWorking, WorkingDay
+
+from django.contrib.auth.models import User
+
 from django_select2.forms import Select2Widget
 from datetime import datetime, timedelta
+
+from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import get_template
+from django.template import Context
+from django.conf import settings
 
 import sys
 import django_filters
@@ -130,10 +137,62 @@ def CheckDataSchedule(store_id, date, hour):
 
 	return BOOKING_ERROR[0]
 
+def SendEmail(sche, ipadress, device):
+	patient_mail = get_template('home/mailtemplate/patientemail.txt')
+	clinic_mail = get_template('home/mailtemplate/clinicemail.txt')
+	patient_subj = get_template('home/mailtemplate/patientsubj.txt')
+	clinic_subj = get_template('home/mailtemplate/clinicsubj.txt')
+	
+	hour = '{0:02d}:00'.format(sche.hour) + '-{0:02d}:00'.format(sche.hour + 1)
+	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')), 
+							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone, 
+							'email':sche.email, 'clinicphone':sche.store.phone})
+
+	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')), 
+						'hour':hour, 'name':sche.name, 'phone':sche.phone, 
+						'email':sche.email, 'ipadress':ipadress, 'device':device})
+
+	from_email = settings.EMAIL_HOST_USER
+	
+	subject_patient = patient_subj.render(patientmaild)
+	subject_clinic = clinic_subj.render(clinicmaild)
+	
+	message_patient = patient_mail.render(patientmaild)
+	message_clinic = clinic_mail.render(clinicmaild)
+	
+	to_patient = [sche.email]
+	to_clinic = [sche.store.mail]
+
+	try:
+		send_mail(subject_patient, message_patient, from_email, to_patient)
+		send_mail(subject_clinic, message_clinic, from_email, to_clinic)
+	except BadHeaderError:
+		return False
+	return True
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 class CreateView(generic.CreateView):
 	model = Schedule
 	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
 	template_name = 'home/booking.html'
+
+	def get(self, request, **kwargs):
+		if request.method == "GET":
+			store = int(kwargs['store'])
+			hour = int(kwargs['hour'])
+			date = kwargs['date']
+			check_url = CheckDataSchedule(store, date, hour)
+			if check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
+				return HttpResponseRedirect('/')
+			else:
+				return super(CreateView, self).get(request, **kwargs)
 
 	def get_context_data(self, **kwargs):
 		context = super(CreateView, self).get_context_data(**kwargs)
@@ -141,19 +200,7 @@ class CreateView(generic.CreateView):
 			context['store'] = self.kwargs['store']
 			context['hour'] = int(self.kwargs['hour'])
 			context['date'] = self.kwargs['date']
-
-			check_url = CheckDataSchedule(context['store'], context['date'], context['hour'])
-			if check_url == BOOKING_ERROR[1]:
-				context['get_error'] = "Store is not exist."
-			elif check_url == BOOKING_ERROR[2]:
-				context['get_error'] = "Invalid date."
-			elif check_url == BOOKING_ERROR[3]:
-				context['get_error'] = "Time is over."
-			elif check_url == BOOKING_ERROR[4]:
-				context['get_error'] = "This time is registed by another patient. Please choose another time!"
-			else:
-				context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
-
+			context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
 		else:
 			context['store'] = self.request.POST['store']
 			context['date'] = datetime.strptime(self.request.POST['date'], "%Y%m%d").date()
@@ -163,7 +210,7 @@ class CreateView(generic.CreateView):
 			context['email'] = self.request.POST['email']
 			context['symptom'] = self.request.POST['symptom']
 
-			store=Store(pk=context['store'])
+			store=Store.objects.filter(pk=context['store'])[0]
 
 			schedule = Schedule.objects.filter(store=store, date=context['date'], hour=context['hour'])
 			if schedule:
@@ -173,5 +220,12 @@ class CreateView(generic.CreateView):
 									name=context['name'], phone=context['phone'],
 									email=context['email'], symptom=context['symptom'])
 				schedule.save()
+
+				ip = get_client_ip(self.request)
+
+				user_agent = parse(self.request.META['HTTP_USER_AGENT'])
+
+				SendEmail(schedule, ip, user_agent.device.family)
 				context['success'] = "The registration process was successful, Please check email for more information!"
+				# schedule.delete()
 		return context
