@@ -44,10 +44,10 @@ class IndexView(generic.ListView):
 	model = Store
 
 	def get_context_data(self, **kwargs):
-		paginate_by = 1	
+		paginate_by = 20
 
 		context = super(IndexView, self).get_context_data(**kwargs)
-		context['filter'] = StoreFilter(self.request.GET)
+		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
 		paginator = Paginator(context['filter'].queryset, paginate_by)
 		page = self.request.GET.get('page')
 		try:

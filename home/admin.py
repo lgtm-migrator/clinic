@@ -39,7 +39,7 @@ class StoreAmin(admin.ModelAdmin):
 	list_display = ('store_id', 'name', 'phone', 'mail', 'access')
 	list_filter = ('store_id', 'name', 'phone')
 	fieldsets = [
-		(None, { 'fields': [ 'store_id', 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
+		(None, { 'fields': [ 'display', 'store_id', 'name', 'image', 'comment', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
 		(None, { 'fields': [ 'region', 'nearest_station'], 'classes': ('wide', ) }),
 	]
 	inlines = [ WorkingDayInline, HolidayWorkingInline, ]
