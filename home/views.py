@@ -19,15 +19,14 @@ class StoreFilter(django_filters.FilterSet):
 	region = django_filters.ModelChoiceFilter(
 		queryset=Region.objects.all(),
 		widget=Select2Widget,
-		lookup_type='icontains'
+		# lookup_type='icontains',
 	)
 	nearest_station = django_filters.ModelChoiceFilter(
 		queryset=NearestStation.objects.all(),
 		widget=Select2Widget,
-		lookup_type='icontains'
+		# lookup_type='icontains'
 	)
 	class Meta:
-		model = Store
 		fields = ['region', 'nearest_station',]
 
 	def get_order_by(self, order_value):
@@ -37,6 +36,9 @@ class StoreFilter(django_filters.FilterSet):
 			# return []
 		else:
 			return super(StoreFilter, self).get_order_by(order_value)
+
+	def clinic_filter(self, queryset, value):
+		pass
 
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
@@ -48,6 +50,8 @@ class IndexView(generic.ListView):
 
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
+
+		# context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
 		paginator = Paginator(context['filter'].queryset, paginate_by)
 		page = self.request.GET.get('page')
 		try:

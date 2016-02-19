@@ -6,7 +6,7 @@ class Region(models.Model):
     code = models.CharField(max_length=25, unique=True)
     name = models.CharField(max_length=254)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 # # 最寄り駅テーブル
@@ -14,7 +14,7 @@ class NearestStation(models.Model):
     code = models.CharField(max_length=25, unique=True)
     name = models.CharField(max_length=254)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 # ソートキーテーブル
@@ -24,7 +24,7 @@ class Sortkey(models.Model):
     key1 = models.CharField(max_length=25, choices= SORT_KEY, default='name')
     key2 = models.CharField(max_length=25, choices=SORT_KEY, default='phone')
 
-    def __str__(self):
+    def __unicode__(self):
         return 'Sort key. Click to edit'
 
 class Store(models.Model):
@@ -44,7 +44,7 @@ class Store(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     def get_store_code(self):
@@ -86,7 +86,7 @@ class WorkingDay(models.Model):
             if getattr(self, "hour_"+str(i)) == 1:
                 return False
         return dayoff
-    def __str__(self):
+    def __unicode__(self):
         return self.type
     class Meta:
         unique_together = (('store', 'type'), )
@@ -134,5 +134,5 @@ class Schedule(models.Model):
 
 class Holiday(models.Model):
     date = models.DateField('holiday')
-    def __str__(self):
+    def __unicode__(self):
         return self.date.strftime("%d/%m/%Y")
