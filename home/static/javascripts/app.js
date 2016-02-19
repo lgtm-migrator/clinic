@@ -1,10 +1,6 @@
 
 $(document).ready(function() {
-
-
   schedule_table.init("#reserve-table");
-
-
 });
 
 var schedule_table = {
