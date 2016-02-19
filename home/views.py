@@ -6,7 +6,6 @@ from django.http import HttpResponse
 
 from django.utils.translation import ugettext as _
 from user_agents import parse
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
