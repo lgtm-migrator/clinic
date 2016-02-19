@@ -179,6 +179,8 @@ def SendEmail(sche, ipadress, device):
 	message_clinic = clinic_mail.render(clinicmaild)
 	
 	# get recieved mail
+	to_patient = [sche.email]
+
 	to_clinic = [sche.store.mail]
 	# get superuser email
 	super_user = User.objects.all()
