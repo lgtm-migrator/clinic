@@ -8,7 +8,7 @@ from home import views
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='home'),
     url(r'^store/?$', views.IndexView.as_view(), name='home'),
-    url(r'^store/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^store/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='store-schedule'),
     url(r'^booking/(?P<store>[0-9]+)/(?P<date>[0-9]{8})/(?P<hour>[0-9]{1,2})/$', views.CreateView.as_view(), name='booking'),
 
     url(r'^admin/', include(admin.site.urls)),

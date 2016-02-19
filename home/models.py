@@ -63,7 +63,7 @@ WORKING_DAY = (
 class WorkingDay(models.Model):
     store = models.ForeignKey(Store)
     type = models.CharField(max_length=2, choices=WORKING_DAY)
-    
+
     hour_8 = models.BooleanField(default = False) # -1, 0, 1
     hour_9 = models.BooleanField(default = False)
     hour_10 = models.BooleanField(default = False)
@@ -80,11 +80,10 @@ class WorkingDay(models.Model):
     hour_21 = models.BooleanField(default = False)
 
     def is_dayoff(self,time_range):
-        dayoff = True
         for i in time_range:
-            if getattr(self, "hour_"+str(i)) == 1:
+            if getattr(self, "hour_"+str(i)) == True:
                 return False
-        return dayoff
+        return True
     def __str__(self):
         return self.type
     class Meta:

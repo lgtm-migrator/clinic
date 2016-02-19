@@ -53,7 +53,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="store-list">
-				{% if filter %} 
+				{% if filter %}
 				    {% for store in filter %}
 				    	<div class="panel panel-default panel-clinic">
 				    		<div class="panel-heading store-heading text-left">
@@ -61,7 +61,7 @@
 				    		</div>
 	  						<div class="panel-body">
 		  						<div class="col-md-12 col-md-5 text-center">
-		  							<a href="{% url 'detail' store.id %}">
+		  							<a href="{% url 'store-schedule' store.id %}">
 		  								<img src="{{ store.image.url }}" class="img-responsive store-image">
 		  							</a>
 		  						</div>
@@ -69,7 +69,7 @@
 		  							{% if store.access %}
 										<div class="panel panel-default panel-clinic-store">
 										<div class="panel-body">
-											{{ store.access }} 
+											{{ store.access }}
 										</div>
 										</div>
 									{% endif %}
@@ -77,7 +77,7 @@
 									{% if store.comment %}
 										<div class="panel panel-default panel-clinic-store">
 										<div class="panel-body">
-											{{ store.comment }} 
+											{{ store.comment }}
 										</div>
 										</div>
 									{% endif %}
@@ -92,7 +92,7 @@
 										</div>
 		  								<div class="col-xs-4 well well-white well-no-border store-select">
 		  									<span class="">
-		  										<a href="{% url 'detail' store.id %}" class="btn btn-default btn-lg btn-block btn-clinic-select" title="{{ _('Phone') }}">
+		  										<a href="{% url 'store-schedule' store.id %}" class="btn btn-default btn-lg btn-block btn-clinic-select" title="{{ _('Phone') }}">
 		  											{{ _('Reservation') }}
 		  										</a>
 		  									</span>

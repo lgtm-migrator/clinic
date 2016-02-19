@@ -3,18 +3,19 @@
 {% load filters %}
 
 {% block content %}
+
   <table id="reserve-table" class="table table-bordered text-center">
     <thead>
       <tr>
-        <th rowspan="2" id="prev_week_btn" class="navigate-week-btn">前週</th>
+        <th rowspan="2" id="prev_week_btn" class="navigate-week-btn" data-url="{% url 'store-schedule' store.id  %}?start_day={{prev_2_weeks|date:'d/m/Y'}}&direction=prev">前週</th>
         <th class="colspan-xs7-sm14 day-title" colspan="14">
           {% if start_day.month != end_day.month %}
-            {{start_day.year}}年{{start_day.month}}月 - {{end_day.year}}年{{end.month}}月
+            {{start_day.year}}年{{start_day.month}}月 - {{end_day.year}}年{{end_day.month}}月
           {% else %}
             {{start_day.year}}年{{start_day.month}}月
           {% endif %}
         </th>
-        <th rowspan="2" id="next_week_btn" class="navigate-week-btn">翌週</th>
+        <th rowspan="2" id="next_week_btn" class="navigate-week-btn" data-url="{% url 'store-schedule' store.id  %}?start_day={{next_2_weeks|date:'d/m/Y'}}&direction=next">翌週</th>
       </tr>
       <tr>
         {% for week_day in days_range %}
@@ -23,7 +24,9 @@
               <th class="time-slot
               {% if t == 'Sa' %}color-saturday{% endif %}
               {% if t == 'Su' or holiday %}color-holiday{% endif %}
-              {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">{{week_day.day}}<br>
+              {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">
+                {{week_day.day}}{% if week_day.day == 1 and forloop.counter0 > 0%}<sub>/{{end_day.month}}</sub>{% endif %}
+                <br>
                 {% blocktrans %}{{ t }}{% endblocktrans %}
               </th>
             {% endwith %}
@@ -36,7 +39,7 @@
         <tr>
           <th>{{ i|stringformat:"02d" }}:00</th>
           {% for day in days_range %}
-            {% with d=day|date:"d/m/Y" t=i|stringformat:"01d" %}
+            {% with d=day|date:"d/m/Y" t=i|stringformat:"01d" url_date=day|date:"Ymd"%}
               {% with data=schedule|get_item:t %}
                 {% with detail=data|get_item:d %}
                   {% if detail == None %}
@@ -47,7 +50,7 @@
                         <td class="time-slot booked {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
                       {% else %}
                         {% if holiday and holiday_available or not holiday and available %}
-                          <td class="time-slot date-available {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">○</td>
+                          <td class="time-slot date-available {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}" data-url="{% url 'booking' store.id url_date t %}">○</td>
                         {% else %}
                           <td class="time-slot not-open {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
                         {% endif %}

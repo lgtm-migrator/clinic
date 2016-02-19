@@ -47,29 +47,37 @@ class IndexView(generic.ListView):
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET)
 		return context
-		
+
 class DetailView(generic.DetailView):
 	model = Store
 	template_name = 'home/detail.html'
 
 	def get_context_data(self, **kwargs):
 		context = super(DetailView, self).get_context_data(**kwargs)
+
 		current_store = context["store"]
 
 		if self.request.method == 'GET' and 'start_day' in self.request.GET:
-			day_query = datetime.strptime(self.request.GET["start_day"], '%d/%m/%Y')
+			day_query = datetime.strptime(self.request.GET["start_day"], '%d/%m/%Y').date()
 		else:
 			day_query = datetime.now().date()
 
-		context["working_day"] = WorkingDay.objects.filter(store_id=current_store.id).order_by('id')
-		context["working_holiday"] = HolidayWorking.objects.filter(store_id=current_store.id)
-		context["schedule"] = Schedule.objects.filter(store_id=current_store.id)
 		context["start_day"] = day_query - timedelta(days=day_query.weekday())
 		context["end_day"] = context["start_day"] + timedelta(days=13)
+
+		working_days = WorkingDay.objects.filter(store_id=current_store.id).order_by('id')
+		working_holidays = HolidayWorking.objects.filter(store_id=current_store.id).filter(date__gte=context["start_day"],
+                                date__lte=context["end_day"])
+		booked_days = Schedule.objects.filter(store_id=current_store.id).filter(date__gte=context["start_day"],
+                                date__lte=context["end_day"])
+
+
+		context["prev_2_weeks"] = context["start_day"] - timedelta(days=13)
+		context["next_2_weeks"] = context["end_day"] + timedelta(days=1)
 		context["days_range"] = [context["start_day"] + timedelta(days=x) for x in range(0, 14)]
-		context["time_range"] = self.store_time_range(context["working_day"])
-		context["schedule"] = self.generate_booking_matrix(context["working_day"],
-								context["schedule"], context["working_holiday"],
+		context["time_range"] = self.store_time_range(working_days)
+		context["schedule"] = self.generate_booking_matrix(working_days,
+								booked_days, working_holidays,
 								context["days_range"],
 								context["time_range"], Holiday.objects.all())
 		return context
@@ -80,7 +88,7 @@ class DetailView(generic.DetailView):
 		time_range = range(close_hr, open_hr+1)
 		for day in working_day:
 			for i in time_range:
-				if getattr(day, "hour_"+str(i)) == 1:
+				if getattr(day, "hour_"+str(i)) == True:
 					if i < open_hr:
 						open_hr = i
 					if i > close_hr:
@@ -107,15 +115,16 @@ class DetailView(generic.DetailView):
 		# populate all avalable slot in working day to hash table, each available slot with
 		# hour=h, weekday=wd, we will find current dates maps with weekday and set
 		# child object new attributes available = 1
+		print(working_day)
 		for index,day in enumerate(working_day):
+			day_str = days_range[index].strftime("%d/%m/%Y")
 			if holiday_default == None and day.type == "No":
 				holiday_default = day
+				break
 			for i in time_range:
-				day_str = days_range[index].strftime("%d/%m/%Y")
-
 				if (day.is_dayoff(time_range) == True):
 					mat[str(i)][day_str] = {"dayoff": 1}
-				if getattr(day, "hour_"+str(i)) == 1:
+				if getattr(day, "hour_"+str(i)) == True:
 					if not day_str in mat[str(i)]:
 						mat[str(i)][day_str] = {}
 					if days_range[index] > today:
@@ -134,7 +143,7 @@ class DetailView(generic.DetailView):
 			for i in time_range:
 				if day_str in mat[str(i)]:
 					mat[str(i)][day_str]["holiday"] = 1
-					if getattr(holiday_default, "hour_"+str(i)) == 1 and day.date>today and mat[str(i)][day_str].get("dayoff") != 1:
+					if getattr(holiday_default, "hour_"+str(i)) == True and day.date>today and mat[str(i)][day_str].get("dayoff") != 1:
 						mat[str(i)][day_str]["holiday_available"] = 1
 
 		# populate available slot in holiday working to hash table
@@ -145,7 +154,7 @@ class DetailView(generic.DetailView):
 					mat[str(i)][day.date.strftime("%d/%m/%Y")] = {}
 				if day.date.strftime("%d/%m/%Y") in mat[str(i)]:
 					mat[str(i)][day.date.strftime("%d/%m/%Y")]["holiday"] = 1
-					if getattr(day, "hour_"+str(i)) == 1 and day.date>today:
+					if getattr(day, "hour_"+str(i)) == True and day.date>today:
 						mat[str(i)][day.date.strftime("%d/%m/%Y")]["holiday_available"] = 1
 
 		return mat
@@ -199,7 +208,7 @@ class CreateView(generic.CreateView):
 				context['get_error'] = "This time is registed by another patient. Please choose another time!"
 			else:
 				context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
-				
+
 		else:
 			context['store'] = self.request.POST['store']
 			context['date'] = datetime.strptime(self.request.POST['date'], "%Y%m%d").date()
@@ -215,8 +224,8 @@ class CreateView(generic.CreateView):
 			if schedule:
 				context['error'] = "This time is registed by another patient. Please choose another time!"
 			else:
-				schedule = Schedule(store=store, date=context['date'], hour=context['hour'], 
-									name=context['name'], phone=context['phone'], 
+				schedule = Schedule(store=store, date=context['date'], hour=context['hour'],
+									name=context['name'], phone=context['phone'],
 									email=context['email'], symptom=context['symptom'])
 				schedule.save()
 				context['success'] = "The registration process was successful, Please check email for more information!"
