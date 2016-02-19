@@ -3,7 +3,12 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.http import HttpResponse
+
+from django.utils.translation import ugettext as _
+from user_agents import parse
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 from .models import Store, Schedule, Region, Holiday, \
 	NearestStation, Sortkey, HolidayWorking, WorkingDay
