@@ -67,12 +67,12 @@
 }
 
 .btn-clinic-select:hover {
-    background-color: #FFF;
+    /*background-color: #FFF;*/
     border-width: 2px;
 }
 
 .panel-clinic .panel-heading {
-    background: #fff;
+    background: #fff5ee;
     font-size: 1.75rem;
     color: #DD1746;
     font-weight: 700;
@@ -222,4 +222,16 @@
 
 .navigate-week-btn {
   cursor: pointer;
+}
+
+.btn-clinic-primary {
+  background-color: #fff5ee;
+}
+
+.btn-clinic-primary:hover {
+  background-color: #fff5ee;
+}
+
+.btn-clinic-primary:focus {
+  background-color: #fff5ee;
 }
