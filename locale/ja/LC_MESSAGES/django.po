@@ -32,7 +32,7 @@ msgstr "鍼灸接骨師予約 "
 
 #: templates/home/_base.html:29
 msgid "Acupuncture orthopedic clinic reservation"
-msgstr "鍼灸接骨院予約 "
+msgstr "鍼灸接骨院予約"
 
 #: templates/home/_base.html:30
 msgid "Select store"
@@ -108,3 +108,9 @@ msgstr "土"
 
 msgid "Su"
 msgstr "日"
+
+msgid "Reservation date and time selection"
+msgstr "予約日時選択"
+
+msgid "Orthopedic clinic reservation contents input"
+msgstr "接骨院　予約内容入力"

@@ -1,5 +1,9 @@
 {% extends "home/_base.html" %}
 
+{% block header_title %} 
+  {{ store.name }}{{ _('Orthopedic clinic reservation contents input') }}
+{% endblock %}
+
 {% block alert %}
   {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
@@ -13,7 +17,6 @@
   {% if not get_error %}
       <form id="reserve-form" class="form-horizontal" action="" method="post"> {% csrf_token %}
         <fieldset>
-        <legend class="text-center">予約内容入力</legend>
           <table class="table table-bordered">
             <!-- 予約日時-->
             <tr>
@@ -60,7 +63,7 @@
             <div class="form-group">
               <div class="text-center">
                 <input type="submit" id="btn-submit" {% if error or success %} disabled {% endif %} class="btn btn-lightblue btn-default" value="予約">
-                <a href="{% url 'store-schedule' store %}" class="btn btn-lightblue btn-default">戻る</a>
+                <a href="{% url 'store-schedule' store.id %}" class="btn btn-lightblue btn-default">戻る</a>
               </div>
             </div>
         </fieldset>

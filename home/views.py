@@ -234,7 +234,7 @@ def ScheView(request, store, date, hour):
 	else:
 		form = ScheForm()
 
-	return render(request, template_name, {'form': form, 'store':store,
+	return render(request, template_name, {'form': form, 'store':store_object,
 											'date':booking_date, 'hour':booking_hour,
 											'error':error, 'success':success})
 
