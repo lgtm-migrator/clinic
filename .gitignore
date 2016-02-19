@@ -14,3 +14,4 @@ build/
 tests/report/
 home/static/lib/
 venv/
+venv3/

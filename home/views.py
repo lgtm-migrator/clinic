@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Store, Schedule, Region, Holiday, \
 	NearestStation, Sortkey, HolidayWorking, WorkingDay
@@ -40,12 +41,25 @@ class StoreFilter(django_filters.FilterSet):
 class IndexView(generic.ListView):
 	template_name = 'home/index.html'
 	context_object_name = 'stores'
-	paginate_by = 20
 	model = Store
 
 	def get_context_data(self, **kwargs):
+		paginate_by = 1	
+
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET)
+		paginator = Paginator(context['filter'].queryset, paginate_by)
+		page = self.request.GET.get('page')
+		try:
+			paging = paginator.page(page)
+		except PageNotAnInteger:
+			paging = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			paging = paginator.page(paginator.num_pages)
+		
+		context['paging'] = paging
+
 		return context
 		
 class DetailView(generic.DetailView):

@@ -34,6 +34,7 @@ class Store(models.Model):
     phone = models.IntegerField()
     mail = models.EmailField()
     image = models.ImageField(upload_to = 'static/upload/', blank=True)
+    display = models.BooleanField(default=True)
 
     access = models.TextField(max_length=500, blank=True)
     comment = models.TextField(max_length=500, blank=True)

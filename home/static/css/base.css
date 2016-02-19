@@ -105,6 +105,25 @@
     background-color: #FFF;
 }
 
+/* Paging */
+.clinic-pagination>li:first-child>a, .clinic-pagination>li:first-child>span,
+.clinic-pagination>li:last-child>a, .clinic-pagination>li:last-child>span {
+    border-radius: 0;
+}
+
+.clinic-pagination>li>a, .clinic-pagination>li>span {
+    color: #DD1746;
+}
+
+.clinic-pagination>.active>a, .clinic-pagination>.active>a:focus, .clinic-pagination>.active>a:hover, .clinic-pagination>.active>span, .clinic-pagination>.active>span:focus, .clinic-pagination>.active>span:hover {
+    background-color: #DD1746;
+    border-color: #DD1746;
+}
+
+.clinic-pagination>li>a:focus, .clinic-pagination>li>a:hover, .clinic-pagination>li>span:focus, .clinic-pagination>li>span:hover {
+    color: #DD1746;
+}
+
 /* Footer */
 .footer {
     padding: 20px;

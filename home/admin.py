@@ -34,7 +34,7 @@ class HolidayWorkingInline(admin.TabularInline):
 	extra = 30
 
 class StoreAmin(admin.ModelAdmin):
-	readonly_fields=('id',)
+	readonly_fields=('id', )
 
 	list_display = ('store_id', 'name', 'phone', 'mail', 'access')
 	list_filter = ('store_id', 'name', 'phone')
