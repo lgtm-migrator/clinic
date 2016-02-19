@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-
+from datetime import datetime, timedelta
+import calendar
 # # 地域テーブル
 class Region(models.Model):
     code = models.CharField(max_length=25, unique=True)
@@ -44,11 +45,88 @@ class Store(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
-        return self.name
+    def store_time_range(self, working_day):
+        open_hr = 21
+        close_hr = 8
+        time_range = range(close_hr, open_hr+1)
+        for day in working_day:
+            for i in time_range:
+                if getattr(day, "hour_"+str(i)) == True:
+                    if i < open_hr:
+                        open_hr = i
+                    if i > close_hr:
+                        close_hr = i
+        return range(open_hr,close_hr+1)
+
+    def generate_booking_matrix(self, working_day, schedule_list, working_holiday,
+								days_range, time_range, holiday_default_list):
+		# declare a hash table mat which keys are hours, values are working days and its status
+        mat = {
+        	"8": {}, "9": {}, "10": {}, "11": {}, "12": {},
+        	"13": {}, "14": {}, "15": {}, "16": {}, "17": {},
+        	"18": {}, "19": {}, "20": {}, "21": {}, "holiday": {}
+        }
+        today = datetime.now().date()
+        holiday_default = None
+
+    	# populate all booked slot from schedule table into hash table mat, if
+    	# a time slot is booked with hour=h, day=d, then hash table with key = h,
+    	# value = d will accept a child object with attributes book = 1
+        for booked_day in schedule_list:
+            mat[str(booked_day.hour)][booked_day.date.strftime("%d/%m/%Y")] = {"book": 1}
+
+    	# populate all avalable slot in working day to hash table, each available slot with
+    	# hour=h, weekday=wd, we will find current dates maps with weekday and set
+    	# child object new attributes available = 1
+        for index,day in enumerate(working_day):
+            day_str = days_range[index].strftime("%d/%m/%Y")
+            if holiday_default == None and day.type == "No":
+            	holiday_default = day
+            	break
+            for i in time_range:
+            	if (day.is_dayoff(time_range) == True):
+            		mat[str(i)][day_str] = {"dayoff": 1}
+            	if getattr(day, "hour_"+str(i)) == True:
+            		if not day_str in mat[str(i)]:
+            			mat[str(i)][day_str] = {}
+            		if days_range[index] > today:
+            			mat[str(i)][day_str]["available"] = 1
+            		if index < 7:
+            			next_day_str = days_range[index+7].strftime("%d/%m/%Y")
+            			if not next_day_str in mat[str(i)]:
+            				mat[str(i)][next_day_str] = {}
+            			if days_range[index+7] > today:
+            				mat[str(i)][next_day_str]["available"] = 1
+
+    	# populate available slot in holiday default list
+        for day in holiday_default_list:
+        	day_str = day.date.strftime("%d/%m/%Y")
+        	mat["holiday"][day_str] = 1
+        	for i in time_range:
+        		if day_str in mat[str(i)]:
+        			mat[str(i)][day_str]["holiday"] = 1
+        			if getattr(holiday_default, "hour_"+str(i)) == True and day.date>today and mat[str(i)][day_str].get("dayoff") != 1:
+        				mat[str(i)][day_str]["holiday_available"] = 1
+
+    	# populate available slot in holiday working to hash table
+        for day in working_holiday:
+        	mat["holiday"][day.date.strftime("%d/%m/%Y")] = 1
+        	for i in time_range:
+        		if day.is_dayoff(time_range) == False and not day.date.strftime("%d/%m/%Y") in mat[str(i)]:
+        			mat[str(i)][day.date.strftime("%d/%m/%Y")] = {}
+        		if day.date.strftime("%d/%m/%Y") in mat[str(i)]:
+        			mat[str(i)][day.date.strftime("%d/%m/%Y")]["holiday"] = 1
+        			if getattr(day, "hour_"+str(i)) == True and day.date>today:
+        				mat[str(i)][day.date.strftime("%d/%m/%Y")]["holiday_available"] = 1
+
+        return mat
+
 
     def get_store_code(self):
         return self.store_id
+
+    def __unicode__(self):
+        return self.name
 
 WORKING_DAY = (
     ('Mo', 'Monday'),
@@ -64,7 +142,7 @@ WORKING_DAY = (
 class WorkingDay(models.Model):
     store = models.ForeignKey(Store)
     type = models.CharField(max_length=2, choices=WORKING_DAY)
-    
+
     hour_8 = models.BooleanField(default = False) # -1, 0, 1
     hour_9 = models.BooleanField(default = False)
     hour_10 = models.BooleanField(default = False)
@@ -81,13 +159,14 @@ class WorkingDay(models.Model):
     hour_21 = models.BooleanField(default = False)
 
     def is_dayoff(self,time_range):
-        dayoff = True
         for i in time_range:
-            if getattr(self, "hour_"+str(i)) == 1:
+            if getattr(self, "hour_"+str(i)) == True:
                 return False
-        return dayoff
-    def __unicode__(self):
+        return True
+
+    def __str__(self):
         return self.type
+        
     class Meta:
         unique_together = (('store', 'type'), )
 
