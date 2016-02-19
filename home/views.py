@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
+from django.http import Http404
+from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.http import HttpResponse
@@ -73,7 +75,7 @@ class IndexView(generic.ListView):
 		except EmptyPage:
 			# If page is out of range (e.g. 9999), deliver last page of results.
 			paging = paginator.page(paginator.num_pages)
-		
+
 		context['paging'] = paging
 
 		return context
@@ -81,7 +83,14 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
 	model = Store
 	template_name = 'home/detail.html'
-
+	def get(self, request, *args, **kwargs):
+		try:
+			self.object = self.get_object()
+		except Http404:
+        	# redirect here
+			return redirect('/')
+		context = self.get_context_data(object=self.object)
+		return self.render_to_response(context)
 	def get_context_data(self, **kwargs):
 		context = super(DetailView, self).get_context_data(**kwargs)
 
@@ -143,24 +152,24 @@ def SendEmail(sche, ipadress, device):
 	clinic_mail = get_template('home/mailtemplate/clinicemail.txt')
 	patient_subj = get_template('home/mailtemplate/patientsubj.txt')
 	clinic_subj = get_template('home/mailtemplate/clinicsubj.txt')
-	
+
 	hour = '{0:02d}:00'.format(sche.hour) + '-{0:02d}:00'.format(sche.hour + 1)
-	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')), 
-							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone, 
+	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')),
+							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone,
 							'email':sche.email, 'clinicphone':sche.store.phone})
 
-	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')), 
-						'hour':hour, 'name':sche.name, 'phone':sche.phone, 
+	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')),
+						'hour':hour, 'name':sche.name, 'phone':sche.phone,
 						'email':sche.email, 'ipadress':ipadress, 'device':device})
 
 	from_email = settings.EMAIL_HOST_USER
-	
+
 	subject_patient = patient_subj.render(patientmaild)
 	subject_clinic = clinic_subj.render(clinicmaild)
-	
+
 	message_patient = patient_mail.render(patientmaild)
 	message_clinic = clinic_mail.render(clinicmaild)
-	
+
 	to_patient = [sche.email]
 	to_clinic = [sche.store.mail]
 
