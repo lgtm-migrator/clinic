@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render
+from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.http import Http404
 from django.shortcuts import redirect
@@ -126,7 +127,7 @@ BOOKING_ERROR = (
 	('1', 'No Store'),
     ('2', 'Invalid Date'),
     ('3', 'Invalid Hour'),
-    ('4', 'Schedule exited'),
+    ('4', 'Schedule existed'),
 )
 
 def CheckDataSchedule(store_id, date, hour):
@@ -236,3 +237,7 @@ def ScheView(request, store, date, hour):
 	return render(request, template_name, {'form': form, 'store':store,
 											'date':booking_date, 'hour':booking_hour,
 											'error':error, 'success':success})
+
+def TimeslotCheck(request, store, date, hour):
+	check_url = CheckDataSchedule(store, date, hour)
+	return JsonResponse({"status":check_url})

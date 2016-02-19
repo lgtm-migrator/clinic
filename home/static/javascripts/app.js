@@ -53,8 +53,17 @@ var schedule_table = {
         self.schedule.find(".date-available").click(function() {
             self.schedule.find(".date-available").removeClass("date-selected");
             var $td = $(this);
-            $td.addClass("date-selected");
-            window.location.href = $td.data('url');
+            if ($td.hasClass("date-available")) {
+              $td.addClass("date-selected");
+              $.get( $td.data("check"), function( data ) {
+                if (data.status[0] == "4") {
+                  $td.html("×");
+                  $td.removeClass(".date-available");
+                } else if (data.status[0] == "0") {
+                  window.location.href = $td.data('url');
+                }
+              });
+            }
         });
     },
     small_screen_handle: function() {
