@@ -115,17 +115,19 @@
 								</a>
 							</li>
 						{% endif %}
-								
-						{% for page in paging.paginator.page_range %}
-							<li class="{% if paging.number == page %}active{% endif %}">
-								<a href="?page={{ page }}">
-									{{ page }}
-									{% if paging.number == page  %}
-										<span class="sr-only">(current)</span></a>
-									{% endif %}
-								</a>
-							</li>
-						{% endfor %}
+						
+						{% if paging.paginator.num_pages > 1 %}	
+							{% for page in paging.paginator.page_range %}
+								<li class="{% if paging.number == page %}active{% endif %}">
+									<a href="?page={{ page }}">
+										{{ page }}
+										{% if paging.number == page  %}
+											<span class="sr-only">(current)</span></a>
+										{% endif %}
+									</a>
+								</li>
+							{% endfor %}
+						{% endif %}
 
 						{% if paging.has_next %}
 							<li>
