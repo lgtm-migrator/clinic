@@ -93,7 +93,7 @@ CACHES = {
 MIDDLEWARE_CLASSES = (
     # Use GZip compression to reduce bandwidth.
     'django.middleware.gzip.GZipMiddleware',
-    # 'home.middleware.force_default_language.ForceDefaultLanguageMiddleware',
+    'home.middleware.force_default_language.ForceDefaultLanguageMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

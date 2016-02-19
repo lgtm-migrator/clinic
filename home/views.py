@@ -225,7 +225,7 @@ class CreateView(generic.CreateView):
 
 				user_agent = parse(self.request.META['HTTP_USER_AGENT'])
 
-				SendEmail(schedule, ip, user_agent.device.family)
+				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
 				context['success'] = "The registration process was successful, Please check email for more information!"
 				# schedule.delete()
 		return context
