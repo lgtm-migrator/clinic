@@ -49,7 +49,7 @@
 * Gettext (i18n) from template 
 	
 	```sh
-	python manage.py makemessages -l jp
+	python manage.py makemessages -l ja
 	```
 
 (If get an ugly error that says that we don’t have the [GNU gettext](https://www.gnu.org/software/gettext/) installed)	
@@ -59,5 +59,5 @@ Now go to the `home/locale` folder. There is a folder named `jp` with a folder n
 * Build `mo` translation file from gettext `po`
 
 	```sh
-	python manage.py compilemessages -l jp
+	python manage.py compilemessages -l ja
 	```
