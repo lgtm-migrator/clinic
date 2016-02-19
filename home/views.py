@@ -148,30 +148,41 @@ def CheckDataSchedule(store_id, date, hour):
 	return BOOKING_ERROR[0]
 
 def SendEmail(sche, ipadress, device):
+	# get subject, body mail template
 	patient_mail = get_template('home/mailtemplate/patientemail.txt')
 	clinic_mail = get_template('home/mailtemplate/clinicemail.txt')
 	patient_subj = get_template('home/mailtemplate/patientsubj.txt')
 	clinic_subj = get_template('home/mailtemplate/clinicsubj.txt')
 
+	# define context
 	hour = '{0:02d}:00'.format(sche.hour) + '-{0:02d}:00'.format(sche.hour + 1)
-	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')),
-							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone,
+	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")", 
+							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone, 
 							'email':sche.email, 'clinicphone':sche.store.phone})
 
-	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日')) + _(sche.date.strftime('(%a)')),
-						'hour':hour, 'name':sche.name, 'phone':sche.phone,
+	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")", 
+						'hour':hour, 'name':sche.name, 'phone':sche.phone, 
 						'email':sche.email, 'ipadress':ipadress, 'device':device})
 
+	patientsubj = Context({'storename': sche.store.name})
+
+	# get email host user
 	from_email = settings.EMAIL_HOST_USER
-
-	subject_patient = patient_subj.render(patientmaild)
+	
+	# generate mail subject
+	subject_patient = patient_subj.render(patientsubj)
 	subject_clinic = clinic_subj.render(clinicmaild)
-
+	
+	# generate mail body
 	message_patient = patient_mail.render(patientmaild)
 	message_clinic = clinic_mail.render(clinicmaild)
-
-	to_patient = [sche.email]
+	
+	# get recieved mail
 	to_clinic = [sche.store.mail]
+	# get superuser email
+	super_user = User.objects.all()
+	for user in super_user:
+		to_clinic.append(user.email)
 
 	try:
 		send_mail(subject_patient, message_patient, from_email, to_patient)
@@ -187,58 +198,6 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
-
-# class CreateView(generic.CreateView):
-# 	model = Schedule
-# 	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
-# 	template_name = 'home/booking.html'
-
-# 	def get(self, request, **kwargs):
-# 		if request.method == "GET":
-# 			store = int(kwargs['store'])
-# 			hour = int(kwargs['hour'])
-# 			date = kwargs['date']
-# 			check_url = CheckDataSchedule(store, date, hour)
-# 			if check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
-# 				return HttpResponseRedirect('/')
-# 			else:
-# 				return super(CreateView, self).get(request, **kwargs)
-
-# 	def get_context_data(self, **kwargs):
-# 		context = super(CreateView, self).get_context_data(**kwargs)
-# 		if self.request.method == "GET":
-# 			context['store'] = self.kwargs['store']
-# 			context['hour'] = int(self.kwargs['hour'])
-# 			context['date'] = self.kwargs['date']
-# 			context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
-# 		else:
-# 			context['store'] = self.request.POST['store']
-# 			context['date'] = datetime.strptime(self.request.POST['date'], "%Y%m%d").date()
-# 			context['hour'] = int(self.request.POST['hour'])
-# 			context['name'] = self.request.POST['name']
-# 			context['phone'] = self.request.POST['phone']
-# 			context['email'] = self.request.POST['email']
-# 			context['symptom'] = self.request.POST['symptom']
-
-# 			store=Store.objects.filter(pk=context['store'])[0]
-
-# 			schedule = Schedule.objects.filter(store=store, date=context['date'], hour=context['hour'])
-# 			if schedule:
-# 				context['error'] = "This time is registed by another patient. Please choose another time!"
-# 			else:
-# 				schedule = Schedule(store=store, date=context['date'], hour=context['hour'],
-# 									name=context['name'], phone=context['phone'],
-# 									email=context['email'], symptom=context['symptom'])
-# 				schedule.save()
-
-# 				ip = get_client_ip(self.request)
-
-# 				user_agent = parse(self.request.META['HTTP_USER_AGENT'])
-
-# 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
-# 				context['success'] = "The registration process was successful, Please check email for more information!"
-# 				# schedule.delete()
-# 		return context
 
 def ScheView(request, store, date, hour):
 	template_name = 'home/booking.html'
