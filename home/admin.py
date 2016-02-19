@@ -51,18 +51,10 @@ class StoreAmin(admin.ModelAdmin):
 	image_show.allow_tags = True
 	image_show.short_description = 'Image'
 
-class WorkingDayAdmin(admin.ModelAdmin):
-	pass
-
-class HolidayWorkingAdmin(admin.ModelAdmin):
-	pass
-
 class HolidayAdmin(admin.ModelAdmin):
 	pass
 
 admin.site.register(Store, StoreAmin)
-admin.site.register(WorkingDay, WorkingDayAdmin)
-admin.site.register(HolidayWorking, HolidayWorkingAdmin)
 admin.site.register(Holiday, HolidayAdmin)
 
 ###################################33
