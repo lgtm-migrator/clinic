@@ -12,6 +12,11 @@
     color: #6B6B6B; 
 }
 
+/* Main content */
+#main {
+    min-height: 500px;
+}
+
 /* Panel */
 .panel-clinic, .panel-clinic-store {
     border-radius: none;
