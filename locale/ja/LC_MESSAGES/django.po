@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 14:39+0700\n"
+"POT-Creation-Date: 2016-02-19 15:48+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,10 +38,21 @@ msgstr "鍼灸接骨院予約 "
 msgid "Select store"
 msgstr "店舗選択 "
 
-#: templates/home/detail.html:31
-#, python-format
-msgid "%(t)s"
-msgstr ""
+#: templates/home/detail.html:12
+msgid "Prev week"
+msgstr "前週"
+
+#: templates/home/detail.html:15 templates/home/detail.html.py:17
+msgid " Year "
+msgstr "年"
+
+#: templates/home/detail.html:15 templates/home/detail.html.py:17
+msgid " Month "
+msgstr "月"
+
+#: templates/home/detail.html:21
+msgid "Next week"
+msgstr "翌週"
 
 #: templates/home/includes/_navigation.html:4
 msgid "Logout"
@@ -97,15 +108,3 @@ msgstr "土"
 
 msgid "Su"
 msgstr "日"
-
-msgid "Prev week"
-msgstr "前週"
-
-msgid "Next week"
-msgstr "翌週"
-
-msgid " Year "
-msgstr "年"
-
-msgid " Month "
-msgstr "月"

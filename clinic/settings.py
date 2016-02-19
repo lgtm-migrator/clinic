@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = (
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,8 +121,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'duyetdev',
-        'PASSWORD': '123456',
+        'USER': 'trungle',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -193,7 +194,7 @@ SELECT2_JS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'
 SELECT2_CSS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css'
 SELECT2_CACHE_BACKEND = u'default'
 
-############ I18N 
+############ I18N
 LANGUAGES = (
     ('en', _('English')),
     ('ja', _('Japanese')),
