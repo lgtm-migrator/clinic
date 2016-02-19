@@ -19,11 +19,8 @@
             <tr>
                 <th>予約日時</th>
                 <td colspan="3">
-                  {{ date|date:"Y年m月d日(D)" }} &#160;
+                  {{ date|date:"Y年m月d日(D)" }}
                   {{ hour|stringformat:"02d:00-" }}
-                  <input id="store" name="store" type="hidden" value="{{ store }}" />
-                  <input id="date" name="date" type="hidden" value="{{ date|date:"Ymd" }}" />
-                  <input id="hour" name="hour" type="hidden" value="{{ hour }}" />
                 </td>
             </tr>
 
@@ -31,12 +28,14 @@
             <tr>
                 <th>氏名</th>
                 <td class="clear-xs">
-                  <input id="name" name="name" type="text" placeholder="氏名" class="form-control" value="{{ name }}">
+                  {{ form.name.errors }}
+                  {{ form.name }}
                 </td>
 
                 <th>電話番号</th>
                 <td>
-                  <input id="phone" name="phone" type="text" placeholder="電話番号" class="form-control" value="{{ phone }}">
+                  {{ form.phone.errors }}
+                  {{ form.phone }}
                 </td>
             </tr>
 
@@ -44,7 +43,8 @@
               <tr>
                 <th>連絡先</th>
                 <td colspan="3">
-                  <input id="email" name="email" type="text" placeholder="連絡先" class="form-control" value="{{ email }}">
+                  {{ form.email.errors }}
+                  {{ form.email }}
                 </td>
               </tr>
 
@@ -52,16 +52,14 @@
               <tr>
                 <th>症状など</th>
                 <td colspan="3">
-                  <textarea class="form-control" id="symptom"
-                            name="symptom" placeholder="症状などをご入力ください"
-                            rows="5">{{ symptom }}</textarea>
+                  {{ form.symptom }}
                 </td>
               </tr>
           </table>
           <!-- Form actions -->
             <div class="form-group">
               <div class="text-center">
-                <input type="submit" id="btn-submit" class="btn btn-lightblue btn-default" value="予約">
+                <input type="submit" id="btn-submit" {% if error or success %} disabled {% endif %} class="btn btn-lightblue btn-default" value="予約">
                 <a href="{% url 'store-schedule' store %}" class="btn btn-lightblue btn-default">戻る</a>
               </div>
             </div>

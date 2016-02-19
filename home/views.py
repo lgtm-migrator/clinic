@@ -20,6 +20,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import get_template
 from django.template import Context
 from django.conf import settings
+from .forms import ScheForm
 
 import sys
 import django_filters
@@ -178,54 +179,92 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-class CreateView(generic.CreateView):
-	model = Schedule
-	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
+# class CreateView(generic.CreateView):
+# 	model = Schedule
+# 	fields = ['store', 'date', 'hour', 'name', 'phone', 'email', 'symptom']
+# 	template_name = 'home/booking.html'
+
+# 	def get(self, request, **kwargs):
+# 		if request.method == "GET":
+# 			store = int(kwargs['store'])
+# 			hour = int(kwargs['hour'])
+# 			date = kwargs['date']
+# 			check_url = CheckDataSchedule(store, date, hour)
+# 			if check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
+# 				return HttpResponseRedirect('/')
+# 			else:
+# 				return super(CreateView, self).get(request, **kwargs)
+
+# 	def get_context_data(self, **kwargs):
+# 		context = super(CreateView, self).get_context_data(**kwargs)
+# 		if self.request.method == "GET":
+# 			context['store'] = self.kwargs['store']
+# 			context['hour'] = int(self.kwargs['hour'])
+# 			context['date'] = self.kwargs['date']
+# 			context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
+# 		else:
+# 			context['store'] = self.request.POST['store']
+# 			context['date'] = datetime.strptime(self.request.POST['date'], "%Y%m%d").date()
+# 			context['hour'] = int(self.request.POST['hour'])
+# 			context['name'] = self.request.POST['name']
+# 			context['phone'] = self.request.POST['phone']
+# 			context['email'] = self.request.POST['email']
+# 			context['symptom'] = self.request.POST['symptom']
+
+# 			store=Store.objects.filter(pk=context['store'])[0]
+
+# 			schedule = Schedule.objects.filter(store=store, date=context['date'], hour=context['hour'])
+# 			if schedule:
+# 				context['error'] = "This time is registed by another patient. Please choose another time!"
+# 			else:
+# 				schedule = Schedule(store=store, date=context['date'], hour=context['hour'],
+# 									name=context['name'], phone=context['phone'],
+# 									email=context['email'], symptom=context['symptom'])
+# 				schedule.save()
+
+# 				ip = get_client_ip(self.request)
+
+# 				user_agent = parse(self.request.META['HTTP_USER_AGENT'])
+
+# 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
+# 				context['success'] = "The registration process was successful, Please check email for more information!"
+# 				# schedule.delete()
+# 		return context
+
+def ScheView(request, store, date, hour):
 	template_name = 'home/booking.html'
 
-	def get(self, request, **kwargs):
-		if request.method == "GET":
-			store = int(kwargs['store'])
-			hour = int(kwargs['hour'])
-			date = kwargs['date']
-			check_url = CheckDataSchedule(store, date, hour)
-			if check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
-				return HttpResponseRedirect('/')
+	check_url = CheckDataSchedule(store, date, hour)
+	if check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
+		return HttpResponseRedirect('/')
+
+	store_object = Store.objects.filter(pk=store)[0]
+	booking_date = datetime.strptime(date, "%Y%m%d").date()
+	booking_hour = int(hour)
+	error = ""
+	success = ""
+
+	if request.method == "POST":
+		form = ScheForm(request.POST)
+		if form.is_valid():
+			schedule = form.save(commit=False)
+			schedule.store = store_object
+			schedule.date = booking_date
+			schedule.hour = booking_hour
+
+			sche = Schedule.objects.filter(store=store_object, date=booking_date, hour=booking_hour)
+			if sche:
+				error = "This time is registed by another patient. Please choose another time!"
 			else:
-				return super(CreateView, self).get(request, **kwargs)
-
-	def get_context_data(self, **kwargs):
-		context = super(CreateView, self).get_context_data(**kwargs)
-		if self.request.method == "GET":
-			context['store'] = self.kwargs['store']
-			context['hour'] = int(self.kwargs['hour'])
-			context['date'] = self.kwargs['date']
-			context['date'] = datetime.strptime(self.kwargs['date'], "%Y%m%d").date()
-		else:
-			context['store'] = self.request.POST['store']
-			context['date'] = datetime.strptime(self.request.POST['date'], "%Y%m%d").date()
-			context['hour'] = int(self.request.POST['hour'])
-			context['name'] = self.request.POST['name']
-			context['phone'] = self.request.POST['phone']
-			context['email'] = self.request.POST['email']
-			context['symptom'] = self.request.POST['symptom']
-
-			store=Store.objects.filter(pk=context['store'])[0]
-
-			schedule = Schedule.objects.filter(store=store, date=context['date'], hour=context['hour'])
-			if schedule:
-				context['error'] = "This time is registed by another patient. Please choose another time!"
-			else:
-				schedule = Schedule(store=store, date=context['date'], hour=context['hour'],
-									name=context['name'], phone=context['phone'],
-									email=context['email'], symptom=context['symptom'])
 				schedule.save()
-
-				ip = get_client_ip(self.request)
-
-				user_agent = parse(self.request.META['HTTP_USER_AGENT'])
-
+				ip = get_client_ip(request)
+				user_agent = parse(request.META['HTTP_USER_AGENT'])
 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
-				context['success'] = "The registration process was successful, Please check email for more information!"
-				# schedule.delete()
-		return context
+				success = "The registration process was successful, Please check email for more information!"
+
+	else:
+		form = ScheForm()
+
+	return render(request, template_name, {'form': form, 'store':store,
+											'date':booking_date, 'hour':booking_hour,
+											'error':error, 'success':success})
