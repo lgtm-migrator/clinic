@@ -13,7 +13,7 @@
     <thead>
       <tr>
         <th rowspan="2" id="prev_week_btn" class="navigate-week-btn"
-          data-url="{% url 'store-schedule' store.id  %}?start_day={{prev_2_weeks|date:'d/m/Y'}}&direction=prev">{{ _('Prev week') }}</th>
+          data-url="{% url 'store-schedule' store.id  %}?start_day={{prev_2_weeks|date:'d/m/Y'}}&direction=prev#reserve-table">{{ _('Prev week') }}</th>
         <th class="colspan-xs7-sm14 day-title" colspan="14">
           {% if start_day.month != end_day.month %}
             {{start_day.year}}{{_(' Year ')}}{{start_day.month}}{{_(' Month ')}} - {{end_day.year}}{{_(' Year ')}}{{end_day.month}}{{_(' Month ')}}
@@ -22,7 +22,7 @@
           {% endif %}
         </th>
         <th rowspan="2" id="next_week_btn" class="navigate-week-btn"
-            data-url="{% url 'store-schedule' store.id  %}?start_day={{next_2_weeks|date:'d/m/Y'}}&direction=next">{{ _('Next week') }}</th>
+            data-url="{% url 'store-schedule' store.id  %}?start_day={{next_2_weeks|date:'d/m/Y'}}&direction=next#reserve-table">{{ _('Next week') }}</th>
       </tr>
       <tr>
         {% for week_day in days_range %}
