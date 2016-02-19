@@ -9,12 +9,7 @@
 
 .header h3 a {
     text-decoration: none;
-    color: #6B6B6B; 
-}
-
-/* Main content */
-#main {
-    min-height: 500px;
+    color: #6B6B6B;
 }
 
 /* Panel */
@@ -48,7 +43,7 @@
     text-align: center;
 }
 
- a .store-phone {
+.store-phone a {
     text-decoration: none;
     font-weight: 700;
     color: #333;
@@ -99,34 +94,15 @@
 }
 
 .btn-no-radius {
-    border-radius: 0; 
+    border-radius: 0;
 }
 
 .btn-clinic {
-    border-radius: 0; 
+    border-radius: 0;
 }
 .btn-clinic:hover {
     border-width: 2px;
     background-color: #FFF;
-}
-
-/* Paging */
-.clinic-pagination>li:first-child>a, .clinic-pagination>li:first-child>span,
-.clinic-pagination>li:last-child>a, .clinic-pagination>li:last-child>span {
-    border-radius: 0;
-}
-
-.clinic-pagination>li>a, .clinic-pagination>li>span {
-    color: #DD1746;
-}
-
-.clinic-pagination>.active>a, .clinic-pagination>.active>a:focus, .clinic-pagination>.active>a:hover, .clinic-pagination>.active>span, .clinic-pagination>.active>span:focus, .clinic-pagination>.active>span:hover {
-    background-color: #DD1746;
-    border-color: #DD1746;
-}
-
-.clinic-pagination>li>a:focus, .clinic-pagination>li>a:hover, .clinic-pagination>li>span:focus, .clinic-pagination>li>span:hover {
-    color: #DD1746;
 }
 
 /* Footer */
@@ -242,4 +218,8 @@
 
 #btn-submit {
     margin-right: 40px;
+}
+
+.navigate-week-btn {
+  cursor: pointer;
 }
