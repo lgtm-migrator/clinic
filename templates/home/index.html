@@ -100,7 +100,7 @@
 										</a>
 		  								<div class="col-xs-4 well well-white well-no-border store-select">
 		  									<span class="">
-		  										<a href="{% url 'store-schedule' store.id %}" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Phone') }}">
+		  										<a href="{% url 'store-schedule' store.id %}?back_url= {{ request.get_full_path|urlencode }}" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Phone') }}">
 		  											{{ _('Reservation') }}
 		  										</a>
 		  									</span>
@@ -109,6 +109,7 @@
 		  						</div>
 	  						</div>
 	  					</div>
+
 				    {% endfor %}
 
 				    <nav class="text-center">

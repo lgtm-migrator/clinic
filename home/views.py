@@ -100,7 +100,7 @@ class DetailView(generic.DetailView):
 		day_query = datetime.now().date()
 		if self.request.method == 'GET' and 'start_day' in self.request.GET:
 			day_query = datetime.strptime(self.request.GET["start_day"], '%d/%m/%Y').date()
-			
+
 			# back from booking
 			start_week = day_query - timedelta(days=day_query.weekday())
 			current_date = datetime.now().date()
@@ -117,7 +117,10 @@ class DetailView(generic.DetailView):
                                 date__lte=context["end_day"])
 		booked_days = Schedule.objects.filter(store_id=current_store.id).filter(date__gte=context["start_day"],
                                 date__lte=context["end_day"])
-
+		if 'back_url' in self.request.GET:
+			context["back_url"] = self.request.GET["back_url"]
+		else:
+			context["back_url"] = "/"
 		context["prev_2_weeks"] = context["start_day"] - timedelta(days=14)
 		context["next_2_weeks"] = context["end_day"] + timedelta(days=1)
 		context["days_range"]   = [context["start_day"] + timedelta(days=x) for x in range(0, 14)]
@@ -163,27 +166,27 @@ def SendEmail(sche, ipadress, device):
 
 	# define context
 	hour = '{0:02d}:00'.format(sche.hour) + '-{0:02d}:00'.format(sche.hour + 1)
-	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")", 
-							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone, 
+	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")",
+							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone,
 							'email':sche.email, 'clinicphone':sche.store.phone})
 
-	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")", 
-						'hour':hour, 'name':sche.name, 'phone':sche.phone, 
+	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")",
+						'hour':hour, 'name':sche.name, 'phone':sche.phone,
 						'email':sche.email, 'ipadress':ipadress, 'device':device})
 
 	patientsubj = Context({'storename': sche.store.name})
 
 	# get email host user
 	from_email = settings.EMAIL_HOST_USER
-	
+
 	# generate mail subject
 	subject_patient = patient_subj.render(patientsubj)
 	subject_clinic = clinic_subj.render(clinicmaild)
-	
+
 	# generate mail body
 	message_patient = patient_mail.render(patientmaild)
 	message_clinic = clinic_mail.render(clinicmaild)
-	
+
 	# get recieved mail
 	to_patient = [sche.email]
 
@@ -242,9 +245,13 @@ def ScheView(request, store, date, hour):
 	else:
 		form = ScheForm()
 
+	if 'back_home_url' in request.GET:
+		back_home_url = request.GET["back_home_url"]
+	else:
+		back_home_url = "/"
 	return render(request, template_name, {'form': form, 'store':store_object,
 											'date':booking_date, 'hour':booking_hour,
-											'error':error, 'success':success})
+											'error':error, 'success':success, "back_home_url": back_home_url})
 
 def TimeslotCheck(request, store, date, hour):
 	check_url = CheckDataSchedule(store, date, hour)

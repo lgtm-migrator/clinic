@@ -1,6 +1,6 @@
 {% extends "home/_base.html" %}
 
-{% block header_title %} 
+{% block header_title %}
   {{ store.name }}{{ _('Orthopedic clinic reservation contents input') }}
 {% endblock %}
 
@@ -63,7 +63,7 @@
           <div class="form-group">
             <div class="text-center">
               <input type="submit" id="btn-submit" {% if error or success %} disabled {% endif %} class="btn btn-lightblue btn-default" value="予約">
-              <a href="{% url 'store-schedule' store.id %}?start_day={{ date|date:"d/m/Y" }}" class="btn btn-lightblue btn-default">戻る</a>
+              <a href="{% url 'store-schedule' store.id %}?back_url={{back_home_url|urlencode}}&start_day={{ date|date:"d/m/Y" }}" class="btn btn-lightblue btn-default">戻る</a>
             </div>
           </div>
         </fieldset>
