@@ -171,11 +171,11 @@ def SendEmail(sche, ipadress, device):
 
 	# define context
 	hour = '{0:02d}:00'.format(sche.hour) + '-{0:02d}:00'.format(sche.hour + 1)
-	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")",
+	patientmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日（')) + _(sche.date.strftime('%a')) + "）",
 							'hour':hour, 'name':sche.name, 'cutomerphone':sche.phone,
 							'email':sche.email, 'clinicphone':sche.store.phone})
 
-	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日(')) + _(sche.date.strftime('%a')) + ")",
+	clinicmaild = Context({ 'date': _(sche.date.strftime('%Y年%m月%d日（')) + _(sche.date.strftime('%a')) + "）",
 						'hour':hour, 'name':sche.name, 'phone':sche.phone,
 						'email':sche.email, 'ipadress':ipadress, 'device':device})
 
@@ -249,7 +249,9 @@ def ScheView(request, store, date, hour):
 
 			if sche:
 				request.session['error'] = _("This time is registed by another patient. Please choose another time!")
-				url_back = '/store/' + str(store_object.id) + "/?back_home_url=" + back_home_url + "&?start_day=" + booking_date.strftime("%d/%m/%Y")
+				url_back = '/store/' + str(store_object.id) + \
+							"/?back_home_url=" + back_home_url + \
+							"&?start_day=" + booking_date.strftime("%d/%m/%Y")
 				return redirect(url_back)
 			else:
 				schedule.save()
