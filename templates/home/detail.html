@@ -46,7 +46,7 @@
         <tr>
           <th>{{ i|stringformat:"02d" }}:00</th>
           {% for day in days_range %}
-            {% with d=day|date:"d/m/Y" t=i|stringformat:"01d" url_date=day|date:"Ymd"%}
+            {% with d=day|date:"d/m/Y" t=i|stringformat:"01d" url_date=day|date:"Ymd" %}
               {% with data=schedule|get_item:t %}
                 {% with detail=data|get_item:d %}
                   {% if detail == None %}
@@ -59,7 +59,9 @@
                         {% if holiday and holiday_available or not holiday and available %}
                           <td class="time-slot date-available {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}"
                               data-url="{% url 'booking' store.id url_date t %}"
-                              data-check="{% url 'timeslot-checking' store.id url_date t %}">○</td>
+                              data-check="{% url 'timeslot-checking' store.id url_date t %}">
+                              ○
+                            </td>
                         {% else %}
                           <td class="time-slot not-open {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
                         {% endif %}

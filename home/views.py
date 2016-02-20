@@ -97,10 +97,17 @@ class DetailView(generic.DetailView):
 
 		current_store = context["store"]
 
+		day_query = datetime.now().date()
 		if self.request.method == 'GET' and 'start_day' in self.request.GET:
 			day_query = datetime.strptime(self.request.GET["start_day"], '%d/%m/%Y').date()
-		else:
-			day_query = datetime.now().date()
+			
+			# back from booking
+			start_week = day_query - timedelta(days=day_query.weekday())
+			current_date = datetime.now().date()
+			current_start_week = current_date - timedelta(days=current_date.weekday())
+			if ((start_week - current_start_week).days / 7 ) % 2 != 0:
+				day_query = day_query - timedelta(days=7)
+
 
 		context["start_day"] = day_query - timedelta(days=day_query.weekday())
 		context["end_day"] = context["start_day"] + timedelta(days=13)
@@ -111,8 +118,7 @@ class DetailView(generic.DetailView):
 		booked_days = Schedule.objects.filter(store_id=current_store.id).filter(date__gte=context["start_day"],
                                 date__lte=context["end_day"])
 
-
-		context["prev_2_weeks"] = context["start_day"] - timedelta(days=13)
+		context["prev_2_weeks"] = context["start_day"] - timedelta(days=14)
 		context["next_2_weeks"] = context["end_day"] + timedelta(days=1)
 		context["days_range"]   = [context["start_day"] + timedelta(days=x) for x in range(0, 14)]
 		context["time_range"]   = current_store.store_time_range(working_days)
@@ -225,13 +231,13 @@ def ScheView(request, store, date, hour):
 
 			sche = Schedule.objects.filter(store=store_object, date=booking_date, hour=booking_hour)
 			if sche:
-				error = "This time is registed by another patient. Please choose another time!"
+				error = _("This time is registed by another patient. Please choose another time!")
 			else:
 				schedule.save()
 				ip = get_client_ip(request)
 				user_agent = parse(request.META['HTTP_USER_AGENT'])
 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
-				success = "The registration process was successful, Please check email for more information!"
+				success = _("The registration process was successful, Please check email for more information!")
 
 	else:
 		form = ScheForm()
