@@ -20,7 +20,7 @@
           data-url="{% url 'store-schedule' store.id  %}?back_url={{back_url|urlencode}}&start_day={{prev_2_weeks|date:'d/m/Y'}}&direction=prev#schedule_subtitle">{{ _('Prev week') }}</th>
         <th class="colspan-xs7-sm14 day-title" colspan="14">
           {% if start_day.month != end_day.month %}
-            <span class="month-lbl two-months">{{start_day.year}}{{_(' Year ')}}{{start_day.month}}{{_(' Month ')}} - {{end_day.year}}{{_(' Year ')}}{{end_day.month}}{{_(' Month ')}}</span>
+            <span class="month-lbl two-months">{{start_day.year}}{{_(' Year ')}}{{start_day.month}}{{_(' Month ')}} 〜 {{end_day.year}}{{_(' Year ')}}{{end_day.month}}{{_(' Month ')}}</span>
             <span class="month-lbl month-start hidden-sm hidden-md hidden-lg">{{start_day.year}}{{_(' Year ')}}{{start_day.month}}{{_(' Month ')}}</span>
             <span class="month-lbl month-end hidden-sm hidden-md hidden-lg">{{end_day.year}}{{_(' Year ')}}{{end_day.month}}{{_(' Month ')}}</span>
           {% else %}
