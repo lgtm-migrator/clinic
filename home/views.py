@@ -10,6 +10,7 @@ from django.utils.translation import ugettext as _
 from user_agents import parse
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import EmailMessage
 
 from .models import Store, Schedule, Region, Holiday, \
 	NearestStation, Sortkey, HolidayWorking, WorkingDay
@@ -94,6 +95,10 @@ class DetailView(generic.DetailView):
 		return self.render_to_response(context)
 	def get_context_data(self, **kwargs):
 		context = super(DetailView, self).get_context_data(**kwargs)
+
+		if 'error' in self.request.session.keys():
+			context["error"] = self.request.session['error']
+			del self.request.session['error']
 
 		current_store = context["store"]
 
@@ -196,9 +201,11 @@ def SendEmail(sche, ipadress, device):
 	for user in super_user:
 		to_clinic.append(user.email)
 
+	clinic_email = EmailMessage(subject_clinic, message_clinic, from_email, bcc=to_clinic)
+
 	try:
 		send_mail(subject_patient, message_patient, from_email, to_patient)
-		send_mail(subject_clinic, message_clinic, from_email, to_clinic)
+		clinic_email.send()
 	except BadHeaderError:
 		return False
 	return True
@@ -224,6 +231,12 @@ def ScheView(request, store, date, hour):
 	error = ""
 	success = ""
 
+	if 'back_home_url' in request.GET:
+		back_home_url = request.GET["back_home_url"]
+	else:
+		back_home_url = "/"
+
+	
 	if request.method == "POST":
 		form = ScheForm(request.POST)
 		if form.is_valid():
@@ -233,8 +246,11 @@ def ScheView(request, store, date, hour):
 			schedule.hour = booking_hour
 
 			sche = Schedule.objects.filter(store=store_object, date=booking_date, hour=booking_hour)
+
 			if sche:
-				error = _("This time is registed by another patient. Please choose another time!")
+				request.session['error'] = _("This time is registed by another patient. Please choose another time!")
+				url_back = '/store/' + str(store_object.id) + "/?back_home_url=" + back_home_url + "&?start_day=" + booking_date.strftime("%d/%m/%Y")
+				return redirect(url_back)
 			else:
 				schedule.save()
 				ip = get_client_ip(request)
@@ -245,10 +261,7 @@ def ScheView(request, store, date, hour):
 	else:
 		form = ScheForm()
 
-	if 'back_home_url' in request.GET:
-		back_home_url = request.GET["back_home_url"]
-	else:
-		back_home_url = "/"
+	
 	return render(request, template_name, {'form': form, 'store':store_object,
 											'date':booking_date, 'hour':booking_hour,
 											'error':error, 'success':success, "back_home_url": back_home_url})

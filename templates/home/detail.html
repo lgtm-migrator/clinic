@@ -6,7 +6,11 @@
 {% block header_title %}
   <span id="schedule_subtitle">{{ _('Acupuncture orthopedic clinic reservation') }}　－　{{ _('Reservation date and time selection') }}</span>
 {% endblock %}
-
+{% block alert %}
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+{% endblock %}
 
 {% block content %}
   <table id="reserve-table" class="table table-bordered text-center">
