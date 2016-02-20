@@ -32,7 +32,7 @@ class Store(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     store_id = models.CharField(max_length=254, unique=True)
     name = models.CharField(max_length=254)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=15)
     mail = models.EmailField()
     image = models.ImageField(upload_to = 'static/upload/', blank=True)
     display = models.BooleanField(default=True)
