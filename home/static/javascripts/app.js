@@ -82,7 +82,7 @@ var schedule_table = {
         var direction = getUrlVars()["direction"];
         var current_hidden_slot = self.schedule.find(".time-slot.hidden-xs");
         if (current_hidden_slot.length == 0) {
-            if (direction == "prev#reserve-table") {
+            if (direction == "prev#schedule_subtitle") {
                 self.schedule.find(".time-slot.week-1").addClass("hidden-xs");
                 self.display_week_label(".week-2");
             } else {

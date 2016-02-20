@@ -199,6 +199,9 @@
         display: block;
         border: 0;
     }
+    #reserve-table td, #reserve-table th {
+      font-size: 12px;
+    }
 }
 
 @media(min-width:768px){
