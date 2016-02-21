@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 from django.forms.models import BaseModelFormSet
 from django.db import models
 from django.contrib.auth.models import Group
+from bootstrap3_datetime.widgets import DateTimePicker
 
 from .models import *
 
@@ -46,9 +47,16 @@ class WorkingDayInline(admin.TabularInline):
 			formset.__init__ = curry(formset.__init__, initial=initial)
 		
 		return formset
-	
+
+class HolidayWorkingInlineForm(forms.ModelForm):
+	model = HolidayWorking
+	date = forms.DateTimeField(
+		required=False,
+		widget=DateTimePicker(options={"format": "YYYY-MM-DD", "pickSeconds": False}))
+
 class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking
+	form = HolidayWorkingInlineForm
 	extra = 30
 
 class StoreAmin(admin.ModelAdmin):

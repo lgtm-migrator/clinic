@@ -169,12 +169,12 @@ class WorkingDay(models.Model):
             if getattr(self, "hour_"+str(i)) == True:
                 return False
         return True
-
-    def __str__(self):
-        return self.type
         
     class Meta:
         unique_together = (('store', 'type'), )
+
+    def __str__(self):
+        return self.type
 
 class HolidayWorking(models.Model):
     store = models.ForeignKey(Store)
@@ -195,6 +195,9 @@ class HolidayWorking(models.Model):
     hour_20 = models.BooleanField(default = False)
     hour_21 = models.BooleanField(default = False)
 
+    class Meta:
+        unique_together = (('store', 'date'), )
+
     def is_dayoff(self,time_range):
         dayoff = True
         for i in time_range:
@@ -202,8 +205,8 @@ class HolidayWorking(models.Model):
                 return False
         return dayoff
 
-    class Meta:
-        unique_together = (('store', 'date'), )
+    def __str__(self):
+        return str(self.date)
 
 class Schedule(models.Model):
     store = models.ForeignKey(Store)
