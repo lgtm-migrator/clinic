@@ -54,6 +54,7 @@ CLINIC_APPS = (
     # From frontend
     'django_filters',
     'django_select2',
+    'bootstrap3_datetime',
 
     # Frontend user app
     'home',
@@ -134,7 +135,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'postgres',
+        'USER': 'duyetdev',
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
