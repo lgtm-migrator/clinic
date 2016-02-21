@@ -10,6 +10,9 @@ class Region(models.Model):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name + ' - ' + self.code
+
 # # 最寄り駅テーブル
 class NearestStation(models.Model):
     code = models.CharField(max_length=25, unique=True)
@@ -17,6 +20,9 @@ class NearestStation(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def __str__(self):
+        return self.name + ' - ' + self.code
 
 # ソートキーテーブル
 SORT_KEY = (('name', 'Store name'), ('phone', 'Phone number'), ('mail', 'Email'), ('region', 'region'), ('nearest_station', 'Nearest Station'));
@@ -136,7 +142,7 @@ WORKING_DAY = (
     ('Fr', 'Friday'),
     ('Sa', 'Saturday'),
     ('Su', 'Sunday'),
-    ('No', 'Holiday')
+    ('Ho', 'Holiday')
 )
 
 class WorkingDay(models.Model):
