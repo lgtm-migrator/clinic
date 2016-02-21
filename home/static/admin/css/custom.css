@@ -1,0 +1,28 @@
+body {
+	padding-top: 35px;
+}
+
+.clinic-header {
+	margin-bottom: 10px;
+}
+
+.clinic-header .navbar-brand {
+	font-size: 2.5rem;
+	padding-left: 0;
+	color: #636363;
+}
+
+.breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    border-bottom: 1px solid #ddd;
+    padding-left: 0;
+    color: #4A4949;
+}
+
+form .wide p {
+	margin-left: 0;
+}
