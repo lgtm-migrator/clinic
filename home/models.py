@@ -51,6 +51,9 @@ class Store(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.store_id + ' ・ ' + self.name
+
     def store_time_range(self, working_day):
         open_hr = 21
         close_hr = 8
