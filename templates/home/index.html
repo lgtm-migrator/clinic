@@ -39,7 +39,7 @@
 						{% endfor %}
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8 clinic-search-button">
-									<button type="submit" class="btn btn-default btn-clinic-primary">
+									<button type="submit" class="btn btn-default btn-clinic-primary btn-no-radius">
 										{{ _('Search') }}
 									</button>
 								</div>
@@ -100,8 +100,8 @@
 										</a>
 		  								<div class="col-xs-4 well well-white well-no-border store-select">
 		  									<span>
-		  										{% if user.is_staff %}
-		  										<a href="{% url 'store-schedule' store.id %}?back_url= {{ request.get_full_path|urlencode }}" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Phone') }}">
+		  										{% if is_admin_store %}
+		  										<a href="/admin/home/store/{{ store.id }}/" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Phone') }}">
 		  											{{ _('Select') }}
 		  										</a>
 		  										{% else %}

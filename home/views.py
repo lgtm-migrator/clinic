@@ -82,6 +82,11 @@ class IndexView(generic.ListView):
 
 		context['paging'] = paging
 
+		context['is_admin_store'] = False
+		if self.request.resolver_match.url_name == 'admin_store':
+			if self.request.user.is_staff:
+				context['is_admin_store'] = True
+
 		return context
 
 class DetailView(generic.DetailView):
@@ -91,7 +96,6 @@ class DetailView(generic.DetailView):
 		try:
 			self.object = self.get_object()
 		except Http404:
-        	# redirect here
 			return redirect('/')
 		context = self.get_context_data(object=self.object)
 		return self.render_to_response(context)
