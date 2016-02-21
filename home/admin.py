@@ -5,6 +5,7 @@ from django.conf.urls import url
 from django.template.response import TemplateResponse
 from django.forms.models import BaseModelFormSet
 from django.db import models
+from django.contrib.auth.models import Group
 
 from .models import *
 
@@ -29,18 +30,21 @@ class WorkingDayInlineFormSet(BaseModelFormSet):
 class WorkingDayInline(admin.TabularInline):
 	model = WorkingDay
 	form = WorkingDayInlineAdminForm
+
 	def get_extra(self, request, obj=None, **kwargs):
 		extra = 8
 		if obj:
 			return 0
 		return extra
 	def get_formset(self, request, obj=None, **kwargs):
-		initial = [ { 'type': d[0:2] for d in x } for x in WORKING_DAY ]
-		print (initial)
-		if request.method != "GET":
-			initial = []
 		formset = super(WorkingDayInline, self).get_formset(request, obj, **kwargs)
-		formset.__init__ = curry(formset.__init__, initial=initial)
+		
+		if not obj:
+			initial = [ { 'type': d[0:2] for d in x } for x in WORKING_DAY ]
+			if request.method != "GET":
+				initial = []
+			formset.__init__ = curry(formset.__init__, initial=initial)
+		
 		return formset
 	
 class HolidayWorkingInline(admin.TabularInline):
@@ -64,10 +68,10 @@ class StoreAmin(admin.ModelAdmin):
 	image_show.allow_tags = True
 	image_show.short_description = 'Image'
 
-	class Meta:
-		from django.conf import settings
-		media_url = getattr(settings, 'MEDIA_URL', '/media')
-		js = [ media_url+'/admin/long-lat-render.js', ]
+	class Media:
+		js = (
+			'javascripts/store_admin.js', 
+		)
 
 class HolidayAdmin(admin.ModelAdmin):
 	pass
@@ -86,3 +90,5 @@ class NearestStationAmin(admin.ModelAdmin):
 admin.site.register(Region, RegionAmin)
 admin.site.register(NearestStation, NearestStationAmin)
 admin.site.register(Sortkey)
+
+admin.site.unregister(Group)
