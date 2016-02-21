@@ -8,6 +8,8 @@ from home import views
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='home'),
     url(r'^store/?$', views.IndexView.as_view(), name='home'),
+    url(r'^admin/store/?$', views.IndexView.as_view(), name='admin_store'),
+    url(r'^admin/home/store/?$', views.IndexView.as_view(), name='admin_store'),
     url(r'^store/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='store-schedule'),
     url(r'^booking/(?P<store>[0-9]+)/(?P<date>[0-9]{8})/(?P<hour>[0-9]{1,2})/$', views.ScheView, name='booking'),
     url(r'^timeslot_checking/(?P<store>[0-9]+)/(?P<date>[0-9]{8})/(?P<hour>[0-9]{1,2})/$', views.TimeslotCheck, name='timeslot-checking'),
