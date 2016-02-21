@@ -40,7 +40,7 @@ class Store(models.Model):
     name = models.CharField(max_length=254)
     phone = models.CharField(max_length=15)
     mail = models.EmailField()
-    image = models.ImageField(upload_to = 'static/upload/', blank=True)
+    image = models.ImageField(upload_to = 'static/upload/')
     display = models.BooleanField(default=True)
 
     access = models.TextField(max_length=500, blank=True)
