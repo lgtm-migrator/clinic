@@ -39,7 +39,7 @@
 						{% endfor %}
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8">
-									<button type="submit" class="btn btn-default">
+									<button type="submit" class="btn btn-default btn-clinic-primary">
 										{{ _('Search') }}
 									</button>
 								</div>
@@ -100,7 +100,7 @@
 										</a>
 		  								<div class="col-xs-4 well well-white well-no-border store-select">
 		  									<span class="">
-		  										<a href="{% url 'store-schedule' store.id %}" class="btn btn-default btn-lg btn-block btn-clinic-select" title="{{ _('Phone') }}">
+		  										<a href="{% url 'store-schedule' store.id %}?back_url= {{ request.get_full_path|urlencode }}" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Phone') }}">
 		  											{{ _('Reservation') }}
 		  										</a>
 		  									</span>
@@ -109,6 +109,7 @@
 		  						</div>
 	  						</div>
 	  					</div>
+
 				    {% endfor %}
 
 				    <nav class="text-center">
@@ -123,8 +124,8 @@
 								</a>
 							</li>
 						{% endif %}
-						
-						{% if paging.paginator.num_pages > 1 %}	
+
+						{% if paging.paginator.num_pages > 1 %}
 							{% for page in paging.paginator.page_range %}
 								<li class="{% if paging.number == page %}active{% endif %}">
 									<a href="?page={{ page }}">

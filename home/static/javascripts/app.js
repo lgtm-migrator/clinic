@@ -53,8 +53,17 @@ var schedule_table = {
         self.schedule.find(".date-available").click(function() {
             self.schedule.find(".date-available").removeClass("date-selected");
             var $td = $(this);
-            $td.addClass("date-selected");
-            window.location.href = $td.data('url');
+            if ($td.hasClass("date-available")) {
+              $td.addClass("date-selected");
+              $.get( $td.data("check"), function( data ) {
+                if (data.status[0] == "4") {
+                  $td.html("×");
+                  $td.removeClass(".date-available");
+                } else if (data.status[0] == "0") {
+                  window.location.href = $td.data('url');
+                }
+              });
+            }
         });
     },
     small_screen_handle: function() {
@@ -71,15 +80,29 @@ var schedule_table = {
     display_one_week: function() {
         var self = this;
         var direction = getUrlVars()["direction"];
-        var current_hidden_slot = self.schedule.find(".time-slot.hidden-xs")
+        var current_hidden_slot = self.schedule.find(".time-slot.hidden-xs");
         if (current_hidden_slot.length == 0) {
-            if (direction == "prev") {
+            if (direction == "prev#schedule_subtitle") {
                 self.schedule.find(".time-slot.week-1").addClass("hidden-xs");
+                self.display_week_label(".week-2");
             } else {
                 self.schedule.find(".time-slot.week-2").addClass("hidden-xs");
+                self.display_week_label(".week-1");
             }
-
         }
+    },
+    display_week_label: function(week_displaying_selector) {
+      var month_splitter = $(week_displaying_selector).find(".month-split");
+      $(".month-lbl").removeClass("hidden-xs");
+      if (month_splitter.length > 0) {
+        $(".month-lbl.month-start, .month-lbl.month-end").addClass("hidden-xs");
+      }
+      else if (week_displaying_selector == ".week-1") {
+        $(".month-lbl.two-months, .month-lbl.month-end").addClass("hidden-xs");
+      }
+      else if (week_displaying_selector == ".week-2") {
+        $(".month-lbl.two-months, .month-lbl.month-start").addClass("hidden-xs");
+      }
     },
     display_two_weeks: function() {
 
@@ -90,6 +113,7 @@ var schedule_table = {
         if (current_hidden_slot.hasClass("week-2")) {
             current_hidden_slot.removeClass("hidden-xs");
             self.schedule.find(".time-slot.week-1").addClass("hidden-xs");
+            self.display_week_label(".week-2");
             return;
         }
         window.location.href = url;
@@ -100,6 +124,7 @@ var schedule_table = {
         if (current_hidden_slot.hasClass("week-1")) {
             current_hidden_slot.removeClass("hidden-xs");
             self.schedule.find(".time-slot.week-2").addClass("hidden-xs");
+            self.display_week_label(".week-1");
             return;
         }
         window.location.href = url;
