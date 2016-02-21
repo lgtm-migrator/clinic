@@ -319,3 +319,8 @@
 .model-store.change-form .fields .row {
     margin-bottom: 20px;
 }
+fieldset.module h2 {
+    color: #DD1746;
+    text-decoration: none;
+    font-size: 23px;
+}
