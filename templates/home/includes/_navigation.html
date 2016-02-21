@@ -1,5 +1,8 @@
-{% if user.is_authenticated %}
+{% if user.is_staff %}
 <div class="admin-nav clearfix">
+	<a href="/admin/home/store/add" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius">
+		{{ _('Create') }}
+	</a>
 	<a href="/admin/logout" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius">
 		{{ _('Logout') }}
 	</a>
