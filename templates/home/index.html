@@ -54,7 +54,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
 			<div class="store-list">
 				{% if filter %}
-				    {% for store in filter %}
+				    {% for store in paging %}
 				    	<div class="panel panel-default panel-clinic">
 				    		<div class="panel-heading store-heading text-left">
 				    			{{ store.name }}
