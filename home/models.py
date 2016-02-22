@@ -11,7 +11,7 @@ class Region(models.Model):
 		return self.name
 
 	def __str__(self):
-		return self.name + ' - ' + self.code
+		return self.name
 
 # # 最寄り駅テーブル
 class NearestStation(models.Model):
@@ -22,14 +22,14 @@ class NearestStation(models.Model):
 		return self.name
 
 	def __str__(self):
-		return self.name + ' - ' + self.code
+		return self.name
 
 # ソートキーテーブル
-SORT_KEY = (('name', 'Store name'), ('phone', 'Phone number'), ('mail', 'Email'), ('region', 'region'), ('nearest_station', 'Nearest Station'));
+SORT_KEY = (('store_id', 'Store Code'), ('region', 'Region'), ('nearest_station', 'Nearest Station'));
 class Sortkey(models.Model):
 	sorttype = models.CharField(default='001', max_length=25, editable=False, unique=True)
-	key1 = models.CharField(max_length=25, choices= SORT_KEY, default='name')
-	key2 = models.CharField(max_length=25, choices=SORT_KEY, default='phone')
+	key1 = models.CharField(max_length=25, choices= SORT_KEY, default='region')
+	key2 = models.CharField(max_length=25, choices=SORT_KEY, default='store_id')
 
 	def __unicode__(self):
 		return 'Sort key. Click to edit'
