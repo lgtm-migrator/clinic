@@ -135,7 +135,7 @@ class DetailView(generic.DetailView):
 		context["prev_2_weeks"] = context["start_day"] - timedelta(days=14)
 		context["next_2_weeks"] = context["end_day"] + timedelta(days=1)
 		context["days_range"]   = [context["start_day"] + timedelta(days=x) for x in range(0, 14)]
-		context["time_range"]   = current_store.store_time_range(working_days)
+		context["time_range"]   = current_store.store_time_range(working_days, working_holidays)
 		context["schedule"]     = current_store.generate_booking_matrix(working_days,
 									booked_days, working_holidays,
 									context["days_range"],
@@ -242,7 +242,7 @@ def ScheView(request, store, date, hour):
 	else:
 		back_home_url = "/"
 
-	
+
 	if request.method == "POST":
 		form = ScheForm(request.POST)
 		if form.is_valid():
@@ -269,7 +269,7 @@ def ScheView(request, store, date, hour):
 	else:
 		form = ScheForm()
 
-	
+
 	return render(request, template_name, {'form': form, 'store':store_object,
 											'date':booking_date, 'hour':booking_hour,
 											'error':error, 'success':success, "back_home_url": back_home_url})

@@ -54,11 +54,18 @@ class Store(models.Model):
     def __str__(self):
         return self.store_id + ' ・ ' + self.name
 
-    def store_time_range(self, working_day):
+    def store_time_range(self, working_day, working_holiday):
         open_hr = 21
         close_hr = 8
-        time_range = range(close_hr, open_hr+1)
+        time_range = range(8, 22)
         for day in working_day:
+            for i in time_range:
+                if getattr(day, "hour_"+str(i)) == True:
+                    if i < open_hr:
+                        open_hr = i
+                    if i > close_hr:
+                        close_hr = i
+        for day in working_holiday:
             for i in time_range:
                 if getattr(day, "hour_"+str(i)) == True:
                     if i < open_hr:
@@ -89,7 +96,7 @@ class Store(models.Model):
     	# child object new attributes available = 1
         for index,day in enumerate(working_day):
             day_str = days_range[index].strftime("%d/%m/%Y")
-            if holiday_default == None and day.type == "No":
+            if holiday_default == None and day.type == "Ho":
             	holiday_default = day
             	break
             for i in time_range:
@@ -172,7 +179,7 @@ class WorkingDay(models.Model):
             if getattr(self, "hour_"+str(i)) == True:
                 return False
         return True
-        
+
     class Meta:
         unique_together = (('store', 'type'), )
 
