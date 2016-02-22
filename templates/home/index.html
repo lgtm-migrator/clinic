@@ -131,20 +131,33 @@
 							</li>
 						{% endif %}
 
-						{% if paging.paginator.num_pages > 1 %}
-							{% for page in paging.paginator.page_range %}
-								<li class="{% if paging.number == page %}active{% endif %}">
-									<a href="?page={{ page }}{{ url_filter }}">
-										{{ page }}
-										{% if paging.number == page  %}
-											<span class="sr-only">(current)</span></a>
-										{% endif %}
-									</a>
-								</li>
-							{% endfor %}
-						{% endif %}
+					    {% if show_first %}
+					    	<li>
+					    		<a href="?page=1{{ url_filter }}">1</a>
+					    	</li>
+					    	<li><a>...</a></li>
+					    {% endif %}
 
-						{% if paging.has_next %}
+					    {% for page in showing_pages %}
+					    	{% ifequal page paging.number %}
+							    <li class="active">
+							        <a href="#">{{ page }}</a>
+							    </li>
+						    {% else %}
+							    <li>
+							        <a href="?page={{ page }}{{ url_filter }}">{{ page }}</a>
+							    </li>
+					    	{% endifequal %}
+					    {% endfor %}
+
+					    {% if show_last %}
+					    	<li><a>...</a></li>
+					    	<li>
+					    		<a href="?page={{ last_page }}{{ url_filter }}">{{ last_page }}</a>
+					    	</li>
+					    {% endif %}
+
+					    {% if paging.has_next %}
 							<li>
 								<a href="?page={{ paging.next_page_number }}{{ url_filter }}">
 									<span aria-hidden="true">
