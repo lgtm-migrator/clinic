@@ -10,7 +10,7 @@ class ScheForm(forms.ModelForm):
         fields = ('name', 'phone', 'email', 'symptom')
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'氏名'}),
-            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'連絡先'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'メールアドレス'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'電話番号'}),
             'symptom': forms.Textarea(attrs={'class': 'form-control', 'rows':'5', 'placeholder':'症状などをご入力ください'}),
         }
