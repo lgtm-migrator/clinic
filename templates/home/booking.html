@@ -6,7 +6,7 @@
 
 {% block alert %}
   {% if form.name.errors or form.phone.errors or form.email.errors %}
-    <div class="alert alert-warning">
+    <div class="alert alert-danger">
       {{ form.name.errors }}
       {{ form.phone.errors }}
       {{ form.email.errors }}
