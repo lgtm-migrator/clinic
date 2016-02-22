@@ -21,24 +21,24 @@
 <body>
 	<div class="container" id="header">
     <div class="row">
-      <div class="col-xs-6 col-sm-4 col-md-4">
+      <div class="col-xs-8 col-sm-8 col-md-6">
         <div class="header clearfix">
           <h3 class="text-muted">
             <a href="/">{{ _('Clinic') }}</a>
           </h3>
           <p>
             {% block header_title %}
-              {{ _('Acupuncture orthopedic clinic reservation') }}　－　{{ _('Select store') }} 
+              {{ _('Acupuncture orthopedic clinic reservation') }}　－　{{ _('Select store') }}
             {% endblock %}
           </p>
 
         </div>
       </div>
-      <div class="col-xs-6 col-sm-8 col-md-8 text-right">
+      <div class="col-xs-4 col-sm-4 col-md-6 text-right">
         {% include 'home/includes/_navigation.html' %}
       </div>
     </div>
-		
+
 	</div>
 
 	<div class="container" id="main">
