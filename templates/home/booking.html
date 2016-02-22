@@ -59,8 +59,8 @@
           <!-- Form actions -->
           <div class="form-group">
             <div class="text-center">
-              <input type="submit" id="btn-submit" {% if error or success %} disabled {% endif %} class="btn btn-lightblue btn-default" value="予約">
-              <a href="{% url 'store-schedule' store.id %}?back_url={{back_home_url|urlencode}}&start_day={{ date|date:"d/m/Y" }}" class="btn btn-lightblue btn-default">戻る</a>
+              <input type="submit" id="btn-submit" {% if error or success %} disabled {% endif %} class="btn btn-default btn-clinic-primary btn-no-radius" value="予約">
+              <a href="{% url 'store-schedule' store.id %}?back_url={{back_home_url|urlencode}}&start_day={{ date|date:"d/m/Y" }}" class="btn btn-default btn-clinic-primary btn-no-radius">戻る</a>
             </div>
           </div>
         </fieldset>
