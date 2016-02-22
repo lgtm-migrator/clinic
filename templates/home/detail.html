@@ -38,9 +38,7 @@
               {% if t == 'Sa' %}color-saturday{% endif %}
               {% if t == 'Su' or holiday %}color-holiday{% endif %}
               {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">
-                {{week_day.day}}{% if week_day.day == 1 and forloop.counter0 > 0%}<sub class="month-split">/{{end_day.month}}</sub>{% endif %}
-                <br>
-                {% trans t %}
+                {{week_day.day}}{% if week_day.day == 1 and forloop.counter0 > 0%}<sub class="month-split">/{{end_day.month}}</sub>{% endif %}<br>{% trans t %}
               </th>
             {% endwith %}
           {% endwith %}
