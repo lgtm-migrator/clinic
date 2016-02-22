@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    fixedFooter();
+    setTimeout(function(){
+      fixedFooter();
+    },100);
+
     $(window).resize(function() {
         fixedFooter();
     });
