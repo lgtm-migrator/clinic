@@ -66,7 +66,7 @@ INSTALLED_APPS = DJANGO_APPS + CLINIC_APPS
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.stmp.EmailBackend'
 
 # Host for sending e-mail.
 EMAIL_HOST = 'smtp.gmail.com'
@@ -75,8 +75,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
 # Optional SMTP authentication information for EMAIL_HOST.
-EMAIL_HOST_USER = 'example@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'clinictest.japan@gmail.com'
+EMAIL_HOST_PASSWORD = 'clinictest'
 EMAIL_USE_TLS = True
 
 ########## END EMAIL CONFIGURATION`
