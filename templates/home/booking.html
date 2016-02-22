@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block alert %}
+  {% if form.name.errors or form.phone.errors or form.email.errors %}
+    <div class="alert alert-warning">
+      {{ form.name.errors }}
+      {{ form.phone.errors }}
+      {{ form.email.errors }}
+    </div>
+  {% endif %}
   {% if success %}
     <div class="alert alert-success">{{ success }}</div>
   {% endif %}
@@ -26,24 +33,21 @@
 
               <!-- 氏名・電話番号-->
             <tr>
-                <th>氏名</th>
+                <th>氏名 <span style="color:red">*</span></th>
                 <td class="clear-xs">
-                  {{ form.name.errors }}
                   {{ form.name }}
                 </td>
 
-                <th>電話番号</th>
+                <th>電話番号 <span style="color:red">*</span></th>
                 <td>
-                  {{ form.phone.errors }}
                   {{ form.phone }}
                 </td>
             </tr>
 
               <!-- 連絡先-->
               <tr>
-                <th>連絡先</th>
+                <th>連絡先 <span style="color:red">*</span></th>
                 <td colspan="3">
-                  {{ form.email.errors }}
                   {{ form.email }}
                 </td>
               </tr>
