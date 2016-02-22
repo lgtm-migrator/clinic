@@ -69,8 +69,12 @@ class IndexView(generic.ListView):
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
 
+		if "region" in self.request.GET:
+			context["url_filter"] = "&region=" + self.request.GET["region"] + \
+										"&nearest_station=" + self.request.GET["nearest_station"]
+		# context['url_filter'] = region
 		# context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
-		paginator = Paginator(context['filter'].queryset, paginate_by)
+		paginator = Paginator(context['filter'], paginate_by)
 		page = self.request.GET.get('page')
 		try:
 			paging = paginator.page(page)

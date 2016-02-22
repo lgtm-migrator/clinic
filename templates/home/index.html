@@ -122,7 +122,7 @@
 					  <ul class="pagination clinic-pagination">
 						{% if paging.has_previous %}
 							<li>
-								<a href="?page={{ paging.previous_page_number }}">
+								<a href="?page={{ paging.previous_page_number }}{{ url_filter }}">
 									<span aria-hidden="true">
 										<i class="glyphicon glyphicon-triangle-left"></i>
 										{{ _('Prev 20 lines') }}
@@ -134,7 +134,7 @@
 						{% if paging.paginator.num_pages > 1 %}
 							{% for page in paging.paginator.page_range %}
 								<li class="{% if paging.number == page %}active{% endif %}">
-									<a href="?page={{ page }}">
+									<a href="?page={{ page }}{{ url_filter }}">
 										{{ page }}
 										{% if paging.number == page  %}
 											<span class="sr-only">(current)</span></a>
@@ -146,7 +146,7 @@
 
 						{% if paging.has_next %}
 							<li>
-								<a href="?page={{ paging.next_page_number }}">
+								<a href="?page={{ paging.next_page_number }}{{ url_filter }}">
 									<span aria-hidden="true">
 										{{ _('Next 20 lines') }}
 										<i class="glyphicon glyphicon-triangle-right"></i>
