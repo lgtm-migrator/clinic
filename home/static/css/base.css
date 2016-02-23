@@ -239,6 +239,9 @@
     margin-top: 10px;
 }
 
+.padding-right-8 {
+    padding-right: 8px !important;
+}
 @media only screen and (max-width : 480px) {
     .store-select .btn {
         border-radius: 0;
