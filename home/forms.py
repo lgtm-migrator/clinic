@@ -17,6 +17,6 @@ class ScheForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ScheForm, self).__init__(*args, **kwargs)
-        self.fields['name'].error_messages = {'required': '氏名は必須です'}
-        self.fields['email'].error_messages = {'required': 'メールアドレスは必須です', 'invalid':"メールアドレスの形式が正しくありません"}
-        self.fields['phone'].error_messages = {'required': '電話番号は必須です'}
+        self.fields['name'].error_messages = {'required': '氏名は必須です。'}
+        self.fields['email'].error_messages = {'required': 'メールアドレスは必須です', 'invalid':"メールアドレスの形式が正しくありません。"}
+        self.fields['phone'].error_messages = {'required': '電話番号は必須です。'}

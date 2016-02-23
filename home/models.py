@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime, timedelta
+from django.core.validators import RegexValidator
+
 import calendar
 # # 地域テーブル
 class Region(models.Model):
@@ -38,7 +40,14 @@ class Store(models.Model):
 	id = models.AutoField(primary_key=True, unique=True)
 	store_id = models.CharField(max_length=254, unique=True)
 	name = models.CharField(max_length=254)
-	phone = models.CharField(max_length=15)
+	phone = models.CharField(max_length=15, \
+				validators=[
+					RegexValidator(
+						regex='^[0-9]+(-?[0-9]+)+$',
+						message='有効な電話番号を入力してください。',
+						code='invalid_phone'
+					),
+				])
 	mail = models.EmailField()
 	image = models.ImageField(upload_to = 'static/upload/')
 	display = models.BooleanField(default=True)
@@ -227,7 +236,14 @@ class Schedule(models.Model):
 	date = models.DateField('schedule date')
 	hour = models.IntegerField()
 	name = models.CharField(max_length=254)
-	phone = models.CharField(max_length=15)
+	phone = models.CharField(max_length=15,\
+				validators=[
+					RegexValidator(
+						regex='^[0-9]+(-?[0-9]+)+$',
+						message='有効な電話番号を入力してください。',
+						code='invalid_phone'
+					),
+				])
 	email = models.EmailField()
 	symptom = models.TextField(max_length=500, blank=True)
 
