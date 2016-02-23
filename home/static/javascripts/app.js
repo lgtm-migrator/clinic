@@ -21,6 +21,10 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     schedule_table.init("#reserve-table");
+
+    $("#btn-submit").click(function(){
+        $.LoadingOverlay("show");
+    });
 });
 
 var schedule_table = {
