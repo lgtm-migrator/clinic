@@ -39,7 +39,7 @@
 						{% endfor %}
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8 clinic-search-button">
-									<button type="submit" class="btn btn-default btn-clinic-primary btn-no-radius">
+									<button type="submit" class="btn btn-default btn-clinic-primary btn-no-radius btn-no-80px">
 										{{ _('Search') }}
 									</button>
 								</div>
@@ -105,7 +105,7 @@
 		  											{{ _('select') }}
 		  										</a>
 		  										{% else %}
-		  										<a href="{% url 'store-schedule' store.id %}?back_url= {{ request.get_full_path|urlencode }}" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Phone') }}">
+		  										<a href="{% url 'store-schedule' store.id %}?back_url= {{ request.get_full_path|urlencode }}" class="btn btn-default btn-lg btn-block btn-clinic-select btn-clinic-primary" title="{{ _('Reservation') }}">
 		  											{{ _('Reservation') }}
 		  										</a>
 		  										{% endif %}
