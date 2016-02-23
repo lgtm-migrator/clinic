@@ -33,7 +33,7 @@ class Sortkey(models.Model):
 	key1 = models.CharField(max_length=25, choices= SORT_KEY, default='region')
 	key2 = models.CharField(max_length=25, choices=SORT_KEY, default='store_id')
 
-	def __unicode__(self):
+	def __str__(self):
 		return 'Sort key. Click to edit'
 
 class Store(models.Model):

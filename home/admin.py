@@ -3,6 +3,7 @@ from django import forms
 from django.contrib import admin
 from django.conf.urls import url
 from django.template.response import TemplateResponse
+from django.forms.widgets import HiddenInput
 from django.forms.models import BaseModelFormSet
 from django.db import models
 from django.contrib.auth.models import Group
@@ -11,10 +12,11 @@ from bootstrap3_datetime.widgets import DateTimePicker
 from .models import *
 
 class WorkingDayInlineAdminForm(forms.ModelForm):
-	type = models.CharField(default="Mo")
 	class Meta:
 		model = WorkingDay
 		exclude = []
+
+	type = HiddenInput()
 
 	def __init__(self, *args, **kwargs):
 		super(WorkingDayInlineAdminForm, self).__init__(*args, **kwargs)
@@ -39,13 +41,13 @@ class WorkingDayInline(admin.TabularInline):
 		return extra
 	def get_formset(self, request, obj=None, **kwargs):
 		formset = super(WorkingDayInline, self).get_formset(request, obj, **kwargs)
-		
+
 		if not obj:
 			initial = [ { 'type': d[0:2] for d in x } for x in WORKING_DAY ]
 			if request.method != "GET":
 				initial = []
 			formset.__init__ = curry(formset.__init__, initial=initial)
-		
+
 		return formset
 
 class HolidayWorkingInlineForm(forms.ModelForm):
@@ -62,7 +64,7 @@ class HolidayWorkingInline(admin.TabularInline):
 class StoreAmin(admin.ModelAdmin):
 	readonly_fields=('id', )
 
-	list_display = ('store_id', 'name', 'phone', 'mail', 'access')
+	# list_display = ('store_id', 'name', 'phone', 'mail', 'access')
 	list_filter = ('store_id', 'name', 'phone')
 	fieldsets = [
 		(None, { 'fields': [ 'display', 'store_id', 'name', 'image', 'comment', 'region', 'nearest_station', 'phone', 'mail', 'access'], 'classes': ('wide', ) }),
@@ -78,7 +80,7 @@ class StoreAmin(admin.ModelAdmin):
 
 	class Media:
 		js = (
-			'javascripts/store_admin.js', 
+			'javascripts/store_admin.js',
 		)
 
 class HolidayAdmin(admin.ModelAdmin):

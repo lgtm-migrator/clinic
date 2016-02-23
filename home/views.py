@@ -32,6 +32,14 @@ import sys
 import django_filters
 import calendar
 
+def get_ordering_field_set():
+	sort_key = Sortkey.objects.filter(sorttype='001')[0]
+	print (sort_key)
+	if sort_key:
+		return [sort_key.key1 + '__code', sort_key.key2]
+	else:
+		return []
+
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 	region = django_filters.ModelChoiceFilter(
@@ -46,14 +54,7 @@ class StoreFilter(django_filters.FilterSet):
 	)
 	class Meta:
 		fields = ['region', 'nearest_station',]
-
-	def get_order_by(self, order_value):
-		sort_key = Sortkey.objects.filter(sorttype='001')[0]
-		if sort_key:
-			return [sort_key.key1, sort_key.key2]
-			# return []
-		else:
-			return super(StoreFilter, self).get_order_by(order_value)
+		# order_by = get_ordering_field_set()
 
 	def clinic_filter(self, queryset, value):
 		pass
@@ -94,16 +95,16 @@ class IndexView(generic.ListView):
 		# format paging
 		current_page = int(page)
 		num_pages = paginator.num_pages
-		
+
 		# for webrowser
 		startPage = max(current_page - adjacent_pages, 1)
 		if startPage <= 3:
 			startPage = 1
-		
+
 		endPage = current_page + adjacent_pages + 1
 		if endPage >= num_pages - 1:
 			endPage = num_pages + 1
-		
+
 		showing_pages= [n for n in range(startPage, endPage) \
 				if n > 0 and n <= num_pages]
 
@@ -111,11 +112,11 @@ class IndexView(generic.ListView):
 		startPage = max(current_page - adjacent_pages_mobile, 1)
 		if startPage <= 1:
 			startPage = 1
-		
+
 		endPage = current_page + adjacent_pages_mobile + 1
 		if endPage >= num_pages - 1:
 			endPage = num_pages + 1
-		
+
 		showing_pages_mobi = [n for n in range(startPage, endPage) \
 				if n > 0 and n <= num_pages]
 
