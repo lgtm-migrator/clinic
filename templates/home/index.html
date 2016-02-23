@@ -131,7 +131,7 @@
 							</li>
 						{% endif %}
 
-					    {% if show_first %}
+					    {% if show_first_mobi %}
 					    	<li>
 					    		<a href="?page=1{{ url_filter }}">1</a>
 					    	</li>
@@ -150,7 +150,7 @@
 					    	{% endifequal %}
 					    {% endfor %}
 
-					    {% if show_last %}
+					    {% if show_last_mobi %}
 					    	<li><a>...</a></li>
 					    	<li>
 					    		<a href="?page={{ last_page }}{{ url_filter }}">{{ last_page }}</a>

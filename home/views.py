@@ -123,6 +123,8 @@ class IndexView(generic.ListView):
 		context["show_first"] = 1 not in showing_pages
 		context["show_last"] = num_pages not in showing_pages
 		context["last_page"] = num_pages
+		context["show_first_mobi"] = 1 not in showing_pages_mobi
+		context["show_last_mobi"] = num_pages not in showing_pages_mobi
 		context["showing_pages_mobi"] = showing_pages_mobi
 
 		context['is_admin_store'] = False
