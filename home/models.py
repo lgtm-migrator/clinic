@@ -27,10 +27,10 @@ class NearestStation(models.Model):
 		return self.name
 
 # ソートキーテーブル
-SORT_KEY = (('store_id', 'Store Code'), ('region', 'Region'), ('nearest_station', 'Nearest Station'));
+SORT_KEY = (('store_id', 'Store Code'), ('region__code', 'Region'), ('nearest_station__code', 'Nearest Station'));
 class Sortkey(models.Model):
 	sorttype = models.CharField(default='001', max_length=25, editable=False, unique=True)
-	key1 = models.CharField(max_length=25, choices= SORT_KEY, default='region')
+	key1 = models.CharField(max_length=25, choices= SORT_KEY, default='region__code')
 	key2 = models.CharField(max_length=25, choices=SORT_KEY, default='store_id')
 
 	def __unicode__(self):
