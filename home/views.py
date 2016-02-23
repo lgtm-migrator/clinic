@@ -47,14 +47,6 @@ class StoreFilter(django_filters.FilterSet):
 	class Meta:
 		fields = ['region', 'nearest_station',]
 
-	# def get_order_by(self, order_value):
-	# 	sort_key = Sortkey.objects.filter(sorttype='001')[0]
-	# 	if sort_key:
-	# 		return [sort_key.key1, sort_key.key2]
-	# 		# return []
-	# 	else:
-	# 		return super(StoreFilter, self).get_order_by(order_value)
-
 	def clinic_filter(self, queryset, value):
 		pass
 
@@ -73,7 +65,7 @@ class IndexView(generic.ListView):
 
 		sort_key = Sortkey.objects.filter(sorttype='001')
 		if sort_key:
-			context['filter'] = context['filter'].queryset.order_by(sort_key[0].key1, sort_key[0].key2)
+			context['filter'].queryset = context['filter'].queryset.order_by(sort_key[0].key1, sort_key[0].key2)
 
 		if "region" in self.request.GET:
 			context["url_filter"] = "&region=" + self.request.GET["region"] + \
