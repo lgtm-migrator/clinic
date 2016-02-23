@@ -181,9 +181,15 @@ msgstr "予約"
 msgid "Prev 20 lines"
 msgstr "前の20行"
 
+msgid "Prev"
+msgstr "前"
+
 #: templates/home/index.html:151
 msgid "Next 20 lines"
 msgstr "次の20行"
+
+msgid "Next"
+msgstr "次"
 
 #: templates/home/index.html:162
 msgid "No store are available"

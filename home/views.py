@@ -109,7 +109,7 @@ class IndexView(generic.ListView):
 
 		# for mobile
 		startPage = max(current_page - adjacent_pages_mobile, 1)
-		if startPage <= 3:
+		if startPage <= 2:
 			startPage = 1
 		
 		endPage = current_page + adjacent_pages_mobile + 1
