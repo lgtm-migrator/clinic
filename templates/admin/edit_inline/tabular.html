@@ -30,7 +30,7 @@
         {% endif %}
         <tr class="form-row {% cycle "row1" "row2" %} {% if inline_admin_form.original or inline_admin_form.show_url %}has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
              id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
-        <!-- <td class="original">
+        <td class="original" style="display:none">
           {% if inline_admin_formset.opts.sortable_field_name %}
           <span class="btn btn-default btn-xs drag-handler pull-left"><i class="glyphicon glyphicon-move"></i></span>
           {% endif %}
@@ -52,7 +52,7 @@
             {% endfor %}
           {% endfor %}
           {% endspaceless %}
-        </td> -->
+        </td>
         {% for fieldset in inline_admin_form %}
           {% for line in fieldset %}
             {% for field in line %}

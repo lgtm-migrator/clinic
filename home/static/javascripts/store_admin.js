@@ -12,7 +12,12 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 }
 
 $(document).ready(function() {
-	// $('#store_form #workingday_set-group .field-type select').attr('disabled','disabled');
+	$('#store_form #workingday_set-group .field-type select').css('pointerEvents','none');
+	// $('#store_form').on('submit', function() {: ;
+	// 	$('#store_form #workingday_set-group .field-type select').removeAttr('disabled');
+	// });
+
+
 	$('.add-row').hide();
 	$('.vTextField, .vLargeTextField').addClass('form-control');
 

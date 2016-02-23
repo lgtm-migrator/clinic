@@ -323,3 +323,9 @@ fieldset.module h2 {
     text-decoration: none;
     font-size: 23px;
 }
+
+
+span.clinic_hack_first_column select {
+    border: 0;
+    background: transparent;
+}

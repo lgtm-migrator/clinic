@@ -50,7 +50,7 @@ class Store(models.Model):
 						code='invalid_phone'
 					),
 				])
-	mail = models.EmailField(_('Email'))
+	mail = models.EmailField(verbose_name = _('Email'))
 	image = models.ImageField(_('Store Image'), upload_to = 'static/upload/')
 	display = models.BooleanField(_('Store Display'), default=True)
 
