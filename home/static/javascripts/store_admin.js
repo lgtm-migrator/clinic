@@ -12,6 +12,8 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 }
 
 $(document).ready(function() {
+	$('.btn').addClass('btn-no-radius');
+	$('.btn-primary').addClass('btn-default btn-clinic btn-clinic-primary btn-no-radius').removeClass('btn-primary');
 	$('#store_form #workingday_set-group .field-type select').css('pointerEvents','none');
 	// $('#store_form').on('submit', function() {: ;
 	// 	$('#store_form #workingday_set-group .field-type select').removeAttr('disabled');
