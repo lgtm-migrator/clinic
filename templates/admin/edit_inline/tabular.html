@@ -14,7 +14,7 @@
      <thead><tr>
      {% for field in inline_admin_formset.fields %}
        {% if not field.widget.is_hidden %}
-         <th{% if forloop.first %} colspan="2"{% endif %}{% if field.required %} class="required"{% endif %}>{{ field.label|capfirst }}
+         <th{% if forloop.first %}  {% endif %}{% if field.required %} class="required"{% endif %}>{{ field.label|capfirst }}
          {% if field.help_text %}<i class="glyphicon glyphicon-comment help help-tooltip" style="margin-left: 4px;" alt="({{ field.help_text|striptags }})" title="{{ field.help_text|striptags }}"></i>{% endif %}
          </th>
        {% endif %}
@@ -30,7 +30,7 @@
         {% endif %}
         <tr class="form-row {% cycle "row1" "row2" %} {% if inline_admin_form.original or inline_admin_form.show_url %}has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
              id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
-        <td class="original">
+        <!-- <td class="original">
           {% if inline_admin_formset.opts.sortable_field_name %}
           <span class="btn btn-default btn-xs drag-handler pull-left"><i class="glyphicon glyphicon-move"></i></span>
           {% endif %}
@@ -52,7 +52,7 @@
             {% endfor %}
           {% endfor %}
           {% endspaceless %}
-        </td>
+        </td> -->
         {% for fieldset in inline_admin_form %}
           {% for line in fieldset %}
             {% for field in line %}
@@ -64,7 +64,10 @@
                   {% if field.errors %}
                   <div class="alert alert-danger">{{ field.errors|striptags }}</div>
                   {% endif %}
+                  <span class="clinic_hack_first_column">
+                    <span class="value_here"></span>
                   {% dab_field_rendering field.field %}
+                  </span>
               {% endif %}
               </td>
               {% endif %}

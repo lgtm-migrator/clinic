@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for clinic project.
 
@@ -216,3 +217,7 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+ADMIN_LOGIN_REDIRECT_URL = '/admin/home/store'
+ADMIN_LOGOUT_REDIRECT_URL = '/admin'
+ADMIN_SITE_HEADER = '鍼灸接骨師予約'

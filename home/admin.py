@@ -9,6 +9,9 @@ from django.db import models
 from django.contrib.auth.models import Group
 from bootstrap3_datetime.widgets import DateTimePicker
 
+from clinic import settings
+admin.site.site_header = settings.ADMIN_SITE_HEADER
+
 from .models import *
 
 class WorkingDayInlineAdminForm(forms.ModelForm):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-22 01:42+0700\n"
+"POT-Creation-Date: 2016-02-24 05:45+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,55 @@ msgstr "English"
 msgid "Japanese"
 msgstr ""
 
-#: home/views.py:257
+#: home/models.py:42
+#, fuzzy
+#| msgid "Store finder: "
+msgid "Store Code"
+msgstr "店舗検索 "
+
+#: home/models.py:43
+msgid "Store Name"
+msgstr "店舗名"
+
+#: home/models.py:45 templates/home/index.html:104
+msgid "Phone"
+msgstr "電話番号"
+
+#: home/models.py:53
+msgid "Email"
+msgstr "メールアドレス"
+
+#: home/models.py:54
+msgid "Store Image"
+msgstr "店舗写真"
+
+#: home/models.py:55
+msgid "Store Display"
+msgstr "表示?"
+
+#: home/models.py:57
+msgid "Store Access"
+msgstr "アクセス"
+
+#: home/models.py:58
+msgid "Store comment"
+msgstr "お店のコメント"
+
+#: home/views.py:310
 msgid "This time is registed by another patient. Please choose another time!"
 msgstr "その時間はすでに登録されていますので、他の時間をご選択してください。"
 
-#: home/views.py:267
+#: home/views.py:320
 msgid ""
 "The registration process was successful, Please check email for more "
 "information!"
 msgstr "登録が完了しました。メールが送信されますので、ご確認ください。"
+
+#: templates/admin/base.html:60
+#, fuzzy
+#| msgid "Clinic"
+msgid "Clinic Admin"
+msgstr "鍼灸接骨師予約 "
 
 #: templates/admin/base.html:70
 msgid "Welcome,"
@@ -60,28 +100,33 @@ msgstr "ログオフ"
 msgid "Logout"
 msgstr "ログオフ"
 
-#: templates/admin/change_form.html:18 templates/admin/index.html:12
+#: templates/admin/base_site.html:4 templates/home/_base.html:12
+#: templates/home/_base.html.py:27
+msgid "Clinic"
+msgstr "鍼灸接骨師予約 "
+
+#: templates/admin/base_site.html:7
+#, python-format
+msgid "%(site_header)s"
+msgstr ""
+
+#: templates/admin/base_site.html:7
+msgid "Django administration"
+msgstr "鍼灸接骨師予約"
+
+#: templates/admin/change_form.html:21 templates/admin/index.html:12
 msgid "Home"
 msgstr "ホーム"
 
-#: templates/admin/change_form.html:21 templates/admin/index.html:47
+#: templates/admin/change_form.html:24 templates/admin/index.html:47
 msgid "Add"
 msgstr "新規登録"
 
-#: templates/admin/change_form.html:34
-msgid "History"
-msgstr "歴史"
-
-#: templates/admin/change_form.html:36
-#: templates/admin/edit_inline/tabular.html:42
-msgid "View on site"
-msgstr "サイト上で表示"
-
-#: templates/admin/change_form.html:49
+#: templates/admin/change_form.html:40
 msgid "Please correct the error below."
 msgstr "以下のエラーを修正してください。"
 
-#: templates/admin/change_form.html:49
+#: templates/admin/change_form.html:40
 msgid "Please correct the errors below."
 msgstr "以下のエラーを修正してください。"
 
@@ -93,12 +138,16 @@ msgstr "削除しますか？"
 msgid "Change"
 msgstr "変化する"
 
-#: templates/admin/edit_inline/tabular.html:131
+#: templates/admin/edit_inline/tabular.html:42
+msgid "View on site"
+msgstr "サイト上で表示"
+
+#: templates/admin/edit_inline/tabular.html:134
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: templates/admin/edit_inline/tabular.html:134
+#: templates/admin/edit_inline/tabular.html:137
 msgid "Remove"
 msgstr "削除します"
 
@@ -111,9 +160,23 @@ msgstr ""
 msgid "You don't have permission to edit anything."
 msgstr "あなたは何を編集する権限がありません。"
 
-#: templates/home/_base.html:12 templates/home/_base.html.py:27
-msgid "Clinic"
-msgstr "鍼灸接骨師予約 "
+#: templates/admin/login.html:49
+msgid "<h2>ログイン</h2>"
+msgstr ""
+
+#: templates/admin/login.html:60
+msgid "Username or password incorrect."
+msgstr "ユーザー名またはパスワードが間違っています。"
+
+#: templates/admin/login.html:79
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: templates/admin/login.html:84
+#, fuzzy
+#| msgid "Log out"
+msgid "Log in"
+msgstr "ログオフ"
 
 #: templates/home/_base.html:31 templates/home/detail.html:7
 msgid "Acupuncture orthopedic clinic reservation"
@@ -165,62 +228,61 @@ msgstr "地域または、最寄り駅を選択してください。"
 msgid "Search"
 msgstr "検索"
 
-#: templates/home/index.html:104 templates/home/index.html.py:108
-msgid "Phone"
-msgstr "電話番号"
-
 #: templates/home/index.html:105
 msgid "select"
 msgstr "店舗選択"
 
-#: templates/home/index.html:109
+#: templates/home/index.html:108 templates/home/index.html.py:109
 msgid "Reservation"
 msgstr "予約"
 
-#: templates/home/index.html:128
+#: templates/home/index.html:177
 msgid "Prev 20 lines"
 msgstr "前の20行"
+
+#: templates/home/index.html:213
+msgid "Next 20 lines"
+msgstr "次の20行"
+
+#: templates/home/index.html:224
+msgid "No store are available"
+msgstr "利用できない保存"
+
+msgid "History"
+msgstr "歴史"
 
 msgid "Prev"
 msgstr "前"
 
-#: templates/home/index.html:151
-msgid "Next 20 lines"
-msgstr "次の20行"
-
 msgid "Next"
 msgstr "次"
 
-#: templates/home/index.html:162
-msgid "No store are available"
-msgstr "利用できない保存"
+msgid "Region"
+msgstr "地域"
 
- msgid "Region"
- msgstr "地域"
+msgid "Nearest station"
+msgstr "最寄り駅"
 
- msgid "Nearest station"
- msgstr "最寄り駅"
+msgid "Mo"
+msgstr "月"
 
- msgid "Mo"
- msgstr "月"
+msgid "Tu"
+msgstr "火"
 
- msgid "Tu"
- msgstr "火"
+msgid "We"
+msgstr "水"
 
- msgid "We"
- msgstr "水"
+msgid "Th"
+msgstr "木"
 
- msgid "Th"
- msgstr "木"
+msgid "Fr"
+msgstr "金"
 
- msgid "Fr"
- msgstr "金"
+msgid "Sa"
+msgstr "土"
 
- msgid "Sa"
- msgstr "土"
+msgid "Su"
+msgstr "日"
 
- msgid "Su"
- msgstr "日"
-
- msgid "region"
- msgstr "鍼灸接骨師予約"
+msgid "region"
+msgstr "鍼灸接骨師予約"

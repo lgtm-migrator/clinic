@@ -2,6 +2,7 @@
 from django.db import models
 from datetime import datetime, timedelta
 from django.core.validators import RegexValidator
+from django.utils.translation import ugettext as _
 
 import calendar
 # # 地域テーブル
@@ -38,9 +39,10 @@ class Sortkey(models.Model):
 
 class Store(models.Model):
 	id = models.AutoField(primary_key=True, unique=True)
-	store_id = models.CharField(max_length=254, unique=True)
-	name = models.CharField(max_length=254)
-	phone = models.CharField(max_length=15, \
+	store_id = models.CharField(_('Store Code'), max_length=254, unique=True)
+	name = models.CharField(_('Store Name'), max_length=254)
+
+	phone = models.CharField(_('Phone'), max_length=15, \
 				validators=[
 					RegexValidator(
 						regex='^[0-9]+(-?[0-9]+)+$',
@@ -48,12 +50,12 @@ class Store(models.Model):
 						code='invalid_phone'
 					),
 				])
-	mail = models.EmailField()
-	image = models.ImageField(upload_to = 'static/upload/')
-	display = models.BooleanField(default=True)
+	mail = models.EmailField(_('Email'))
+	image = models.ImageField(_('Store Image'), upload_to = 'static/upload/')
+	display = models.BooleanField(_('Store Display'), default=True)
 
-	access = models.TextField(max_length=500, blank=True)
-	comment = models.TextField(max_length=500, blank=True)
+	access = models.TextField(_('Store Access'), max_length=500, blank=True)
+	comment = models.TextField(_('Store comment'), max_length=500, blank=True)
 
 	region = models.ForeignKey(Region, null=True)
 	nearest_station = models.ForeignKey(NearestStation, null=True)
@@ -197,7 +199,7 @@ class WorkingDay(models.Model):
 		unique_together = (('store', 'type'), )
 
 	def __str__(self):
-		return self.type
+		return _(self.type)
 
 class HolidayWorking(models.Model):
 	store = models.ForeignKey(Store)
@@ -229,7 +231,7 @@ class HolidayWorking(models.Model):
 		return dayoff
 
 	def __str__(self):
-		return str(self.date)
+		return _(str(self.date))
 
 class Schedule(models.Model):
 	store = models.ForeignKey(Store)
