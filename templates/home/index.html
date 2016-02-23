@@ -61,7 +61,7 @@
 				    		</div>
 	  						<div class="panel-body">
 		  						<div class="col-md-12 col-md-5 text-center">
-		  							<a href="{% url 'store-schedule' store.id %}">
+		  							<a href="{% url 'store-schedule' store.id %}?back_url= {{ request.get_full_path|urlencode }}">
 		  								<img src="{{ store.image.url }}" class="img-responsive store-image">
 		  							</a>
 		  						</div>
