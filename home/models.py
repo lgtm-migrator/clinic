@@ -44,7 +44,7 @@ class Store(models.Model):
 				validators=[
 					RegexValidator(
 						regex='^[0-9]+(-?[0-9]+)+$',
-						message='有効な電話番号を入力してください。',
+						message='電話番号を正しく入力してください。',
 						code='invalid_phone'
 					),
 				])
@@ -240,7 +240,7 @@ class Schedule(models.Model):
 				validators=[
 					RegexValidator(
 						regex='^[0-9]+(-?[0-9]+)+$',
-						message='有効な電話番号を入力してください。',
+						message='電話番号を正しく入力してください。',
 						code='invalid_phone'
 					),
 				])

@@ -66,6 +66,7 @@ class IndexView(generic.ListView):
 	def get_context_data(self, **kwargs):
 		paginate_by = 2
 		adjacent_pages = 2
+		adjacent_pages_mobile = 1
 
 		context = super(IndexView, self).get_context_data(**kwargs)
 		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
@@ -94,6 +95,7 @@ class IndexView(generic.ListView):
 		current_page = int(page)
 		num_pages = paginator.num_pages
 		
+		# for webrowser
 		startPage = max(current_page - adjacent_pages, 1)
 		if startPage <= 3:
 			startPage = 1
@@ -105,10 +107,23 @@ class IndexView(generic.ListView):
 		showing_pages= [n for n in range(startPage, endPage) \
 				if n > 0 and n <= num_pages]
 
+		# for mobile
+		startPage = max(current_page - adjacent_pages_mobile, 1)
+		if startPage <= 3:
+			startPage = 1
+		
+		endPage = current_page + adjacent_pages_mobile + 1
+		if endPage >= num_pages - 1:
+			endPage = num_pages + 1
+		
+		showing_pages_mobi = [n for n in range(startPage, endPage) \
+				if n > 0 and n <= num_pages]
+
 		context["showing_pages"] = showing_pages
 		context["show_first"] = 1 not in showing_pages
 		context["show_last"] = num_pages not in showing_pages
 		context["last_page"] = num_pages
+		context["showing_pages_mobi"] = showing_pages_mobi
 
 		context['is_admin_store'] = False
 		if self.request.resolver_match.url_name == 'admin_store':
