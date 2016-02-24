@@ -56,7 +56,7 @@ class IndexView(generic.ListView):
 	model = Store
 
 	def get_context_data(self, **kwargs):
-		paginate_by = 2
+		paginate_by = 20
 		adjacent_pages = 2
 		adjacent_pages_mobile = 1
 
