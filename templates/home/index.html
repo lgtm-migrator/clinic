@@ -55,7 +55,7 @@
 			<div class="store-list">
 				{% if filter %}
 				    {% for store in paging %}
-				    	<div class="panel panel-default panel-clinic">
+				    	<div class="panel panel-default panel-clinic store-display-{{store.display}}">
 				    		<div class="panel-heading store-heading text-left">
 				    			{{ store.name }}
 				    		</div>

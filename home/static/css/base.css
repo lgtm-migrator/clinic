@@ -329,3 +329,7 @@ span.clinic_hack_first_column select {
     border: 0;
     background: transparent;
 }
+
+.store-display-False {
+  opacity: 0.3;
+}

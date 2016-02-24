@@ -73,10 +73,19 @@ class IndexView(generic.ListView):
 		adjacent_pages = 2
 		adjacent_pages_mobile = 1
 
+		context = super(IndexView, self).get_context_data(**kwargs)
+		
+		context['is_admin_store'] = False
+		if self.request.resolver_match.url_name == 'admin_store':
+			if self.request.user.is_staff:
+				context['is_admin_store'] = True
 		# store_queryset = get_ordering_field_set(self.model)
 
-		context = super(IndexView, self).get_context_data(**kwargs)
-		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
+
+		if context['is_admin_store'] == True:
+			context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects)
+		else:
+			context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
 		# context['filter'] = StoreFilter(self.request.GET, queryset=store_queryset)
 
 		sort_key = Sortkey.objects.filter(sorttype='001')
@@ -138,10 +147,7 @@ class IndexView(generic.ListView):
 		context["show_last_mobi"] = num_pages not in showing_pages_mobi
 		context["showing_pages_mobi"] = showing_pages_mobi
 
-		context['is_admin_store'] = False
-		if self.request.resolver_match.url_name == 'admin_store':
-			if self.request.user.is_staff:
-				context['is_admin_store'] = True
+
 
 		return context
 
