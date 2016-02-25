@@ -57,8 +57,8 @@ class Store(models.Model):
 	access = models.TextField(_('Store Access'), max_length=500, blank=True)
 	comment = models.TextField(_('Store comment'), max_length=500, blank=True)
 
-	region = models.ForeignKey(Region, null=True)
-	nearest_station = models.ForeignKey(NearestStation, null=True)
+	region = models.ForeignKey(Region, null=True, blank=True)
+	nearest_station = models.ForeignKey(NearestStation, null=True, blank=True)
 
 	created = models.DateTimeField(auto_now_add=True)
 
