@@ -79,6 +79,7 @@ class StoreAdminForm(forms.ModelForm):
 		exclude = ['created', ]
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		self.fields["name"].widget = forms.widgets.TextInput()
 		self.fields["access"].widget = forms.widgets.TextInput()
 		self.fields["region"].label = _("Region")
 		self.fields["nearest_station"].label = _("Nearest station")
