@@ -4,7 +4,7 @@
   sudo apt-get install python3 python3-dev python-pip 
   sudo apt-get install libpq-dev libjpeg-dev # fix
   sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
-  sudo apt-get install postgresql postgresql-contrib
+  sudo apt-get install apache2 postgresql postgresql-contrib
   sudo pip install virtualenv
   ```
 
