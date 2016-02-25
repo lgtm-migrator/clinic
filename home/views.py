@@ -32,6 +32,19 @@ import sys
 import django_filters
 import calendar
 
+def get_order_key(key):
+	if key == 'region' or key == 'nearest_station':
+		return key + '__code'
+	return key
+
+def get_ordering_field_set(model):
+	try:
+		sort_key = Sortkey.objects.filter(sorttype='001')[0]
+		return model.objects.filter(display=True).order_by(get_order_key(sort_key.key1), get_order_key(sort_key.key2))
+	except:
+		# Default
+		return model.objects.filter(display=True).order_by('region__code', 'store_id')
+
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 	region = django_filters.ModelChoiceFilter(
@@ -56,12 +69,14 @@ class IndexView(generic.ListView):
 	model = Store
 
 	def get_context_data(self, **kwargs):
-		paginate_by = 2
+		paginate_by = 20
 		adjacent_pages = 2
 		adjacent_pages_mobile = 1
 
+		store_queryset = get_ordering_field_set(self.model)
+
 		context = super(IndexView, self).get_context_data(**kwargs)
-		context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
+		context['filter'] = StoreFilter(self.request.GET, queryset=store_queryset)
 
 		sort_key = Sortkey.objects.filter(sorttype='001')
 		if sort_key:
@@ -89,16 +104,16 @@ class IndexView(generic.ListView):
 		# format paging
 		current_page = int(page)
 		num_pages = paginator.num_pages
-		
+
 		# for webrowser
 		startPage = max(current_page - adjacent_pages, 1)
 		if startPage <= 3:
 			startPage = 1
-		
+
 		endPage = current_page + adjacent_pages + 1
 		if endPage >= num_pages - 1:
 			endPage = num_pages + 1
-		
+
 		showing_pages= [n for n in range(startPage, endPage) \
 				if n > 0 and n <= num_pages]
 
@@ -106,11 +121,11 @@ class IndexView(generic.ListView):
 		startPage = max(current_page - adjacent_pages_mobile, 1)
 		if startPage <= 1:
 			startPage = 1
-		
+
 		endPage = current_page + adjacent_pages_mobile + 1
 		if endPage >= num_pages - 1:
 			endPage = num_pages + 1
-		
+
 		showing_pages_mobi = [n for n in range(startPage, endPage) \
 				if n > 0 and n <= num_pages]
 
