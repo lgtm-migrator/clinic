@@ -25,7 +25,7 @@ SECRET_KEY = '_q4j2$ur6ce*4z(m-jy2rm1gn9(x#d!mbpy1td-2ki4kim1g=x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'clinic.duyetdev.com', 'duyetdev.com', 'ptnhttt.uit.edu.vn', '10.80.13.89']
 
 # Application definition
 
@@ -47,7 +47,7 @@ CLINIC_APPS = (
     'compressor',
 
     # Admin docs
-    'django.contrib.admindocs',
+    # 'django.contrib.admindocs',
 
     # Thumbnails
     'sorl.thumbnail',
@@ -135,9 +135,9 @@ WSGI_APPLICATION = 'clinic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'clinic_dev',
-        'USER': 'trungle',
-        'PASSWORD': '',
+        'NAME': 'clinic_prod',
+        'USER': 'clinic_prod',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -189,7 +189,7 @@ MEDIA_URL='/media/'
 ########## TOOLBAR CONFIGURATION
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 def custom_show_toolbar(request):
-    return True  # Always show toolbar, for example purposes only.
+    return False  # Always show toolbar, for example purposes only.
 
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
