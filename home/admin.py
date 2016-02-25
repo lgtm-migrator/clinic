@@ -8,6 +8,7 @@ from django.forms.models import BaseModelFormSet
 from django.db import models
 from django.contrib.auth.models import Group
 from bootstrap3_datetime.widgets import DateTimePicker
+from django.utils.translation import ugettext as _
 
 from clinic import settings
 admin.site.site_header = settings.ADMIN_SITE_HEADER
@@ -36,6 +37,7 @@ class WorkingDayInlineFormSet(BaseModelFormSet):
 class WorkingDayInline(admin.TabularInline):
 	model = WorkingDay
 	form = WorkingDayInlineAdminForm
+	verbose_name_plural = _('Working days')
 
 	def get_extra(self, request, obj=None, **kwargs):
 		extra = 8
@@ -63,9 +65,34 @@ class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking
 	form = HolidayWorkingInlineForm
 	extra = 30
+	verbose_name_plural = _('Holiday working days')
+
+def generate_store_id():
+	try:
+		return "%05d" % (Store.objects.last().id + 1, )
+	except:
+		return '00001'
+class StoreAdminForm(forms.ModelForm):
+	store_id = forms.CharField(label=_('Store ID'), widget=forms.widgets.TextInput(), initial = generate_store_id())
+	class Meta:
+		model = Store
+		exclude = ['created', ]
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields["access"].widget = forms.widgets.TextInput()
+		self.fields["region"].label = _("Region")
+		self.fields["nearest_station"].label = _("Nearest station")
+		# self.fields["store_id"].widget = forms.widgets.TextInput()
+		for field in iter(self.fields):
+			if not isinstance(self.fields[field].widget, forms.widgets.CheckboxInput):
+				self.fields[field].widget.attrs.update({
+					'class': 'form-control'
+				})
+
 
 class StoreAmin(admin.ModelAdmin):
 	readonly_fields=('id', )
+	form = StoreAdminForm
 
 	# list_display = ('store_id', 'name', 'phone', 'mail', 'access')
 	list_filter = ('store_id', 'name', 'phone')
