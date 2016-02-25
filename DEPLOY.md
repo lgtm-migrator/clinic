@@ -2,9 +2,10 @@
 
   ```sh
   sudo apt-get install python3 python3-dev python-pip 
-  sudo apt-get install libpq-dev libjpeg-dev # fix
+  sudo apt-get install libpq-dev libjpeg-dev build-essential python-dev # fix
   sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
-  sudo apt-get install apache2 postgresql postgresql-contrib
+  sudo apt-get install apache2 libapache2-mod-wsgi-py3
+  sudo apt-get install postgresql postgresql-contrib
   sudo pip install virtualenv
   ```
 
@@ -58,7 +59,85 @@
   pip install -r requirements.txt
   ```
   
-6. Sync database
+6. Adjust the Project Settings
+
+  We should do with our newly created project files is adjust the settings. Open the settings file with your text editor:
+  
+  ```sh
+  nano clinic/settings.py
+  ```
+
+7. Sync database (will ask to create default admin account)
   ```sh
   python manage.py syncdb
   ```
+
+8. Create Another Admin user 
+
+  ```sh
+  python manage.py createsuperuser
+  ```
+
+9. Import initial data
+  
+  ```sh
+  python manage.py loaddata initial_data.yaml
+  ```
+10. Test running 
+
+  test your project by starting up the Django development server with:
+
+  ```sh
+  python manage.py runserver 0.0.0.0:8000
+  ```
+
+  In your web browser, visit your server's domain name or IP address followed by `:8000`
+
+  ```
+  http://server_domain_or_IP:8000
+  ```
+
+11. We can collect all of the static content into the directory location we configured by typing:
+
+  ```sh
+  python manage.py collectstatic
+  ```
+
+10. Configure Apache
+
+  Edit the default virtual host file:
+
+  ```sh
+  sudo nano /etc/apache2/sites-available/000-default.conf
+  ```
+
+  To start, let's configure the static files. We will use an alias to tell Apache to map any requests starting with `/static` to the **"static"** directory within our project folder. We collected the static assets there earlier. We will set up the alias and then grant access to the directory in question with a directory block:
+
+  ```
+  <VirtualHost *:80>
+      . . .
+
+      Alias /static /home/user/clinic/static
+      <Directory /home/user/clinic/static>
+          Require all granted
+      </Directory>
+
+      <Directory /home/user/clinic/clinicproject>
+          <Files wsgi.py>
+              Require all granted
+          </Files>
+      </Directory>
+
+      WSGIDaemonProcess clinicproject python-path=/home/user/clinic:/home/user/clinic/clinicprojectenv/lib/python3.4/site-packages
+      WSGIProcessGroup clinicproject
+      WSGIScriptAlias / /home/user/clinic/clinicproject/clinic/wsgi.py
+
+  </VirtualHost>
+  ```
+
+  Restart Apache by typing:
+
+  ```sh
+  sudo service apache2 restart
+  ```
+  You should now be able to access your Django site by going to your server's domain name or IP address without specifying a port. The regular site and the admin interface should function as expected.
