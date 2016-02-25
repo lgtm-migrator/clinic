@@ -51,7 +51,7 @@ class Store(models.Model):
 					),
 				])
 	mail = models.EmailField(verbose_name = _('Email'))
-	image = models.ImageField(_('Store Image'), upload_to = 'static/upload/')
+	image = models.ImageField(_('Store Image'), upload_to = 'static/upload/', blank=True)
 	display = models.BooleanField(_('Store Display'), default=True)
 
 	access = models.TextField(_('Store Access'), max_length=500, blank=True)
