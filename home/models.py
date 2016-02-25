@@ -41,7 +41,6 @@ class Store(models.Model):
 	id = models.AutoField(primary_key=True, unique=True)
 	store_id = models.CharField(_('Store Code'), max_length=254, unique=True)
 	name = models.TextField(_('Store Name'), max_length=508)
-
 	phone = models.CharField(_('Phone'), max_length=15, \
 				validators=[
 					RegexValidator(
