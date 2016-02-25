@@ -32,18 +32,18 @@ import sys
 import django_filters
 import calendar
 
-def get_order_key(key):
-	if key == 'region' or key == 'nearest_station':
-		return key + '__code'
-	return key
+# def get_order_key(key):
+# 	if key == 'region' or key == 'nearest_station':
+# 		return key + '__code'
+# 	return key
 
-def get_ordering_field_set(model):
-	try:
-		sort_key = Sortkey.objects.filter(sorttype='001')[0]
-		return model.objects.filter(display=True).order_by(get_order_key(sort_key.key1), get_order_key(sort_key.key2))
-	except:
-		# Default
-		return model.objects.filter(display=True).order_by('region__code', 'store_id')
+# def get_ordering_field_set(model):
+# 	try:
+# 		sort_key = Sortkey.objects.filter(sorttype='001')[0]
+# 		return model.objects.filter(display=True).order_by(get_order_key(sort_key.key1), get_order_key(sort_key.key2))
+# 	except:
+# 		# Default
+# 		return model.objects.filter(display=True).order_by('region__code', 'store_id')
 
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
@@ -73,10 +73,20 @@ class IndexView(generic.ListView):
 		adjacent_pages = 2
 		adjacent_pages_mobile = 1
 
-		store_queryset = get_ordering_field_set(self.model)
-
 		context = super(IndexView, self).get_context_data(**kwargs)
-		context['filter'] = StoreFilter(self.request.GET, queryset=store_queryset)
+		
+		context['is_admin_store'] = False
+		if self.request.resolver_match.url_name == 'admin_store':
+			if self.request.user.is_staff:
+				context['is_admin_store'] = True
+		# store_queryset = get_ordering_field_set(self.model)
+
+
+		if context['is_admin_store'] == True:
+			context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects)
+		else:
+			context['filter'] = StoreFilter(self.request.GET, queryset=self.model.objects.filter(display=True))
+		# context['filter'] = StoreFilter(self.request.GET, queryset=store_queryset)
 
 		sort_key = Sortkey.objects.filter(sorttype='001')
 		if sort_key:
@@ -137,10 +147,7 @@ class IndexView(generic.ListView):
 		context["show_last_mobi"] = num_pages not in showing_pages_mobi
 		context["showing_pages_mobi"] = showing_pages_mobi
 
-		context['is_admin_store'] = False
-		if self.request.resolver_match.url_name == 'admin_store':
-			if self.request.user.is_staff:
-				context['is_admin_store'] = True
+
 
 		return context
 

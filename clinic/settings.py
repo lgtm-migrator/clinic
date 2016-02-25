@@ -137,8 +137,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'duyetdev',
-        'PASSWORD': '123456',
+        'USER': 'trungle',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -221,5 +221,4 @@ LOCALE_PATHS = (
 
 ADMIN_LOGIN_REDIRECT_URL = '/admin/home/store'
 ADMIN_LOGOUT_REDIRECT_URL = '/admin'
-
 ADMIN_SITE_HEADER = '鍼灸接骨師予約'
