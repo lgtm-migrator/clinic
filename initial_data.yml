@@ -1,0 +1,3 @@
+- fields: {key1: nearest_station, key2: region, sorttype: '001'}
+  model: home.sortkey
+  pk: 1
