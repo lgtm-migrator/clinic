@@ -49,7 +49,7 @@ class WorkingDayInline(admin.TabularInline):
 		formset = super(WorkingDayInline, self).get_formset(request, obj, **kwargs)
 
 		if not obj:
-			initial = [ { 'type': d[0:2] for d in x } for x in WORKING_DAY ]
+			initial = [ { 'type': x[:1][0] } for x in WORKING_DAY ]
 			if request.method != "GET":
 				initial = []
 			formset.__init__ = curry(formset.__init__, initial=initial)

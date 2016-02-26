@@ -313,7 +313,7 @@
 }
 
 .model-store.change-form .input-group.date {
-    max-width: 140px;
+    max-width: 100%;
 }
 .model-store.change-form .fields .row {
     margin-bottom: 20px;
@@ -362,4 +362,40 @@ span.clinic_hack_first_column select {
 
 .clinic-submit-row {
     text-align: center;
+}
+
+td.field-date.text-center {
+    width: 180px;
+}
+
+.table thead th {
+    text-align: center;
+}
+
+select {
+    font-size: initial;
+}
+
+ul.errorlist {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    color: #a94442 !important;
+    list-style: none !important;
+    font-weight: 700 !important;
+}
+
+#store_form .errornote {display: none}
+#store_form {
+    margin-top: 20px;
+}
+#store_form tr.form-row.errors td {
+    border-color: #F43636;
+    border-width: 2px;
+}
+#store_form tr.form-row.errors td:nth-child(1) {
+    border-right-color: #ddd;
+    border-right-width: 1px;
+}#store_form tr.form-row.errors td:nth-child(2) {
+    border-left-width: 1px;
+    border-left-color: #ddd;
 }
