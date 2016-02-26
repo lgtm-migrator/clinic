@@ -1,8 +1,10 @@
 {% if user.is_staff %}
 <div class="admin-nav clearfix">
-	<a href="/admin/home/store/add" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius">
-		{{ _('Create') }}
-	</a>
+	{% if is_admin_store %}
+		<a href="/admin/home/store/add" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius">
+			{{ _('Create') }}
+		</a>
+	{% endif %}
 	<a href="/admin/logout" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius">
 		{{ _('Logout') }}
 	</a>
