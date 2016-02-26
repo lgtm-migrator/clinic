@@ -342,7 +342,7 @@ span.clinic_hack_first_column select {
 .admin-table-form .label-tag {
     background-color: #FFF5EE;
     text-align: right;
-    vertical-align: center;
+    vertical-align: middle;
 }
 .admin-table-form .label-tag label {
     font-size: 14px !important;
