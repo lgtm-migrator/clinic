@@ -333,3 +333,22 @@ span.clinic_hack_first_column select {
 .store-display-False {
   opacity: 0.3;
 }
+
+
+.admin-table-form {
+    margin-top: 30px;
+}
+
+.admin-table-form .label-tag {
+    background-color: #FFF5EE;
+    text-align: right;
+    vertical-align: center;
+}
+.admin-table-form .label-tag label {
+    font-size: 14px !important;
+}
+
+.wide .admin-table-form label {
+    width: 100% !important;
+    float: none !important;
+}
