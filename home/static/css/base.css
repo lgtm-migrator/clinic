@@ -327,7 +327,14 @@ fieldset.module h2 {
 
 span.clinic_hack_first_column select {
     border: 0;
+    border-width: 0;
     background: transparent;
+    outline: none;
+    -webkit-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .store-display-False {
