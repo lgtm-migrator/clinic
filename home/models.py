@@ -160,34 +160,34 @@ class Store(models.Model):
 		return self.name
 
 WORKING_DAY = (
-	('Mo', 'Monday'),
-	('Tu', 'Tuesday'),
-	('We', 'Webnesday'),
-	('Th', 'Thursday'),
-	('Fr', 'Friday'),
-	('Sa', 'Saturday'),
-	('Su', 'Sunday'),
-	('Ho', 'Holiday')
+	('Mo', _('Monday')),
+	('Tu', _('Tuesday')),
+	('We', _('Wednesday')),
+	('Th', _('Thursday')),
+	('Fr', _('Friday')),
+	('Sa', _('Saturday')),
+	('Su', _('Sunday')),
+	('Ho', _('Holiday'))
 )
 
 class WorkingDay(models.Model):
 	store = models.ForeignKey(Store)
-	type = models.CharField(max_length=2, choices=WORKING_DAY)
+	type = models.CharField(max_length=2, choices=WORKING_DAY, verbose_name=_('Type'))
 
-	hour_8 = models.BooleanField(default = False) # -1, 0, 1
-	hour_9 = models.BooleanField(default = False)
-	hour_10 = models.BooleanField(default = False)
-	hour_11 = models.BooleanField(default = False)
-	hour_12 = models.BooleanField(default = False)
-	hour_13 = models.BooleanField(default = False)
-	hour_14 = models.BooleanField(default = False)
-	hour_15 = models.BooleanField(default = False)
-	hour_16 = models.BooleanField(default = False)
-	hour_17 = models.BooleanField(default = False)
-	hour_18 = models.BooleanField(default = False)
-	hour_19 = models.BooleanField(default = False)
-	hour_20 = models.BooleanField(default = False)
-	hour_21 = models.BooleanField(default = False)
+	hour_8 = models.BooleanField(default = False, verbose_name=_('8')) # -1, 0, 1
+	hour_9 = models.BooleanField(default = False, verbose_name=_('9'))
+	hour_10 = models.BooleanField(default = False, verbose_name=_('10'))
+	hour_11 = models.BooleanField(default = False, verbose_name=_('11'))
+	hour_12 = models.BooleanField(default = False, verbose_name=_('12'))
+	hour_13 = models.BooleanField(default = False, verbose_name=_('13'))
+	hour_14 = models.BooleanField(default = False, verbose_name=_('14'))
+	hour_15 = models.BooleanField(default = False, verbose_name=_('15'))
+	hour_16 = models.BooleanField(default = False, verbose_name=_('16'))
+	hour_17 = models.BooleanField(default = False, verbose_name=_('17'))
+	hour_18 = models.BooleanField(default = False, verbose_name=_('18'))
+	hour_19 = models.BooleanField(default = False, verbose_name=_('19'))
+	hour_20 = models.BooleanField(default = False, verbose_name=_('20'))
+	hour_21 = models.BooleanField(default = False, verbose_name=_('21'))
 
 	def is_dayoff(self,time_range):
 		for i in time_range:
@@ -202,23 +202,23 @@ class WorkingDay(models.Model):
 		return _(self.type)
 
 class HolidayWorking(models.Model):
-	store = models.ForeignKey(Store)
-	date = models.DateField('holiday date')
+	store = models.ForeignKey(Store, verbose_name=_('Store'))
+	date = models.DateField(_('holiday date'))
 
-	hour_8 = models.BooleanField(default = False) # -1, 0, 1
-	hour_9 = models.BooleanField(default = False)
-	hour_10 = models.BooleanField(default = False)
-	hour_11 = models.BooleanField(default = False)
-	hour_12 = models.BooleanField(default = False)
-	hour_13 = models.BooleanField(default = False)
-	hour_14 = models.BooleanField(default = False)
-	hour_15 = models.BooleanField(default = False)
-	hour_16 = models.BooleanField(default = False)
-	hour_17 = models.BooleanField(default = False)
-	hour_18 = models.BooleanField(default = False)
-	hour_19 = models.BooleanField(default = False)
-	hour_20 = models.BooleanField(default = False)
-	hour_21 = models.BooleanField(default = False)
+	hour_8 = models.BooleanField(default = False, verbose_name=_('8')) # -1, 0, 1
+	hour_9 = models.BooleanField(default = False, verbose_name=_('9'))
+	hour_10 = models.BooleanField(default = False, verbose_name=_('10'))
+	hour_11 = models.BooleanField(default = False, verbose_name=_('11'))
+	hour_12 = models.BooleanField(default = False, verbose_name=_('12'))
+	hour_13 = models.BooleanField(default = False, verbose_name=_('13'))
+	hour_14 = models.BooleanField(default = False, verbose_name=_('14'))
+	hour_15 = models.BooleanField(default = False, verbose_name=_('15'))
+	hour_16 = models.BooleanField(default = False, verbose_name=_('16'))
+	hour_17 = models.BooleanField(default = False, verbose_name=_('17'))
+	hour_18 = models.BooleanField(default = False, verbose_name=_('18'))
+	hour_19 = models.BooleanField(default = False, verbose_name=_('19'))
+	hour_20 = models.BooleanField(default = False, verbose_name=_('20'))
+	hour_21 = models.BooleanField(default = False, verbose_name=_('21'))
 
 	class Meta:
 		unique_together = (('store', 'date'), )

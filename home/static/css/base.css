@@ -359,3 +359,7 @@ span.clinic_hack_first_column select {
     width: 100% !important;
     float: none !important;
 }
+
+.clinic-submit-row {
+    text-align: center;
+}
