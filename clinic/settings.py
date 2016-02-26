@@ -137,8 +137,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'trungle',
-        'PASSWORD': '',
+        'USER': 'duyetdev',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -186,24 +186,6 @@ STATIC_URL = '/static/'
 ########## MEDIA FILE CONFIGURATION
 MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_URL='/media/'
-
-########## TOOLBAR CONFIGURATION
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
-def custom_show_toolbar(request):
-    return True  # Always show toolbar, for example purposes only.
-
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar
-}
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
-INTERNAL_IPS = ('127.0.0.1',)
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
-########## END TOOLBAR CONFIGURATION
 
 ############## SELECT2 CONFIG
 SELECT2_JS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'
