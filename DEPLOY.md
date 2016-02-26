@@ -72,6 +72,7 @@
 7. Sync database (will ask to create default admin account)
   ```sh
   python manage.py syncdb
+  python manage.py migrate
   ```
 
 8. Create Another Admin user 
@@ -113,7 +114,7 @@
   sudo nano /etc/apache2/sites-available/000-default.conf
   ```
 
-  To start, let's configure the static files. We will use an alias to tell Apache to map any requests starting with `/static` to the **"static"** directory within our project folder. We collected the static assets there earlier. We will set up the alias and then grant access to the directory in question with a directory block:
+  To start, let's configure the project. We will use an alias to tell Apache to map any requests starting with `/static` to the **"static"** directory within our project folder. We collected the static assets there earlier, config path WSGI. We will set up the alias and then grant access to the directory in question with a directory block:
 
   ```
   <VirtualHost *:80>
