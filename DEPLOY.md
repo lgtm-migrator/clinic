@@ -69,6 +69,24 @@
   nano clinic/settings.py
   ```
 
+  ```python
+  DEBUG = False # Place to False
+  ALLOWED_HOSTS = ['localhost', ] # your host name, domain name here
+
+  # Database
+  # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+  DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'clinic_dev', # Database name
+        'USER': 'duyetdev',   # Database user
+        'PASSWORD': '123456', # Database password
+        'HOST': 'localhost',  # Database hostname
+        'PORT': '5432',       # Database port
+    }
+  }
+  ```
+
 7. Sync database (will ask to create default admin account)
   ```sh
   python manage.py syncdb

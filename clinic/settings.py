@@ -24,11 +24,39 @@ SECRET_KEY = '_q4j2$ur6ce*4z(m-jy2rm1gn9(x#d!mbpy1td-2ki4kim1g=x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['localhost', ]
 
-ALLOWED_HOSTS = []
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'clinic_dev',
+        'USER': 'duyetdev',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+########## EMAIL CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Host for sending e-mail.
+EMAIL_HOST = 'smtp.gmail.com'
+
+# Port for sending e-mail.
+EMAIL_PORT = 587
+
+# Optional SMTP authentication information for EMAIL_HOST.
+EMAIL_HOST_USER = 'clinictest.japan@gmail.com'
+EMAIL_HOST_PASSWORD = 'clinictest'
+EMAIL_USE_TLS = True
+
+########## END EMAIL CONFIGURATION`
 
 # Application definition
-
 DJANGO_APPS = (
     'django_admin_bootstrapped',
     'django.contrib.admin',
@@ -65,22 +93,6 @@ CLINIC_APPS = (
 
 INSTALLED_APPS = DJANGO_APPS + CLINIC_APPS
 
-########## EMAIL CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Host for sending e-mail.
-EMAIL_HOST = 'smtp.gmail.com'
-
-# Port for sending e-mail.
-EMAIL_PORT = 587
-
-# Optional SMTP authentication information for EMAIL_HOST.
-EMAIL_HOST_USER = 'clinictest.japan@gmail.com'
-EMAIL_HOST_PASSWORD = 'clinictest'
-EMAIL_USE_TLS = True
-
-########## END EMAIL CONFIGURATION`
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
@@ -131,18 +143,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'clinic.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'clinic_dev',
-        'USER': 'duyetdev',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 
 DEFAULT_INDEX_TABLESPACE = ''
 
