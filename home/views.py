@@ -31,6 +31,7 @@ from .forms import ScheForm
 import sys
 import django_filters
 import calendar
+import base64
 
 # def get_order_key(key):
 # 	if key == 'region' or key == 'nearest_station':
@@ -74,7 +75,7 @@ class IndexView(generic.ListView):
 		adjacent_pages_mobile = 1
 
 		context = super(IndexView, self).get_context_data(**kwargs)
-		
+
 		context['is_admin_store'] = False
 		if self.request.resolver_match.url_name == 'admin_store':
 			if self.request.user.is_staff:
@@ -289,8 +290,10 @@ def get_client_ip(request):
 def ScheView(request, store, date, hour):
 	template_name = 'home/booking.html'
 
+	token = token = GenerateToken(store,date,hour)
 	check_url = CheckDataSchedule(store, date, hour)
-	if check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
+
+	if token != request.GET["token"] or check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
 		return HttpResponseRedirect('/')
 
 	store_object = Store.objects.filter(pk=store)[0]
@@ -336,6 +339,13 @@ def ScheView(request, store, date, hour):
 											'date':booking_date, 'hour':booking_hour,
 											'error':error, 'success':success, "back_home_url": back_home_url})
 
+def GenerateToken(store, date, hour):
+	secret_key = "AM4IoKz88"
+	key_pass = store + date + hour + secret_key
+	token = base64.b64encode( bytes(key_pass, encoding='utf-8') )
+	return token.decode("utf-8")
+
 def TimeslotCheck(request, store, date, hour):
 	check_url = CheckDataSchedule(store, date, hour)
-	return JsonResponse({"status":check_url})
+	token = GenerateToken(store,date,hour)
+	return JsonResponse({"status":check_url, "token": token })
