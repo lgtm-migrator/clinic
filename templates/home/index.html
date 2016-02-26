@@ -141,17 +141,19 @@
 					    	<li><a class="padding-right-8" >...</a></li>
 					    {% endif %}
 
-					    {% for page in showing_pages_mobi %}
-					    	{% ifequal page paging.number %}
-							    <li class="active">
-							        <a class="padding-right-8" href="#">{{ page }}</a>
-							    </li>
-						    {% else %}
-							    <li>
-							        <a class="padding-right-8" href="?page={{ page }}{{ url_filter }}">{{ page }}</a>
-							    </li>
-					    	{% endifequal %}
-					    {% endfor %}
+					    {% if showing_pages_mobi|length > 1 %}
+						    {% for page in showing_pages_mobi %}
+						    	{% ifequal page paging.number %}
+								    <li class="active">
+								        <a class="padding-right-8" href="#">{{ page }}</a>
+								    </li>
+							    {% else %}
+								    <li>
+								        <a class="padding-right-8" href="?page={{ page }}{{ url_filter }}">{{ page }}</a>
+								    </li>
+						    	{% endifequal %}
+						    {% endfor %}
+					    {% endif %}
 
 					    {% if show_last_mobi %}
 					    	<li><a class="padding-right-8" >...</a></li>
@@ -190,18 +192,20 @@
 					    	</li>
 					    	<li><a>...</a></li>
 					    {% endif %}
-
-					    {% for page in showing_pages %}
-					    	{% ifequal page paging.number %}
-							    <li class="active">
-							        <a href="#">{{ page }}</a>
-							    </li>
-						    {% else %}
-							    <li>
-							        <a href="?page={{ page }}{{ url_filter }}">{{ page }}</a>
-							    </li>
-					    	{% endifequal %}
-					    {% endfor %}
+					    
+					    {% if showing_pages|length > 1 %}
+						    {% for page in showing_pages %}
+						    	{% ifequal page paging.number %}
+								    <li class="active">
+								        <a href="#">{{ page }}</a>
+								    </li>
+							    {% else %}
+								    <li>
+								        <a href="?page={{ page }}{{ url_filter }}">{{ page }}</a>
+								    </li>
+						    	{% endifequal %}
+						    {% endfor %}
+						{% endif %}
 
 					    {% if show_last %}
 					    	<li><a>...</a></li>
