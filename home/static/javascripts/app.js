@@ -67,7 +67,7 @@ var schedule_table = {
                   $td.html("×");
                   $td.removeClass(".date-available");
                 } else if (data.status[0] == "0") {
-                  window.location.href = $td.data('url');
+                  window.location.href = $td.data('url') + "&token=" + data.token;
                 }
               });
             }
