@@ -37,8 +37,10 @@
   So if I have a user called `duyetdev`, that role will attempt to connect to a database called `duyetdev` by default.
  
  You can change to the Linux system account by typing:
+ 
  ```sh
  sudo -i -u duyetdev
+ ```
 
   You can then connect to the test1 database as the test1 Postgres role by typing:
   ```sh
