@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.utils.functional import curry
 from django import forms
 from django.contrib import admin
@@ -72,15 +73,24 @@ def generate_store_id():
 		return "%05d" % (Store.objects.last().id + 1, )
 	except:
 		return '00001'
+
+class DisplaySelect(forms.widgets.NullBooleanSelect):
+	def __init__(self, attrs=None):
+		choices = (('2', _('Yes')),
+			('3', _('No')))
+		super(forms.widgets.NullBooleanSelect, self).__init__(attrs, choices)
+
 class StoreAdminForm(forms.ModelForm):
 	store_id = forms.CharField(label=_('Store ID'), widget=forms.widgets.TextInput(), initial = generate_store_id())
 	class Meta:
 		model = Store
 		exclude = ['created', ]
 	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		super(StoreAdminForm, self).__init__(*args, **kwargs)
 		self.fields["name"].widget = forms.widgets.TextInput()
 		self.fields["access"].widget = forms.widgets.TextInput()
+		self.fields["display"].widget = DisplaySelect()
+
 		self.fields["region"].label = _("Region")
 		self.fields["nearest_station"].label = _("Nearest station")
 		# self.fields["store_id"].widget = forms.widgets.TextInput()

@@ -70,7 +70,7 @@ msgstr "店舗写真"
 
 #: home/models.py:55
 msgid "Store Display"
-msgstr "表示?"
+msgstr "一覧非表示"
 
 #: home/models.py:57
 msgid "Store Access"
