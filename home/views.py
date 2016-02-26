@@ -290,10 +290,12 @@ def get_client_ip(request):
 def ScheView(request, store, date, hour):
 	template_name = 'home/booking.html'
 
-	token = token = GenerateToken(store,date,hour)
+	token = GenerateToken(store,date,hour)
 	check_url = CheckDataSchedule(store, date, hour)
 
-	if token != request.GET["token"] or check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] or check_url == BOOKING_ERROR[3]:
+	if not 'token' in request.GET or token != request.GET["token"] \
+			or check_url == BOOKING_ERROR[1] or check_url == BOOKING_ERROR[2] \
+			or check_url == BOOKING_ERROR[3]:
 		return HttpResponseRedirect('/')
 
 	store_object = Store.objects.filter(pk=store)[0]
