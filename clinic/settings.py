@@ -24,15 +24,15 @@ SECRET_KEY = '_q4j2$ur6ce*4z(m-jy2rm1gn9(x#d!mbpy1td-2ki4kim1g=x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', ]
+ALLOWED_HOSTS = ['localhost', 'clinic.duyetdev.com', '192.168.26.23', ]
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'clinic_dev',
-        'USER': 'duyetdev',
+        'NAME': 'clinic_prod',
+        'USER': 'clinic_prod',
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -75,7 +75,7 @@ CLINIC_APPS = (
     'compressor',
 
     # Admin docs
-    'django.contrib.admindocs',
+    # 'django.contrib.admindocs',
 
     # Thumbnails
     'sorl.thumbnail',
@@ -143,7 +143,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'clinic.wsgi.application'
 
-
 DEFAULT_INDEX_TABLESPACE = ''
 
 # Internationalization
@@ -186,6 +185,23 @@ STATIC_URL = '/static/'
 ########## MEDIA FILE CONFIGURATION
 MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_URL='/media/'
+
+########## TOOLBAR CONFIGURATION
+# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+def custom_show_toolbar(request):
+    return False  # Always show toolbar, for example purposes only.
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar
+}
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
+INTERNAL_IPS = ('127.0.0.1',)
+MIDDLEWARE_CLASSES += (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
 
 ############## SELECT2 CONFIG
 SELECT2_JS = u'//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'

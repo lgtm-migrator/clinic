@@ -1,0 +1,3479 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>
+        鍼灸接骨師予約 
+    </title>
+    
+	
+    <link rel="stylesheet" href="/static/lib/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" />
+    
+	<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" type="text/css" media="screen" rel="stylesheet" />
+
+    
+</head>
+
+<body>
+	<div class="container" id="header">
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-md-4">
+        <div class="header clearfix">
+          <h3 class="text-muted">
+            <a href="/">鍼灸接骨師予約 </a>
+          </h3>
+          <p>
+            
+              鍼灸接骨院予約　－　店舗選択  
+            
+          </p>
+
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-8 col-md-8 text-right">
+        
+
+      </div>
+    </div>
+		
+	</div>
+
+	<div class="container" id="main">
+     
+		
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+			<div class="panel panel-default panel-clinic">
+				<div class="panel-heading text-left">
+					<i class="glyphicon glyphicon-search"></i>
+					店舗検索 
+					<span class="helper-text">地域または、最寄り駅を選択してください。</span>
+				</div>
+				<div class="panel-body">
+					<form action="" method="get" class="form-horizontal col-md-8 col-md-offset-2">
+						
+						    <div class="form-group">
+						        <span class="text-danger"></span>
+						        <label class="col-sm-4 control-label text-right" style="margin-bottom:5px">
+						        	Region
+						        </label>
+						        <div class="col-sm-8">
+						        	
+						        		<select class="form-control django-select2" data-allow-clear="true" data-minimum-input-length="0" data-placeholder="" id="id_region" name="region">
+<option></option><option value="" selected="selected">---------</option>
+</select>
+						        	
+						        </div>
+						    </div>
+						
+						    <div class="form-group">
+						        <span class="text-danger"></span>
+						        <label class="col-sm-4 control-label text-right" style="margin-bottom:5px">
+						        	Nearest station
+						        </label>
+						        <div class="col-sm-8">
+						        	
+						        		<select class="form-control django-select2" data-allow-clear="true" data-minimum-input-length="0" data-placeholder="" id="id_nearest_station" name="nearest_station">
+<option></option><option value="" selected="selected">---------</option>
+</select>
+						        	
+						        </div>
+						    </div>
+						
+							<div class="form-group">
+								<div class="col-sm-offset-4 col-sm-8 clinic-search-button">
+									<button type="submit" class="btn btn-default btn-clinic-primary btn-no-radius">
+										検索
+									</button>
+								</div>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+			<div class="store-list">
+				
+					<div class="panel panel-default panel-clinic panel-nostore">
+				    	<div class="panel-body text-center">
+			   				 <h4>利用できない保存</h4>
+			   			</div>
+			   		</div>
+				
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+        (c) All Rights Reserved.
+        [株式会社 XXX の運営サイト]
+    </div>
+  </footer>
+
+    
+	
+      <script src="/static/lib/jquery/dist/jquery.min.js"></script>
+      <script src="/static/javascripts/app.js"></script>
+    
+	<script type="text/javascript" src="/static/lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+<script type="text/javascript" src="/static/django_select2/django_select2.js"></script>
+
+
+<style type="text/css">
+@media print { #djDebug {display:none;}}
+</style>
+<link rel="stylesheet" href="/static/debug_toolbar/css/toolbar.css" type="text/css" />
+
+<!-- Prevent our copy of jQuery from registering as an AMD module on sites that use RequireJS. -->
+<script>var _djdt_define_backup = window.define; window.define = undefined;</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>var djdt = {jQuery: jQuery.noConflict(true)}; window.define = _djdt_define_backup;</script>
+
+<script src="/static/debug_toolbar/js/toolbar.js"></script>
+<div id="djDebug" style="display:none;" dir="ltr"
+     data-store-id="None" data-render-panel-url="/__debug__/render_panel/"
+     >
+	<div style="display:none;" id="djDebugToolbar">
+		<ul id="djDebugPanelList">
+			
+			<li><a id="djHideToolBarButton" href="#" title="Hide toolbar">Hide &#187;</a></li>
+			
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtVersionsPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Versions" class="VersionsPanel">
+					
+					Versions
+					
+					
+						<br /><small>Django 1.8</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtTimerPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="時刻" class="TimerPanel">
+					
+					時刻
+					
+					
+						<br /><small>CPU: 113.59ms (128.31ms)</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtSettingsPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Settings from &lt;code&gt;clinic.settings&lt;/code&gt;" class="SettingsPanel">
+					
+					Settings
+					
+					
+						
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtHeadersPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Headers" class="HeadersPanel">
+					
+					Headers
+					
+					
+						
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtRequestPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Request" class="RequestPanel">
+					
+					Request
+					
+					
+						<br /><small>IndexView</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtSQLPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="SQL queries from 1 connection" class="SQLPanel">
+					
+					SQL
+					
+					
+						<br /><small>4 queries in 3.48ms</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtStaticFilesPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Static files (183 found, 4 used)" class="StaticFilesPanel">
+					
+					Static files
+					
+					
+						<br /><small>4 files used</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtTemplatesPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Templates (3 rendered)" class="TemplatesPanel">
+					
+					テンプレート
+					
+					
+						<br /><small>home/index.html</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtCachePanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Cache calls from 1 backend" class="CachePanel">
+					
+					Cache
+					
+					
+						<br /><small>0 calls in 0.00ms</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtSignalsPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Signals" class="SignalsPanel">
+					
+					Signals
+					
+					
+						<br /><small>13 receivers of 12 signals</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtLoggingPanel" checked="checked" title="Disable for next and successive requests" />
+					
+						<a href="#" title="Log messages" class="LoggingPanel">
+					
+					Logging
+					
+					
+						<br /><small>0 messages</small>
+					
+					
+					
+						</a>
+					
+				</li>
+			
+				<li class="djDebugPanelButton">
+					<input type="checkbox" data-cookie="djdtRedirectsPanel" title="Enable for next and successive requests" />
+					
+						<div class="djdt-contentless djdt-disabled">
+					
+					Intercept redirects
+					
+					
+						</div>
+					
+				</li>
+			
+		</ul>
+	</div>
+	<div style="display:none;" id="djDebugToolbarHandle">
+		<span title="Show toolbar" id="djShowToolBarButton">&#171;</span>
+	</div>
+	
+		
+			<div id="VersionsPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Versions</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Version</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>Compressor</td>
+				<td>1.4</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>Debug Toolbar</td>
+				<td>1.3.0</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>Django</td>
+				<td>1.8</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>Django_Filters</td>
+				<td>0.12.0</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>Django_Select2</td>
+				<td>5.8.0</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>Python</td>
+				<td>3.4.3</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>Thumbnail</td>
+				<td>12.2</td>
+			</tr>
+		
+	</tbody>
+</table>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="TimerPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>時刻</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<h4>Resource usage</h4>
+<table>
+	<colgroup>
+		<col style="width:20%"/>
+		<col/>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>Resource</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>User CPU time</td>
+				<td>93.451 msec</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>System CPU time</td>
+				<td>20.142 msec</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>Total CPU time</td>
+				<td>113.593 msec</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>Elapsed time</td>
+				<td>128.307 msec</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>Context switches</td>
+				<td>12 voluntary, 24 involuntary</td>
+			</tr>
+		
+	</tbody>
+</table>
+
+<!-- This hidden div is populated and displayed by code in toolbar.timer.js -->
+<div id="djDebugBrowserTiming" style="display:none">
+	<h4>Browser timing</h4>
+	<table>
+		<colgroup>
+			<col style="width:20%"/>
+			<col style="width:60%"/>
+			<col style="width:20%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Timing attribute</th>
+				<th class="timeline">Timeline</th>
+				<th class="djdt-time">Milliseconds since navigation start (+length)</th>
+			</tr>
+		</thead>
+		<tbody id="djDebugBrowserTimingTableBody">
+		</tbody>
+	</table>
+</div>
+<script src="/static/debug_toolbar/js/toolbar.timer.js"></script>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="SettingsPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Settings from <code>clinic.settings</code></h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<table>
+	<thead>
+		<tr>
+			<th>Setting</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>ABSOLUTE_URL_OVERRIDES</td>
+				<td><code>{}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>ADMINS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>ALLOWED_HOSTS</td>
+				<td><code>[]</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>ALLOWED_INCLUDE_ROOTS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>APPEND_SLASH</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>AUTHENTICATION_BACKENDS</td>
+				<td><code>(&#39;django.contrib.auth.backends.ModelBackend&#39;,)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>AUTH_USER_MODEL</td>
+				<td><code>&#39;auth.User&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>BASE_DIR</td>
+				<td><code>&#39;/home/ubuntu/project/clinic&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>CACHES</td>
+				<td><code>{&#39;default&#39;: {&#39;BACKEND&#39;: &#39;django.core.cache.backends.locmem.LocMemCache&#39;}}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>CACHE_MIDDLEWARE_ALIAS</td>
+				<td><code>&#39;default&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>CACHE_MIDDLEWARE_KEY_PREFIX</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>CACHE_MIDDLEWARE_SECONDS</td>
+				<td><code>600</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>CLINIC_APPS</td>
+				<td><code>(&#39;django.contrib.humanize&#39;,
+ &#39;compressor&#39;,
+ &#39;django.contrib.admindocs&#39;,
+ &#39;sorl.thumbnail&#39;,
+ &#39;django_filters&#39;,
+ &#39;django_select2&#39;,
+ &#39;bootstrap3_datetime&#39;,
+ &#39;home&#39;,
+ &#39;home.templatetags&#39;,
+ &#39;home.middleware.force_default_language&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_CACHE_BACKEND</td>
+				<td><code>&#39;default&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_CACHE_KEY_FUNCTION</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_CLOSURE_COMPILER_ARGUMENTS</td>
+				<td><code>&#39;&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_CLOSURE_COMPILER_BINARY</td>
+				<td><code>&#39;java -jar compiler.jar&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_CSSTIDY_ARGUMENTS</td>
+				<td><code>&#39;--template=highest&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_CSSTIDY_BINARY</td>
+				<td><code>&#39;csstidy&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_CSS_COMPRESSOR</td>
+				<td><code>&#39;compressor.css.CssCompressor&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_CSS_FILTERS</td>
+				<td><code>[&#39;compressor.filters.css_default.CssAbsoluteFilter&#39;]</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_CSS_HASHING_METHOD</td>
+				<td><code>&#39;mtime&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_DATA_URI_MAX_SIZE</td>
+				<td><code>1024</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_DEBUG_TOGGLE</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_ENABLED</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_JINJA2_GET_ENVIRONMENT</td>
+				<td><code>&lt;function CompressorConf.JINJA2_GET_ENVIRONMENT at 0x7fd9ec0b8950&gt;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_JS_COMPRESSOR</td>
+				<td><code>&#39;compressor.js.JsCompressor&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_JS_FILTERS</td>
+				<td><code>[&#39;compressor.filters.jsmin.JSMinFilter&#39;]</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_MINT_DELAY</td>
+				<td><code>30</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_MTIME_DELAY</td>
+				<td><code>10</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_OFFLINE</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_OFFLINE_CONTEXT</td>
+				<td><code>{&#39;STATIC_URL&#39;: &#39;/static/&#39;}</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_OFFLINE_MANIFEST</td>
+				<td><code>&#39;manifest.json&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_OFFLINE_TIMEOUT</td>
+				<td><code>31536000</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_OUTPUT_DIR</td>
+				<td><code>&#39;CACHE&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_PARSER</td>
+				<td><code>&#39;compressor.parser.AutoSelectParser&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_PRECOMPILERS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_REBUILD_TIMEOUT</td>
+				<td><code>2592000</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_ROOT</td>
+				<td><code>&#39;/home/ubuntu/project/static&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_STORAGE</td>
+				<td><code>&#39;compressor.storage.CompressorFileStorage&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_TEMPLATE_FILTER_CONTEXT</td>
+				<td><code>{&#39;STATIC_URL&#39;: &#39;/static/&#39;}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_URL</td>
+				<td><code>&#39;/static/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_VERBOSE</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_YUGLIFY_BINARY</td>
+				<td><code>&#39;yuglify&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_YUGLIFY_CSS_ARGUMENTS</td>
+				<td><code>&#39;--terminal&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_YUGLIFY_JS_ARGUMENTS</td>
+				<td><code>&#39;--terminal&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_YUI_BINARY</td>
+				<td><code>&#39;java -jar yuicompressor.jar&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>COMPRESS_YUI_CSS_ARGUMENTS</td>
+				<td><code>&#39;&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>COMPRESS_YUI_JS_ARGUMENTS</td>
+				<td><code>&#39;&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>CSRF_COOKIE_AGE</td>
+				<td><code>31449600</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>CSRF_COOKIE_DOMAIN</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>CSRF_COOKIE_HTTPONLY</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>CSRF_COOKIE_NAME</td>
+				<td><code>&#39;csrftoken&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>CSRF_COOKIE_PATH</td>
+				<td><code>&#39;/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>CSRF_COOKIE_SECURE</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>CSRF_FAILURE_VIEW</td>
+				<td><code>&#39;django.views.csrf.csrf_failure&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DATABASES</td>
+				<td><code>{&#39;default&#39;: {&#39;ATOMIC_REQUESTS&#39;: False,
+             &#39;AUTOCOMMIT&#39;: True,
+             &#39;CONN_MAX_AGE&#39;: 0,
+             &#39;ENGINE&#39;: &#39;django.db.backends.postgresql_psycopg2&#39;,
+             &#39;HOST&#39;: &#39;localhost&#39;,
+             &#39;NAME&#39;: &#39;clinic_prod&#39;,
+             &#39;OPTIONS&#39;: {},
+             &#39;PASSWORD&#39;: &#39;********************&#39;,
+             &#39;PORT&#39;: &#39;5432&#39;,
+             &#39;TEST&#39;: {&#39;CHARSET&#39;: None,
+                      &#39;COLLATION&#39;: None,
+                      &#39;MIRROR&#39;: None,
+                      &#39;NAME&#39;: None},
+             &#39;TIME_ZONE&#39;: &#39;UTC&#39;,
+             &#39;USER&#39;: &#39;clinic_prod&#39;}}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DATABASE_ROUTERS</td>
+				<td><code>[]</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DATETIME_FORMAT</td>
+				<td><code>&#39;N j, Y, P&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DATETIME_INPUT_FORMATS</td>
+				<td><code>(&#39;%Y-%m-%d %H:%M:%S&#39;,
+ &#39;%Y-%m-%d %H:%M:%S.%f&#39;,
+ &#39;%Y-%m-%d %H:%M&#39;,
+ &#39;%Y-%m-%d&#39;,
+ &#39;%m/%d/%Y %H:%M:%S&#39;,
+ &#39;%m/%d/%Y %H:%M:%S.%f&#39;,
+ &#39;%m/%d/%Y %H:%M&#39;,
+ &#39;%m/%d/%Y&#39;,
+ &#39;%m/%d/%y %H:%M:%S&#39;,
+ &#39;%m/%d/%y %H:%M:%S.%f&#39;,
+ &#39;%m/%d/%y %H:%M&#39;,
+ &#39;%m/%d/%y&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DATE_FORMAT</td>
+				<td><code>&#39;N j, Y&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DATE_INPUT_FORMATS</td>
+				<td><code>(&#39;%Y-%m-%d&#39;,
+ &#39;%m/%d/%Y&#39;,
+ &#39;%m/%d/%y&#39;,
+ &#39;%b %d %Y&#39;,
+ &#39;%b %d, %Y&#39;,
+ &#39;%d %b %Y&#39;,
+ &#39;%d %b, %Y&#39;,
+ &#39;%B %d %Y&#39;,
+ &#39;%B %d, %Y&#39;,
+ &#39;%d %B %Y&#39;,
+ &#39;%d %B, %Y&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DEBUG</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DEBUG_PROPAGATE_EXCEPTIONS</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DEBUG_TOOLBAR_CONFIG</td>
+				<td><code>{&#39;INTERCEPT_REDIRECTS&#39;: False,
+ &#39;SHOW_TOOLBAR_CALLBACK&#39;: &lt;function custom_show_toolbar at 0x7fd9ed77d158&gt;}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DECIMAL_SEPARATOR</td>
+				<td><code>&#39;.&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DEFAULT_CHARSET</td>
+				<td><code>&#39;utf-8&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DEFAULT_CONTENT_TYPE</td>
+				<td><code>&#39;text/html&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DEFAULT_EXCEPTION_REPORTER_FILTER</td>
+				<td><code>&#39;django.views.debug.SafeExceptionReporterFilter&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DEFAULT_FILE_STORAGE</td>
+				<td><code>&#39;django.core.files.storage.FileSystemStorage&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DEFAULT_FROM_EMAIL</td>
+				<td><code>&#39;webmaster@localhost&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DEFAULT_INDEX_TABLESPACE</td>
+				<td><code>&#39;&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DEFAULT_TABLESPACE</td>
+				<td><code>&#39;&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DISALLOWED_USER_AGENTS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>DJANGO_APPS</td>
+				<td><code>(&#39;django_admin_bootstrapped&#39;,
+ &#39;django.contrib.admin&#39;,
+ &#39;django.contrib.auth&#39;,
+ &#39;django.contrib.contenttypes&#39;,
+ &#39;django.contrib.sessions&#39;,
+ &#39;django.contrib.messages&#39;,
+ &#39;django.contrib.staticfiles&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>DJANGO_ROOT</td>
+				<td><code>&#39;/home/ubuntu/project/clinic&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>EMAIL_BACKEND</td>
+				<td><code>&#39;django.core.mail.backends.console.EmailBackend&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>EMAIL_HOST</td>
+				<td><code>&#39;smtp.gmail.com&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>EMAIL_HOST_PASSWORD</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>EMAIL_HOST_USER</td>
+				<td><code>&#39;example@gmail.com&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>EMAIL_PORT</td>
+				<td><code>587</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>EMAIL_SSL_CERTFILE</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>EMAIL_SSL_KEYFILE</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>EMAIL_SUBJECT_PREFIX</td>
+				<td><code>&#39;[Django] &#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>EMAIL_TIMEOUT</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>EMAIL_USE_SSL</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>EMAIL_USE_TLS</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>FILE_CHARSET</td>
+				<td><code>&#39;utf-8&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>FILE_UPLOAD_DIRECTORY_PERMISSIONS</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>FILE_UPLOAD_HANDLERS</td>
+				<td><code>(&#39;django.core.files.uploadhandler.MemoryFileUploadHandler&#39;,
+ &#39;django.core.files.uploadhandler.TemporaryFileUploadHandler&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>FILE_UPLOAD_MAX_MEMORY_SIZE</td>
+				<td><code>2621440</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>FILE_UPLOAD_PERMISSIONS</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>FILE_UPLOAD_TEMP_DIR</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>FIRST_DAY_OF_WEEK</td>
+				<td><code>0</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>FIXTURE_DIRS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>FORCE_SCRIPT_NAME</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>FORMAT_MODULE_PATH</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>IGNORABLE_404_URLS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>INSTALLED_APPS</td>
+				<td><code>(&#39;django_admin_bootstrapped&#39;,
+ &#39;django.contrib.admin&#39;,
+ &#39;django.contrib.auth&#39;,
+ &#39;django.contrib.contenttypes&#39;,
+ &#39;django.contrib.sessions&#39;,
+ &#39;django.contrib.messages&#39;,
+ &#39;django.contrib.staticfiles&#39;,
+ &#39;django.contrib.humanize&#39;,
+ &#39;compressor&#39;,
+ &#39;django.contrib.admindocs&#39;,
+ &#39;sorl.thumbnail&#39;,
+ &#39;django_filters&#39;,
+ &#39;django_select2&#39;,
+ &#39;bootstrap3_datetime&#39;,
+ &#39;home&#39;,
+ &#39;home.templatetags&#39;,
+ &#39;home.middleware.force_default_language&#39;,
+ &#39;debug_toolbar&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>INTERNAL_IPS</td>
+				<td><code>(&#39;127.0.0.1&#39;,)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LANGUAGES</td>
+				<td><code>((&#39;en&#39;,
+  &lt;django.utils.functional.lazy.&lt;locals&gt;.__proxy__ object at 0x7fd9ed6d8e80&gt;),
+ (&#39;ja&#39;,
+  &lt;django.utils.functional.lazy.&lt;locals&gt;.__proxy__ object at 0x7fd9ed6e9ac8&gt;))</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>LANGUAGES_BIDI</td>
+				<td><code>(&#39;he&#39;, &#39;ar&#39;, &#39;fa&#39;, &#39;ur&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LANGUAGE_CODE</td>
+				<td><code>&#39;ja&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>LANGUAGE_COOKIE_AGE</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LANGUAGE_COOKIE_DOMAIN</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>LANGUAGE_COOKIE_NAME</td>
+				<td><code>&#39;django_language&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LANGUAGE_COOKIE_PATH</td>
+				<td><code>&#39;/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>LOCALE_PATHS</td>
+				<td><code>(&#39;/home/ubuntu/project/clinic/locale&#39;,)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LOGGING</td>
+				<td><code>{}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>LOGGING_CONFIG</td>
+				<td><code>&#39;logging.config.dictConfig&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LOGIN_REDIRECT_URL</td>
+				<td><code>&#39;/accounts/profile/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>LOGIN_URL</td>
+				<td><code>&#39;/accounts/login/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>LOGOUT_URL</td>
+				<td><code>&#39;/accounts/logout/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>MANAGERS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>MEDIA_ROOT</td>
+				<td><code>&#39;/home/ubuntu/project/media&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>MEDIA_URL</td>
+				<td><code>&#39;/media/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>MESSAGE_STORAGE</td>
+				<td><code>&#39;django.contrib.messages.storage.fallback.FallbackStorage&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>MIDDLEWARE_CLASSES</td>
+				<td><code>(&#39;django.middleware.gzip.GZipMiddleware&#39;,
+ &#39;home.middleware.force_default_language.ForceDefaultLanguageMiddleware&#39;,
+ &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;,
+ &#39;django.middleware.common.CommonMiddleware&#39;,
+ &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+ &#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;,
+ &#39;django.contrib.auth.middleware.SessionAuthenticationMiddleware&#39;,
+ &#39;django.contrib.messages.middleware.MessageMiddleware&#39;,
+ &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+ &#39;django.middleware.security.SecurityMiddleware&#39;,
+ &#39;django.middleware.locale.LocaleMiddleware&#39;,
+ &#39;django.middleware.common.CommonMiddleware&#39;,
+ &#39;debug_toolbar.middleware.DebugToolbarMiddleware&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>MIGRATION_MODULES</td>
+				<td><code>{}</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>MONTH_DAY_FORMAT</td>
+				<td><code>&#39;F j&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>NUMBER_GROUPING</td>
+				<td><code>0</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>PASSWORD_HASHERS</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>PASSWORD_RESET_TIMEOUT_DAYS</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>PREPEND_WWW</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>ROOT_URLCONF</td>
+				<td><code>&#39;clinic.urls&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SECRET_KEY</td>
+				<td><code>&#39;********************&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SECURE_BROWSER_XSS_FILTER</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SECURE_CONTENT_TYPE_NOSNIFF</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SECURE_HSTS_INCLUDE_SUBDOMAINS</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SECURE_HSTS_SECONDS</td>
+				<td><code>0</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SECURE_PROXY_SSL_HEADER</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SECURE_REDIRECT_EXEMPT</td>
+				<td><code>[]</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SECURE_SSL_HOST</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SECURE_SSL_REDIRECT</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SELECT2_CACHE_BACKEND</td>
+				<td><code>&#39;default&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SELECT2_CACHE_PREFIX</td>
+				<td><code>&#39;select2_&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SELECT2_CSS</td>
+				<td><code>&#39;//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SELECT2_JS</td>
+				<td><code>&#39;//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SERVER_EMAIL</td>
+				<td><code>&#39;root@localhost&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SESSION_CACHE_ALIAS</td>
+				<td><code>&#39;default&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SESSION_COOKIE_AGE</td>
+				<td><code>1209600</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SESSION_COOKIE_DOMAIN</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SESSION_COOKIE_HTTPONLY</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SESSION_COOKIE_NAME</td>
+				<td><code>&#39;sessionid&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SESSION_COOKIE_PATH</td>
+				<td><code>&#39;/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SESSION_COOKIE_SECURE</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SESSION_ENGINE</td>
+				<td><code>&#39;django.contrib.sessions.backends.db&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SESSION_EXPIRE_AT_BROWSER_CLOSE</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SESSION_FILE_PATH</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SESSION_SAVE_EVERY_REQUEST</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SESSION_SERIALIZER</td>
+				<td><code>&#39;django.contrib.sessions.serializers.JSONSerializer&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SETTINGS_MODULE</td>
+				<td><code>&#39;clinic.settings&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SHORT_DATETIME_FORMAT</td>
+				<td><code>&#39;m/d/Y P&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SHORT_DATE_FORMAT</td>
+				<td><code>&#39;m/d/Y&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SIGNING_BACKEND</td>
+				<td><code>&#39;django.core.signing.TimestampSigner&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SILENCED_SYSTEM_CHECKS</td>
+				<td><code>[]</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SITE_NAME</td>
+				<td><code>&#39;clinic&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SITE_ROOT</td>
+				<td><code>&#39;/home/ubuntu/project&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>STATICFILES_DIRS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>STATICFILES_FINDERS</td>
+				<td><code>(&#39;django.contrib.staticfiles.finders.FileSystemFinder&#39;,
+ &#39;django.contrib.staticfiles.finders.AppDirectoriesFinder&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>STATICFILES_STORAGE</td>
+				<td><code>&#39;django.contrib.staticfiles.storage.StaticFilesStorage&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>STATIC_ROOT</td>
+				<td><code>&#39;/home/ubuntu/project/static&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>STATIC_URL</td>
+				<td><code>&#39;/static/&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>TEMPLATES</td>
+				<td><code>[{&#39;APP_DIRS&#39;: True,
+  &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,
+  &#39;DIRS&#39;: [&#39;/home/ubuntu/project/clinic/templates&#39;],
+  &#39;OPTIONS&#39;: {&#39;context_processors&#39;: [&#39;django.template.context_processors.debug&#39;,
+                                     &#39;django.template.context_processors.request&#39;,
+                                     &#39;django.contrib.auth.context_processors.auth&#39;,
+                                     &#39;django.contrib.messages.context_processors.messages&#39;,
+                                     &#39;django.template.context_processors.i18n&#39;]}}]</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>TEMPLATE_CONTEXT_PROCESSORS</td>
+				<td><code>(&#39;django.contrib.auth.context_processors.auth&#39;,
+ &#39;django.template.context_processors.debug&#39;,
+ &#39;django.template.context_processors.i18n&#39;,
+ &#39;django.template.context_processors.media&#39;,
+ &#39;django.template.context_processors.static&#39;,
+ &#39;django.template.context_processors.tz&#39;,
+ &#39;django.contrib.messages.context_processors.messages&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>TEMPLATE_DEBUG</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>TEMPLATE_DIRS</td>
+				<td><code>()</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>TEMPLATE_LOADERS</td>
+				<td><code>(&#39;django.template.loaders.filesystem.Loader&#39;,
+ &#39;django.template.loaders.app_directories.Loader&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>TEMPLATE_STRING_IF_INVALID</td>
+				<td><code>&#39;&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>TEST_NON_SERIALIZED_APPS</td>
+				<td><code>[]</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>TEST_RUNNER</td>
+				<td><code>&#39;django.test.runner.DiscoverRunner&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>THOUSAND_SEPARATOR</td>
+				<td><code>&#39;,&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>TIME_FORMAT</td>
+				<td><code>&#39;P&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>TIME_INPUT_FORMATS</td>
+				<td><code>(&#39;%H:%M:%S&#39;, &#39;%H:%M:%S.%f&#39;, &#39;%H:%M&#39;)</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>TIME_ZONE</td>
+				<td><code>None</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>USE_ETAGS</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>USE_I18N</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>USE_L10N</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>USE_THOUSAND_SEPARATOR</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>USE_TZ</td>
+				<td><code>True</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>USE_X_FORWARDED_HOST</td>
+				<td><code>False</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>WSGI_APPLICATION</td>
+				<td><code>&#39;clinic.wsgi.application&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>X_FRAME_OPTIONS</td>
+				<td><code>&#39;SAMEORIGIN&#39;</code></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>YEAR_MONTH_FORMAT</td>
+				<td><code>&#39;F Y&#39;</code></td>
+			</tr>
+		
+	</tbody>
+</table>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="HeadersPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Headers</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+
+<h4>Request headers</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>Accept</td>
+				<td>*/*</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>Connection</td>
+				<td>Keep-Alive</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>Host</td>
+				<td>127.0.0.1</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>User-Agent</td>
+				<td>Wget/1.15 (linux-gnu)</td>
+			</tr>
+		
+	</tbody>
+</table>
+
+<h4>Response headers</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>Content-Type</td>
+				<td>text/html; charset=utf-8</td>
+			</tr>
+		
+	</tbody>
+</table>
+
+<h4>WSGI environ</h4>
+
+<p>Since the WSGI environ inherits the environment of the server, only a significant subset is shown below.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>GATEWAY_INTERFACE</td>
+				<td>CGI/1.1</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>PATH_INFO</td>
+				<td>/</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>QUERY_STRING</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>REMOTE_ADDR</td>
+				<td>127.0.0.1</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>REQUEST_METHOD</td>
+				<td>GET</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SCRIPT_NAME</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SERVER_NAME</td>
+				<td>127.0.0.1</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SERVER_PORT</td>
+				<td>80</td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>SERVER_PROTOCOL</td>
+				<td>HTTP/1.1</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>SERVER_SOFTWARE</td>
+				<td>Apache/2.4.7 (Ubuntu)</td>
+			</tr>
+		
+	</tbody>
+</table>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="RequestPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Request</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+
+<h4>View information</h4>
+<table>
+	<thead>
+		<tr>
+			<th>View function</th>
+			<th>Arguments</th>
+			<th>Keyword arguments</th>
+			<th>URL name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="djDebugOdd"><code>home.views.IndexView</code></td>
+			<td class="djDebugEven"><code>()</code></td>
+			<td class="djDebugOdd"><code>{}</code></td>
+			<td class="djDebugEven"><code>home</code></td>
+		</tr>
+	</tbody>
+</table>
+
+
+	<h4>No cookies</h4>
+
+
+
+	<h4>No session data</h4>
+
+
+
+	<h4>No GET data</h4>
+
+
+
+	<h4>No POST data</h4>
+
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="SQLPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>SQL queries from 1 connection</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<div class="djdt-clearfix">
+	<ul class="djdt-stats">
+		
+			<li>
+				<strong class="djdt-label"><span style="background-color: rgb(256.0, 0, 0)" class="djdt-color">&#160;</span> default</strong>
+				<span class="djdt-info">3.48 ms (4 queries)</span>
+			</li>
+		
+	</ul>
+</div>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th class="djdt-color">&#160;</th>
+				<th class="query" colspan="2">Query</th>
+				<th class="timeline">Timeline</th>
+				<th class="djdt-time">Time (ms)</th>
+				<th class="djdt-actions">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr class="djDebugHoverable djDebugOdd" id="sqlMain_1">
+					<td class="djdt-color"><span style="background-color: rgb(256.0, 0, 0);">&#160;</span></td>
+					<td class="djdt-toggle">
+						<a class="djToggleSwitch" data-toggle-name="sqlMain" data-toggle-id="1" data-toggle-open="+" data-toggle-close="-" href="javascript:void(0)">+</a>
+					</td>
+					<td class="query">
+						<div class="djDebugSqlWrap">
+							<div class="djDebugSql"><strong>SELECT</strong> <a class="djDebugUncollapsed djDebugToggle" href="#">&#8226;&#8226;&#8226;</a> <a class="djDebugCollapsed djDebugToggle" href="#">COUNT(&#39;*&#39;) <strong>AS</strong> &quot;__count&quot;</a> <strong>FROM</strong> &quot;home_store&quot; <strong>WHERE</strong> &quot;home_store&quot;.&quot;display&quot; = <strong>true</strong></div>
+						</div>
+					</td>
+					<td class="timeline">
+						<div class="djDebugTimeline"><div class="djDebugLineChart" style="left:0%;"><strong style="width:62.09401123749486%; background-color:#800000;">62.09401123749486%</strong></div></div>
+					</td>
+					<td class="djdt-time">
+						2.16
+					</td>
+					<td class="djdt-actions">
+
+					
+						
+							<form method="post">
+								<input name="sql" type="hidden" value="SELECT COUNT(&#39;*&#39;) AS &quot;__count&quot; FROM &quot;home_store&quot; WHERE &quot;home_store&quot;.&quot;display&quot; = true" /><input name="raw_sql" type="hidden" value="SELECT COUNT(%s) AS &quot;__count&quot; FROM &quot;home_store&quot; WHERE &quot;home_store&quot;.&quot;display&quot; = %s" /><input name="params" type="hidden" value="[&quot;*&quot;, true]" /><input name="alias" type="hidden" value="default" /><input name="duration" type="hidden" value="2.1605491638183594" /><input name="hash" type="hidden" value="6dfe7592903068137a9f866009db7e31061f0882" />
+
+								<button formaction="/__debug__/sql_select/" class="remoteCall">Sel</button>
+								<button formaction="/__debug__/sql_explain/" class="remoteCall">Expl</button>
+
+								
+							</form>
+						
+					
+					</td>
+				</tr>
+				<tr class="djUnselected djDebugHoverable djDebugOdd djToggleDetails_1" id="sqlDetails_1">
+					<td colspan="2"></td>
+					<td colspan="4">
+						<div class="djSQLDetailsDiv">
+							<p><strong>Connection:</strong> default</p>
+							
+							
+							
+								<pre class="djdt-stack"><span class="djdt-path">/home/ubuntu/project/clinic/home/</span><span class="djdt-file">views.py</span> in <span class="djdt-func">get_context_data</span>(<span class="djdt-lineno">78</span>)
+  <span class="djdt-code">paging = paginator.page(1)</span></pre>
+							
+							
+						</div>
+					</td>
+				</tr>
+			
+				<tr class="djDebugHoverable djDebugEven" id="sqlMain_2">
+					<td class="djdt-color"><span style="background-color: rgb(256.0, 0, 0);">&#160;</span></td>
+					<td class="djdt-toggle">
+						<a class="djToggleSwitch" data-toggle-name="sqlMain" data-toggle-id="2" data-toggle-open="+" data-toggle-close="-" href="javascript:void(0)">+</a>
+					</td>
+					<td class="query">
+						<div class="djDebugSqlWrap">
+							<div class="djDebugSql"><strong>SELECT</strong> <a class="djDebugUncollapsed djDebugToggle" href="#">&#8226;&#8226;&#8226;</a> <a class="djDebugCollapsed djDebugToggle" href="#">&quot;home_region&quot;.&quot;id&quot;, &quot;home_region&quot;.&quot;code&quot;, &quot;home_region&quot;.&quot;name&quot;</a> <strong>FROM</strong> &quot;home_region&quot;</div>
+						</div>
+					</td>
+					<td class="timeline">
+						<div class="djDebugTimeline"><div class="djDebugLineChart" style="left:62.09401123749486%;"><strong style="width:53.10918293564715%; background-color:#008000;">20.131560915444705%</strong></div></div>
+					</td>
+					<td class="djdt-time">
+						0.70
+					</td>
+					<td class="djdt-actions">
+
+					
+						
+							<form method="post">
+								<input name="sql" type="hidden" value="SELECT &quot;home_region&quot;.&quot;id&quot;, &quot;home_region&quot;.&quot;code&quot;, &quot;home_region&quot;.&quot;name&quot; FROM &quot;home_region&quot;" /><input name="raw_sql" type="hidden" value="SELECT &quot;home_region&quot;.&quot;id&quot;, &quot;home_region&quot;.&quot;code&quot;, &quot;home_region&quot;.&quot;name&quot; FROM &quot;home_region&quot;" /><input name="params" type="hidden" value="[]" /><input name="alias" type="hidden" value="default" /><input name="duration" type="hidden" value="0.7004737854003906" /><input name="hash" type="hidden" value="349eb9eed9342afdf317dc0dc8816a17b9dfb550" />
+
+								<button formaction="/__debug__/sql_select/" class="remoteCall">Sel</button>
+								<button formaction="/__debug__/sql_explain/" class="remoteCall">Expl</button>
+
+								
+							</form>
+						
+					
+					</td>
+				</tr>
+				<tr class="djUnselected djDebugHoverable djDebugEven djToggleDetails_2" id="sqlDetails_2">
+					<td colspan="2"></td>
+					<td colspan="4">
+						<div class="djSQLDetailsDiv">
+							<p><strong>Connection:</strong> default</p>
+							
+							
+							
+								<pre class="djdt-stack"><span class="djdt-path">/home/ubuntu/project/clinic/home/templatetags/</span><span class="djdt-file">clinic_extras.py</span> in <span class="djdt-func">addcss</span>(<span class="djdt-lineno">7</span>)
+  <span class="djdt-code">return field.as_widget(attrs={&quot;class&quot;:css})</span></pre>
+							
+							
+								<table>
+									
+									<tr>
+										<td>31</td>
+										<td><code style="font-family: monospace;">						        	{% trans field.label %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>32</td>
+										<td><code style="font-family: monospace;">						        &lt;/label&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>33</td>
+										<td><code style="font-family: monospace;">						        &lt;div class=&quot;col-sm-8&quot;&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>34</td>
+										<td><code style="font-family: monospace;background-color: lightgrey">						        	{% with input_field=field|addcss:&quot;form-control&quot; %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>35</td>
+										<td><code style="font-family: monospace;">						        		{{input_field}}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>36</td>
+										<td><code style="font-family: monospace;">						        	{% endwith %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>37</td>
+										<td><code style="font-family: monospace;">						        &lt;/div&gt;
+</code></td>
+									</tr>
+									
+								</table>
+								<p><strong>/home/ubuntu/project/clinic/templates/home/index.html</strong></p>
+							
+						</div>
+					</td>
+				</tr>
+			
+				<tr class="djDebugHoverable djDebugOdd" id="sqlMain_3">
+					<td class="djdt-color"><span style="background-color: rgb(256.0, 0, 0);">&#160;</span></td>
+					<td class="djdt-toggle">
+						<a class="djToggleSwitch" data-toggle-name="sqlMain" data-toggle-id="3" data-toggle-open="+" data-toggle-close="-" href="javascript:void(0)">+</a>
+					</td>
+					<td class="query">
+						<div class="djDebugSqlWrap">
+							<div class="djDebugSql"><strong>SELECT</strong> <a class="djDebugUncollapsed djDebugToggle" href="#">&#8226;&#8226;&#8226;</a> <a class="djDebugCollapsed djDebugToggle" href="#">&quot;home_neareststation&quot;.&quot;id&quot;, &quot;home_neareststation&quot;.&quot;code&quot;, &quot;home_neareststation&quot;.&quot;name&quot;</a> <strong>FROM</strong> &quot;home_neareststation&quot;</div>
+						</div>
+					</td>
+					<td class="timeline">
+						<div class="djDebugTimeline"><div class="djDebugLineChart" style="left:82.22557215293956%;"><strong style="width:55.24286815728603%; background-color:#008000;">9.819103741263532%</strong></div></div>
+					</td>
+					<td class="djdt-time">
+						0.34
+					</td>
+					<td class="djdt-actions">
+
+					
+						
+							<form method="post">
+								<input name="sql" type="hidden" value="SELECT &quot;home_neareststation&quot;.&quot;id&quot;, &quot;home_neareststation&quot;.&quot;code&quot;, &quot;home_neareststation&quot;.&quot;name&quot; FROM &quot;home_neareststation&quot;" /><input name="raw_sql" type="hidden" value="SELECT &quot;home_neareststation&quot;.&quot;id&quot;, &quot;home_neareststation&quot;.&quot;code&quot;, &quot;home_neareststation&quot;.&quot;name&quot; FROM &quot;home_neareststation&quot;" /><input name="params" type="hidden" value="[]" /><input name="alias" type="hidden" value="default" /><input name="duration" type="hidden" value="0.34165382385253906" /><input name="hash" type="hidden" value="790dcab37432eb743cb1694a64f0e90a7cc1a2ce" />
+
+								<button formaction="/__debug__/sql_select/" class="remoteCall">Sel</button>
+								<button formaction="/__debug__/sql_explain/" class="remoteCall">Expl</button>
+
+								
+							</form>
+						
+					
+					</td>
+				</tr>
+				<tr class="djUnselected djDebugHoverable djDebugOdd djToggleDetails_3" id="sqlDetails_3">
+					<td colspan="2"></td>
+					<td colspan="4">
+						<div class="djSQLDetailsDiv">
+							<p><strong>Connection:</strong> default</p>
+							
+							
+							
+								<pre class="djdt-stack"><span class="djdt-path">/home/ubuntu/project/clinic/home/templatetags/</span><span class="djdt-file">clinic_extras.py</span> in <span class="djdt-func">addcss</span>(<span class="djdt-lineno">7</span>)
+  <span class="djdt-code">return field.as_widget(attrs={&quot;class&quot;:css})</span></pre>
+							
+							
+								<table>
+									
+									<tr>
+										<td>31</td>
+										<td><code style="font-family: monospace;">						        	{% trans field.label %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>32</td>
+										<td><code style="font-family: monospace;">						        &lt;/label&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>33</td>
+										<td><code style="font-family: monospace;">						        &lt;div class=&quot;col-sm-8&quot;&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>34</td>
+										<td><code style="font-family: monospace;background-color: lightgrey">						        	{% with input_field=field|addcss:&quot;form-control&quot; %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>35</td>
+										<td><code style="font-family: monospace;">						        		{{input_field}}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>36</td>
+										<td><code style="font-family: monospace;">						        	{% endwith %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>37</td>
+										<td><code style="font-family: monospace;">						        &lt;/div&gt;
+</code></td>
+									</tr>
+									
+								</table>
+								<p><strong>/home/ubuntu/project/clinic/templates/home/index.html</strong></p>
+							
+						</div>
+					</td>
+				</tr>
+			
+				<tr class="djDebugHoverable djDebugEven" id="sqlMain_4">
+					<td class="djdt-color"><span style="background-color: rgb(256.0, 0, 0);">&#160;</span></td>
+					<td class="djdt-toggle">
+						<a class="djToggleSwitch" data-toggle-name="sqlMain" data-toggle-id="4" data-toggle-open="+" data-toggle-close="-" href="javascript:void(0)">+</a>
+					</td>
+					<td class="query">
+						<div class="djDebugSqlWrap">
+							<div class="djDebugSql"><strong>SELECT</strong> <a class="djDebugUncollapsed djDebugToggle" href="#">&#8226;&#8226;&#8226;</a> <a class="djDebugCollapsed djDebugToggle" href="#">COUNT(&#39;*&#39;) <strong>AS</strong> &quot;__count&quot;</a> <strong>FROM</strong> &quot;home_store&quot; <strong>WHERE</strong> &quot;home_store&quot;.&quot;display&quot; = <strong>true</strong></div>
+						</div>
+					</td>
+					<td class="timeline">
+						<div class="djDebugTimeline"><div class="djDebugLineChart" style="left:92.0446758942031%;"><strong style="width:99.99999999999997%; background-color:#000080;">7.955324105796903%</strong></div></div>
+					</td>
+					<td class="djdt-time">
+						0.28
+					</td>
+					<td class="djdt-actions">
+
+					
+						
+							<form method="post">
+								<input name="sql" type="hidden" value="SELECT COUNT(&#39;*&#39;) AS &quot;__count&quot; FROM &quot;home_store&quot; WHERE &quot;home_store&quot;.&quot;display&quot; = true" /><input name="raw_sql" type="hidden" value="SELECT COUNT(%s) AS &quot;__count&quot; FROM &quot;home_store&quot; WHERE &quot;home_store&quot;.&quot;display&quot; = %s" /><input name="params" type="hidden" value="[&quot;*&quot;, true]" /><input name="alias" type="hidden" value="default" /><input name="duration" type="hidden" value="0.27680397033691406" /><input name="hash" type="hidden" value="6dfe7592903068137a9f866009db7e31061f0882" />
+
+								<button formaction="/__debug__/sql_select/" class="remoteCall">Sel</button>
+								<button formaction="/__debug__/sql_explain/" class="remoteCall">Expl</button>
+
+								
+							</form>
+						
+					
+					</td>
+				</tr>
+				<tr class="djUnselected djDebugHoverable djDebugEven djToggleDetails_4" id="sqlDetails_4">
+					<td colspan="2"></td>
+					<td colspan="4">
+						<div class="djSQLDetailsDiv">
+							<p><strong>Connection:</strong> default</p>
+							
+							
+							
+							
+								<table>
+									
+									<tr>
+										<td>53</td>
+										<td><code style="font-family: monospace;">	&lt;div class=&quot;row&quot;&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>54</td>
+										<td><code style="font-family: monospace;">		&lt;div class=&quot;col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1&quot;&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>55</td>
+										<td><code style="font-family: monospace;">			&lt;div class=&quot;store-list&quot;&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>56</td>
+										<td><code style="font-family: monospace;background-color: lightgrey">				{% if filter %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>57</td>
+										<td><code style="font-family: monospace;">				    {% for store in filter %}
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>58</td>
+										<td><code style="font-family: monospace;">				    	&lt;div class=&quot;panel panel-default panel-clinic&quot;&gt;
+</code></td>
+									</tr>
+									
+									<tr>
+										<td>59</td>
+										<td><code style="font-family: monospace;">				    		&lt;div class=&quot;panel-heading store-heading text-left&quot;&gt;
+</code></td>
+									</tr>
+									
+								</table>
+								<p><strong>/home/ubuntu/project/clinic/templates/home/index.html</strong></p>
+							
+						</div>
+					</td>
+				</tr>
+			
+		</tbody>
+	</table>
+
+
+<script src="/static/debug_toolbar/js/toolbar.sql.js"></script>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="StaticFilesPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Static files (183 found, 4 used)</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+
+
+<h4>Static file paths</h4>
+
+    <p>None</p>
+
+
+<h4>Static file apps</h4>
+
+    <ol>
+    
+        <li>django_admin_bootstrapped</li>
+    
+        <li>django.contrib.admin</li>
+    
+        <li>django_select2</li>
+    
+        <li>bootstrap3_datetime</li>
+    
+        <li>home</li>
+    
+        <li>debug_toolbar</li>
+    
+    </ol>
+
+
+<h4>Static files</h4>
+
+<dl>
+
+    <dt><strong><a class="toggleTemplate" href="/static/lib/bootstrap/dist/css/bootstrap.min.css">lib/bootstrap/dist/css/bootstrap.min.css</a></strong></dt>
+    <dd><samp>None</samp></dd>
+
+    <dt><strong><a class="toggleTemplate" href="/static/css/base.css">css/base.css</a></strong></dt>
+    <dd><samp>/home/ubuntu/project/clinic/home/static/css/base.css</samp></dd>
+
+    <dt><strong><a class="toggleTemplate" href="/static/lib/jquery/dist/jquery.min.js">lib/jquery/dist/jquery.min.js</a></strong></dt>
+    <dd><samp>None</samp></dd>
+
+    <dt><strong><a class="toggleTemplate" href="/static/javascripts/app.js">javascripts/app.js</a></strong></dt>
+    <dd><samp>/home/ubuntu/project/clinic/home/static/javascripts/app.js</samp></dd>
+
+</dl>
+
+
+
+
+<h4>django.contrib.staticfiles.finders.AppDirectoriesFinder (183 files)</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Path</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/fonts/glyphicons-halflings-regular.woff2</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/fonts/glyphicons-halflings-regular.woff2</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap/fonts/glyphicons-halflings-regular.eot</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/fonts/glyphicons-halflings-regular.eot</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/fonts/glyphicons-halflings-regular.svg</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/fonts/glyphicons-halflings-regular.svg</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap/fonts/glyphicons-halflings-regular.ttf</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/fonts/glyphicons-halflings-regular.ttf</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/fonts/glyphicons-halflings-regular.woff</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/fonts/glyphicons-halflings-regular.woff</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap/css/bootstrap-theme.min.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/css/bootstrap-theme.min.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/css/bootstrap.min.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/css/bootstrap.min.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap/css/bootstrap.css.map</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/css/bootstrap.css.map</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/css/bootstrap-theme.css.map</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/css/bootstrap-theme.css.map</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap/css/bootstrap.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/css/bootstrap.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/css/bootstrap-theme.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/css/bootstrap-theme.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap/js/bootstrap.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/js/bootstrap.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap/js/bootstrap.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap/js/bootstrap.min.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap-rtl/css/bootstrap-rtl.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap-rtl/css/bootstrap-rtl.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap-rtl/css/bootstrap-flipped.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap-rtl/css/bootstrap-flipped.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap-rtl/css/bootstrap-rtl.min.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap-rtl/css/bootstrap-rtl.min.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap-rtl/css/bootstrap-rtl.css.map</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap-rtl/css/bootstrap-rtl.css.map</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap-rtl/css/bootstrap-flipped.min.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap-rtl/css/bootstrap-flipped.min.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap-rtl/css/bootstrap-flipped.css.map</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/bootstrap-rtl/css/bootstrap-flipped.css.map</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/css/changelists.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/css/changelists.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/css/overrides.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/css/overrides.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/css/admin-inlines.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/css/admin-inlines.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/jquery.sortable.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/js/jquery.sortable.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/jquery-migrate-1.2.1.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/js/jquery-migrate-1.2.1.min.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/jquery-1.9.1.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/js/jquery-1.9.1.min.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/generic-lookup.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_admin_bootstrapped/static/admin/js/generic-lookup.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/icon_error.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_error.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/icon_deletelink.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_deletelink.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/icon-unknown.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon-unknown.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/icon_clock.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_clock.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/icon-no.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon-no.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/sorting-icons.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/sorting-icons.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/icon_calendar.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_calendar.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/icon_addlink.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_addlink.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/nav-bg.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/nav-bg.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/nav-bg-grabber.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/nav-bg-grabber.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/nav-bg-selected.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/nav-bg-selected.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/icon_alert.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_alert.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/inline-delete.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/inline-delete.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/default-bg.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/default-bg.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/icon-yes.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon-yes.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/inline-restore-8bit.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/inline-restore-8bit.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/deleted-overlay.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/deleted-overlay.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/icon_changelink.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_changelink.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/icon_success.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_success.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/tooltag-arrowright.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/tooltag-arrowright.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/selector-icons.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/selector-icons.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/changelist-bg.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/changelist-bg.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/default-bg-reverse.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/default-bg-reverse.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/icon_searchbox.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/icon_searchbox.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/inline-delete-8bit.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/inline-delete-8bit.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/selector-search.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/selector-search.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/nav-bg-reverse.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/nav-bg-reverse.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/tooltag-add.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/tooltag-add.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/inline-splitter-bg.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/inline-splitter-bg.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/inline-restore.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/inline-restore.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/changelist-bg_rtl.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/changelist-bg_rtl.gif</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/img/gis/move_vertex_off.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/gis/move_vertex_off.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/img/gis/move_vertex_on.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/img/gis/move_vertex_on.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/css/base.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/base.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/css/changelists.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/changelists.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/css/login.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/login.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/css/forms.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/forms.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/css/widgets.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/widgets.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/css/dashboard.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/dashboard.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/css/ie.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/ie.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/css/rtl.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/css/rtl.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/prepopulate.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/prepopulate.min.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/collapse.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/collapse.min.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/urlify.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/urlify.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/jquery.init.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/jquery.init.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/jquery.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/jquery.min.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/SelectBox.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/SelectBox.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/collapse.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/collapse.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/related-widget-wrapper.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/related-widget-wrapper.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/jquery.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/jquery.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/calendar.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/calendar.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/SelectFilter2.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/SelectFilter2.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/inlines.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/inlines.min.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/prepopulate.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/prepopulate.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/core.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/core.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/actions.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/actions.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/timeparse.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/timeparse.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/inlines.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/inlines.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/actions.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/actions.min.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/LICENSE-JQUERY.txt</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/LICENSE-JQUERY.txt</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/js/admin/DateTimeShortcuts.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/admin/DateTimeShortcuts.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>admin/js/admin/RelatedObjectLookups.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django/contrib/admin/static/admin/js/admin/RelatedObjectLookups.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>django_select2/django_select2.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/django_select2/static/django_select2/django_select2.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/css/bootstrap-datetimepicker.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/css/bootstrap-datetimepicker.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/css/bootstrap-datetimepicker.min.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/css/bootstrap-datetimepicker.min.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/bootstrap-datetimepicker.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/bootstrap-datetimepicker.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/bootstrap-datetimepicker.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/bootstrap-datetimepicker.min.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/moment.min.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/moment.min.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fi.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fi.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.id.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.id.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fo.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fo.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.nl.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.nl.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.nn.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.nn.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ne.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ne.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.hu.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.hu.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.de.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.de.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ml.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ml.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.tzm.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.tzm.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ar-ma.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ar-ma.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sk.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sk.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.eo.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.eo.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.zh-CN.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.zh-CN.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sl.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sl.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.mr.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.mr.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.et.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.et.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sq.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sq.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.da.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.da.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fr-ca.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fr-ca.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ms.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ms.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ru.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ru.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.he.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.he.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.rs.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.rs.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ms-my.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ms-my.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.en-ca.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.en-ca.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fr.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fr.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.pl.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.pl.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.lv.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.lv.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.uz.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.uz.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ca.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ca.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.hi.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.hi.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.gl.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.gl.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.rs-latin.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.rs-latin.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.tzm-la.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.tzm-la.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.cv.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.cv.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.en-gb.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.en-gb.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.pt.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.pt.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.kr.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.kr.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.vn.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.vn.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fa-IR.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fa-IR.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.zh-TW.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.zh-TW.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.is.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.is.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.br.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.br.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.bg.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.bg.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.th.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.th.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.pt-BR.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.pt-BR.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.el.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.el.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ja.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ja.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.bs.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.bs.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ar.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ar.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.hr.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.hr.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sv.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.sv.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ko.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ko.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.tr.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.tr.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fa.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.fa.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.en-au.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.en-au.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.es.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.es.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ka.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ka.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.lt.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.lt.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.uk.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.uk.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ro.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.ro.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.it.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.it.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.nb.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.nb.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.eu.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.eu.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>bootstrap3_datetime/js/locales/bootstrap-datetimepicker.cs.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/bootstrap3_datetime/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.cs.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>.keepme</td>
+        <td>/home/ubuntu/project/clinic/home/static/.keepme</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>images/noimage.png</td>
+        <td>/home/ubuntu/project/clinic/home/static/images/noimage.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>javascripts/app.js</td>
+        <td>/home/ubuntu/project/clinic/home/static/javascripts/app.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>javascripts/store_admin.js</td>
+        <td>/home/ubuntu/project/clinic/home/static/javascripts/store_admin.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>admin/css/custom.css</td>
+        <td>/home/ubuntu/project/clinic/home/static/admin/css/custom.css</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>css/base.css</td>
+        <td>/home/ubuntu/project/clinic/home/static/css/base.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>upload/10842098_994868847190566_3404020270529991595_o.jpg</td>
+        <td>/home/ubuntu/project/clinic/home/static/upload/10842098_994868847190566_3404020270529991595_o.jpg</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>upload/11951796_885353674876883_8117086682561601870_n.jpg</td>
+        <td>/home/ubuntu/project/clinic/home/static/upload/11951796_885353674876883_8117086682561601870_n.jpg</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>.DS_Store</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/.DS_Store</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/.DS_Store</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/.DS_Store</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/img/close.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/close.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/img/djdt_vertical.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/djdt_vertical.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/img/back_hover.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/back_hover.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/img/ajax-loader.gif</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/ajax-loader.gif</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/img/indicator.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/indicator.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/img/close_hover.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/close_hover.png</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/img/back.png</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/img/back.png</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/css/toolbar.css</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/css/toolbar.css</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/js/toolbar.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/js/toolbar.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/js/toolbar.timer.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/js/toolbar.timer.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/js/toolbar.sql.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/js/toolbar.sql.js</td>
+    </tr>
+    
+    <tr class="djDebugEven">
+        <td>debug_toolbar/js/toolbar.profiling.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/js/toolbar.profiling.js</td>
+    </tr>
+    
+    <tr class="djDebugOdd">
+        <td>debug_toolbar/js/toolbar.template.js</td>
+        <td>/usr/local/lib/python3.4/dist-packages/debug_toolbar/static/debug_toolbar/js/toolbar.template.js</td>
+    </tr>
+    
+    </tbody>
+</table>
+
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="TemplatesPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Templates (3 rendered)</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<h4>Template path</h4>
+
+	<ol>
+	
+		<li>/home/ubuntu/project/clinic/templates</li>
+	
+	</ol>
+
+
+<h4>Templates</h4>
+
+<dl>
+
+	<dt><strong><a class="remoteCall toggleTemplate" href="/__debug__/template_source/?template=home/index.html">home/index.html</a></strong></dt>
+	<dd><samp>/home/ubuntu/project/clinic/templates/home/index.html</samp></dd>
+	
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;False&#39;: False, &#39;None&#39;: None, &#39;True&#39;: True}
+{&#39;DEFAULT_MESSAGE_LEVELS&#39;: {&#39;DEBUG&#39;: 10,
+                            &#39;ERROR&#39;: 40,
+                            &#39;INFO&#39;: 20,
+                            &#39;SUCCESS&#39;: 25,
+                            &#39;WARNING&#39;: 30},
+ &#39;LANGUAGES&#39;: &#39;&lt;&lt;languages&gt;&gt;&#39;,
+ &#39;LANGUAGE_BIDI&#39;: False,
+ &#39;LANGUAGE_CODE&#39;: &#39;ja&#39;,
+ &#39;csrf_token&#39;: &lt;SimpleLazyObject: &#39;ovLpJC0feulN9audFbr7atg0mt7AyKO4&#39;&gt;,
+ &#39;debug&#39;: True,
+ &#39;messages&#39;: &lt;django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd9e432b668&gt;,
+ &#39;perms&#39;: &lt;django.contrib.auth.context_processors.PermWrapper object at 0x7fd9e41dcd68&gt;,
+ &#39;request&#39;: &#39;&lt;&lt;request&gt;&gt;&#39;,
+ &#39;sql_queries&#39;: &lt;function debug.&lt;locals&gt;.&lt;lambda&gt; at 0x7fd9e41d2e18&gt;,
+ &#39;user&#39;: &lt;SimpleLazyObject: &lt;django.contrib.auth.models.AnonymousUser object at 0x7fd9e41dce10&gt;&gt;}
+{&#39;filter&#39;: &lt;home.views.StoreFilter object at 0x7fd9e42e4748&gt;,
+ &#39;is_admin_store&#39;: False,
+ &#39;is_paginated&#39;: False,
+ &#39;object_list&#39;: &#39;&lt;&lt;queryset of home.Store&gt;&gt;&#39;,
+ &#39;page_obj&#39;: None,
+ &#39;paginator&#39;: None,
+ &#39;paging&#39;: &lt;Page 1 of 1&gt;,
+ &#39;stores&#39;: &#39;&lt;&lt;queryset of home.Store&gt;&gt;&#39;,
+ &#39;view&#39;: &lt;home.views.IndexView object at 0x7fd9e432b5c0&gt;}</code></div>
+	</dd>
+	
+
+	<dt><strong><a class="remoteCall toggleTemplate" href="/__debug__/template_source/?template=home/_base.html">home/_base.html</a></strong></dt>
+	<dd><samp>/home/ubuntu/project/clinic/templates/home/_base.html</samp></dd>
+	
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;False&#39;: False, &#39;None&#39;: None, &#39;True&#39;: True}
+{&#39;DEFAULT_MESSAGE_LEVELS&#39;: {&#39;DEBUG&#39;: 10,
+                            &#39;ERROR&#39;: 40,
+                            &#39;INFO&#39;: 20,
+                            &#39;SUCCESS&#39;: 25,
+                            &#39;WARNING&#39;: 30},
+ &#39;LANGUAGES&#39;: &#39;&lt;&lt;languages&gt;&gt;&#39;,
+ &#39;LANGUAGE_BIDI&#39;: False,
+ &#39;LANGUAGE_CODE&#39;: &#39;ja&#39;,
+ &#39;csrf_token&#39;: &lt;SimpleLazyObject: &#39;ovLpJC0feulN9audFbr7atg0mt7AyKO4&#39;&gt;,
+ &#39;debug&#39;: True,
+ &#39;messages&#39;: &lt;django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd9e432b668&gt;,
+ &#39;perms&#39;: &lt;django.contrib.auth.context_processors.PermWrapper object at 0x7fd9e41dcd68&gt;,
+ &#39;request&#39;: &#39;&lt;&lt;request&gt;&gt;&#39;,
+ &#39;sql_queries&#39;: &lt;function debug.&lt;locals&gt;.&lt;lambda&gt; at 0x7fd9e41d2e18&gt;,
+ &#39;user&#39;: &lt;SimpleLazyObject: &lt;django.contrib.auth.models.AnonymousUser object at 0x7fd9e41dce10&gt;&gt;}
+{&#39;filter&#39;: &lt;home.views.StoreFilter object at 0x7fd9e42e4748&gt;,
+ &#39;is_admin_store&#39;: False,
+ &#39;is_paginated&#39;: False,
+ &#39;object_list&#39;: &#39;&lt;&lt;queryset of home.Store&gt;&gt;&#39;,
+ &#39;page_obj&#39;: None,
+ &#39;paginator&#39;: None,
+ &#39;paging&#39;: &lt;Page 1 of 1&gt;,
+ &#39;stores&#39;: &#39;&lt;&lt;queryset of home.Store&gt;&gt;&#39;,
+ &#39;view&#39;: &lt;home.views.IndexView object at 0x7fd9e432b5c0&gt;}</code></div>
+	</dd>
+	
+
+	<dt><strong><a class="remoteCall toggleTemplate" href="/__debug__/template_source/?template=home/includes/_navigation.html">home/includes/_navigation.html</a></strong></dt>
+	<dd><samp>/home/ubuntu/project/clinic/templates/home/includes/_navigation.html</samp></dd>
+	
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;False&#39;: False, &#39;None&#39;: None, &#39;True&#39;: True}
+{&#39;DEFAULT_MESSAGE_LEVELS&#39;: {&#39;DEBUG&#39;: 10,
+                            &#39;ERROR&#39;: 40,
+                            &#39;INFO&#39;: 20,
+                            &#39;SUCCESS&#39;: 25,
+                            &#39;WARNING&#39;: 30},
+ &#39;LANGUAGES&#39;: &#39;&lt;&lt;languages&gt;&gt;&#39;,
+ &#39;LANGUAGE_BIDI&#39;: False,
+ &#39;LANGUAGE_CODE&#39;: &#39;ja&#39;,
+ &#39;csrf_token&#39;: &lt;SimpleLazyObject: &#39;ovLpJC0feulN9audFbr7atg0mt7AyKO4&#39;&gt;,
+ &#39;debug&#39;: True,
+ &#39;messages&#39;: &lt;django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd9e432b668&gt;,
+ &#39;perms&#39;: &lt;django.contrib.auth.context_processors.PermWrapper object at 0x7fd9e41dcd68&gt;,
+ &#39;request&#39;: &#39;&lt;&lt;request&gt;&gt;&#39;,
+ &#39;sql_queries&#39;: &lt;function debug.&lt;locals&gt;.&lt;lambda&gt; at 0x7fd9e41d2e18&gt;,
+ &#39;user&#39;: &lt;SimpleLazyObject: &lt;django.contrib.auth.models.AnonymousUser object at 0x7fd9e41dce10&gt;&gt;}
+{&#39;filter&#39;: &lt;home.views.StoreFilter object at 0x7fd9e42e4748&gt;,
+ &#39;is_admin_store&#39;: False,
+ &#39;is_paginated&#39;: False,
+ &#39;object_list&#39;: &#39;&lt;&lt;queryset of home.Store&gt;&gt;&#39;,
+ &#39;page_obj&#39;: None,
+ &#39;paginator&#39;: None,
+ &#39;paging&#39;: &lt;Page 1 of 1&gt;,
+ &#39;stores&#39;: &#39;&lt;&lt;queryset of home.Store&gt;&gt;&#39;,
+ &#39;view&#39;: &lt;home.views.IndexView object at 0x7fd9e432b5c0&gt;}
+{}</code></div>
+	</dd>
+	
+
+</dl>
+
+
+<h4>Context processors</h4>
+
+<dl>
+
+	<dt><strong>django.template.context_processors.csrf</strong></dt>
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;csrf_token&#39;: &lt;SimpleLazyObject: &#39;ovLpJC0feulN9audFbr7atg0mt7AyKO4&#39;&gt;}</code></div>
+	</dd>
+
+	<dt><strong>django.template.context_processors.debug</strong></dt>
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;sql_queries&#39;: &lt;function debug.&lt;locals&gt;.&lt;lambda&gt; at 0x7fd9e41d2e18&gt;, &#39;debug&#39;: True}</code></div>
+	</dd>
+
+	<dt><strong>django.template.context_processors.request</strong></dt>
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;request&#39;: &lt;WSGIRequest: GET &#39;/&#39;&gt;}</code></div>
+	</dd>
+
+	<dt><strong>django.contrib.auth.context_processors.auth</strong></dt>
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;user&#39;: &lt;SimpleLazyObject: &lt;django.contrib.auth.models.AnonymousUser object at 0x7fd9e41dce10&gt;&gt;, &#39;perms&#39;: &lt;django.contrib.auth.context_processors.PermWrapper object at 0x7fd9e41dcd68&gt;}</code></div>
+	</dd>
+
+	<dt><strong>django.contrib.messages.context_processors.messages</strong></dt>
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;messages&#39;: &lt;django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd9e432b668&gt;, &#39;DEFAULT_MESSAGE_LEVELS&#39;: {&#39;INFO&#39;: 20, &#39;WARNING&#39;: 30, &#39;DEBUG&#39;: 10, &#39;ERROR&#39;: 40, &#39;SUCCESS&#39;: 25}}</code></div>
+	</dd>
+
+	<dt><strong>django.template.context_processors.i18n</strong></dt>
+	<dd>
+		<div class="djTemplateShowContextDiv"><a class="djTemplateShowContext"><span class="toggleArrow">&#x25B6;</span> Toggle context</a></div>
+		<div class="djTemplateHideContextDiv" style="display:none;"><code>{&#39;LANGUAGES&#39;: ((&#39;en&#39;, &lt;django.utils.functional.lazy.&lt;locals&gt;.__proxy__ object at 0x7fd9ed6d8e80&gt;), (&#39;ja&#39;, &lt;django.utils.functional.lazy.&lt;locals&gt;.__proxy__ object at 0x7fd9ed6e9ac8&gt;)), &#39;LANGUAGE_CODE&#39;: &#39;ja&#39;, &#39;LANGUAGE_BIDI&#39;: False}</code></div>
+	</dd>
+
+</dl>
+
+
+<script src="/static/debug_toolbar/js/toolbar.template.js"></script>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="CachePanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Cache calls from 1 backend</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<h4>概要</h4>
+<table>
+	<thead>
+	<tr>
+		<th>Total calls</th>
+		<th>Total time</th>
+		<th>Cache hits</th>
+		<th>Cache misses</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>0</td>
+		<td>0 ms</td>
+		<td>0</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+</table>
+<h4>Commands</h4>
+<table>
+	<thead>
+	<tr>
+	
+		<th>add</th>
+	
+		<th>get</th>
+	
+		<th>set</th>
+	
+		<th>delete</th>
+	
+		<th>get_many</th>
+	
+		<th>set_many</th>
+	
+		<th>delete_many</th>
+	
+		<th>has_key</th>
+	
+		<th>incr</th>
+	
+		<th>decr</th>
+	
+		<th>incr_version</th>
+	
+		<th>decr_version</th>
+	
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+		<td>0</td>
+	
+	</tr>
+	</tbody>
+</table>
+
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="SignalsPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Signals</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+<table>
+	<thead>
+		<tr>
+			<th>Signal</th>
+			<th>Providing</th>
+			<th>Receivers</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr class="djDebugOdd">
+				<td>class_prepared</td>
+				<td>class</td>
+				<td>ModelSignal._resolve_references, ModelSignal._resolve_references, ModelSignal._resolve_references, ModelSignal._resolve_references, ModelSignal._resolve_references, ModelSignal._resolve_references, ModelSignal._resolve_references, do_pending_lookups</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>connection_created</td>
+				<td>connection</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>got_request_exception</td>
+				<td>request</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>post_delete</td>
+				<td>instance, using</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>post_init</td>
+				<td>instance</td>
+				<td>ImageField.update_dimension_fields</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>post_save</td>
+				<td>instance, created, update_fields, raw, using</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>post_syncdb</td>
+				<td>verbosity, db, created_models, interactive, class, app</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>pre_delete</td>
+				<td>instance, using</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>pre_init</td>
+				<td>instance, args, kwargs</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>pre_save</td>
+				<td>instance, update_fields, raw, using</td>
+				<td></td>
+			</tr>
+		
+			<tr class="djDebugOdd">
+				<td>request_finished</td>
+				<td></td>
+				<td>close_old_connections, close_caches</td>
+			</tr>
+		
+			<tr class="djDebugEven">
+				<td>request_started</td>
+				<td>environ</td>
+				<td>reset_queries, close_old_connections</td>
+			</tr>
+		
+	</tbody>
+</table>
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+			<div id="LoggingPanel" class="djdt-panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose"></a>
+					<h3>Log messages</h3>
+				</div>
+				<div class="djDebugPanelContent">
+					
+					<div class="djdt-scroll">
+
+	<p>No messages logged.</p>
+
+
+</div>
+					
+				</div>
+			</div>
+		
+	
+		
+	
+	<div id="djDebugWindow" class="djdt-panelContent"></div>
+</div>
+</body>
+
+</html>
