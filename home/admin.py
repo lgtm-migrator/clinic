@@ -76,8 +76,8 @@ def generate_store_id():
 
 class DisplaySelect(forms.widgets.NullBooleanSelect):
 	def __init__(self, attrs=None):
-		choices = (('2', _('Yes')),
-			('3', _('No')))
+		choices = (('2', _('Show')),
+			('3', _('Not show')))
 		super(forms.widgets.NullBooleanSelect, self).__init__(attrs, choices)
 
 class StoreAdminForm(forms.ModelForm):
