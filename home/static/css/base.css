@@ -399,3 +399,10 @@ ul.errorlist {
     border-left-width: 1px;
     border-left-color: #ddd;
 }
+
+.text-red {
+    color: red;
+}
+.text-strong {
+    font-weight: 700;
+}

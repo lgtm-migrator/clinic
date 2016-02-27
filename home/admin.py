@@ -60,6 +60,7 @@ class HolidayWorkingInlineForm(forms.ModelForm):
 	model = HolidayWorking
 	date = forms.DateTimeField(
 		required=False,
+		label=_("Holiday working days"),
 		widget=DateTimePicker(options={"format": "YYYY-MM-DD", "pickSeconds": False}))
 
 class HolidayWorkingInline(admin.TabularInline):

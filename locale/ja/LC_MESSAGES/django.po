@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 15:32+0700\n"
+"POT-Creation-Date: 2016-02-27 12:28+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: clinic/settings.py:197
+#: clinic/settings.py:213
 msgid "English"
 msgstr "English"
 
-#: clinic/settings.py:198
+#: clinic/settings.py:214
 msgid "Japanese"
 msgstr ""
 
@@ -30,27 +30,27 @@ msgstr ""
 msgid "Working days"
 msgstr "営業時間帯"
 
-#: home/admin.py:69
+#: home/admin.py:70
 msgid "Holiday working days"
 msgstr "特別な営業時間帯"
 
-#: home/admin.py:79
+#: home/admin.py:80
 msgid "Show"
 msgstr "表示"
 
-#: home/admin.py:80
+#: home/admin.py:81
 msgid "Not show"
 msgstr "未表示"
 
-#: home/admin.py:84
+#: home/admin.py:85
 msgid "Store ID"
 msgstr "店舗コード"
 
-#: home/admin.py:94
+#: home/admin.py:95
 msgid "Region"
 msgstr "地域"
 
-#: home/admin.py:95
+#: home/admin.py:96
 msgid "Nearest station"
 msgstr "最寄り駅"
 
@@ -122,7 +122,7 @@ msgstr "祝祭日"
 
 #: home/models.py:175
 msgid "Type"
-msgstr ""
+msgstr "営業時間帯"
 
 #: home/models.py:177 home/models.py:208
 msgid "8"
@@ -190,11 +190,11 @@ msgstr "店舗コード"
 msgid "holiday date"
 msgstr ""
 
-#: home/views.py:322
+#: home/views.py:324
 msgid "This time is registed by another patient. Please choose another time!"
 msgstr "その時間はすでに登録されていますので、他の時間をご選択してください。"
 
-#: home/views.py:332
+#: home/views.py:334
 msgid ""
 "The registration process was successful, Please check email for more "
 "information!"
@@ -402,6 +402,9 @@ msgstr ""
 #| msgid "Log out"
 msgid "Log in again"
 msgstr "ログオフ"
+
+#~ msgid "None"
+#~ msgstr "営業時間帯"
 
 #~ msgid "Welcome,"
 #~ msgstr "ようこそ "
