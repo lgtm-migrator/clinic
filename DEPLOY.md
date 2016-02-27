@@ -7,6 +7,9 @@
   sudo apt-get install apache2 libapache2-mod-wsgi-py3
   sudo apt-get install postgresql postgresql-contrib
   sudo pip install virtualenv
+  curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  sudo npm install -g bower
   ```
 
 2. Start pg
@@ -93,6 +96,17 @@
   python manage.py migrate
   ```
 
+  If something crash, Django on python2 create migration with byte-strings in code. And when we run it in python3 environ it crashes. Fix it with: 
+  
+  ```sh
+  cd ./projects/clinic # home folder of project
+  find home -type f -exec sed -i "s/{b'/{'/g" {} \;        
+  find home -type f -exec sed -i "s/(b'/('/g" {} \;
+  find home -type f -exec sed -i "s/ b'/ '/g" {} \;
+  find home -type f -exec sed -i "s/=b'/='/g" {} \;
+  find home -type f -exec sed -i "s/\[b'/\['/g" {} \;
+  ```
+
 8. Create Another Admin user 
 
   ```sh
@@ -104,7 +118,16 @@
   ```sh
   python manage.py loaddata initial_data.yaml
   ```
-10. Test running 
+
+
+10. We can collect all of the static content into the directory location we configured by typing:
+
+  ```sh
+  bower install
+  python manage.py collectstatic
+  ```
+
+11. Test running 
 
   test your project by starting up the Django development server with:
 
@@ -118,11 +141,6 @@
   http://server_domain_or_IP:8000
   ```
 
-11. We can collect all of the static content into the directory location we configured by typing:
-
-  ```sh
-  python manage.py collectstatic
-  ```
 
 10. Configure Apache
 
@@ -138,23 +156,33 @@
   <VirtualHost *:80>
       . . .
 
-      Alias /static /home/user/clinic/static
-      <Directory /home/user/clinic/static>
-          Require all granted
-      </Directory>
+    Alias /static /home/ubuntu/projects/static
+    <Directory /home/ubuntu/projects>
+        Require all granted
+    </Directory>
 
-      <Directory /home/user/clinic/clinicproject>
-          <Files wsgi.py>
-              Require all granted
-          </Files>
-      </Directory>
+    Alias /media /home/ubuntu/projects/media
+    <Directory /home/ubuntu/projects/media>
+        Require all granted
+    </Directory>
 
-      WSGIDaemonProcess clinicproject python-path=/home/user/clinic:/home/user/clinic/clinicprojectenv/lib/python3.4/site-packages
-      WSGIProcessGroup clinicproject
-      WSGIScriptAlias / /home/user/clinic/clinicproject/clinic/wsgi.py
+
+    <Directory /home/ubuntu/projects/clinic/clinic>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIDaemonProcess clinicproject python-path=/home/ubuntu/projects/clinic:/home/ubuntu/projects/venv/lib/python3.4/site-packages
+    WSGIProcessGroup clinicproject
+    WSGIScriptAlias / /home/ubuntu/projects/clinic/clinic/wsgi.py
 
   </VirtualHost>
   ```
+
+  Note: 
+  *  **/home/ubuntu/projects/clinic**: Project home
+  *  **/home/ubuntu/projects/venv**: Virtual env folder
 
   Restart Apache by typing:
 
