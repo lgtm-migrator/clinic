@@ -22,10 +22,10 @@ class NearestStation(models.Model):
 	name = models.CharField(max_length=254)
 
 	def __unicode__(self):
-		return self.name + ' ' + self.code
+		return self.name 
 
 	def __str__(self):
-		return self.name + ' ' + self.code
+		return self.name 
 
 # ソートキーテーブル
 SORT_KEY = (('store_id', 'Store Code'), ('region__code', 'Region'), ('nearest_station__code', 'Nearest Station'));

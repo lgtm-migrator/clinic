@@ -82,14 +82,18 @@ class DisplaySelect(forms.widgets.NullBooleanSelect):
 		super(forms.widgets.NullBooleanSelect, self).__init__(attrs, choices)
 
 class StoreAdminForm(forms.ModelForm):
-	store_id = forms.CharField(label=_('Store ID'), widget=forms.widgets.TextInput(), initial = generate_store_id())
+	store_id = forms.CharField(label=_('Store ID'), widget=forms.widgets.TextInput(attrs={ 'required': 'required' }), initial = generate_store_id())
+
 	class Meta:
 		model = Store
 		exclude = ['created', ]
 	def __init__(self, *args, **kwargs):
 		super(StoreAdminForm, self).__init__(*args, **kwargs)
-		self.fields["name"].widget = forms.widgets.TextInput()
+		self.fields["name"].widget = forms.widgets.TextInput(attrs={ 'required': 'required' })
+		self.fields["mail"].widget = forms.widgets.EmailInput(attrs={ 'required': 'required' })
+		self.fields["phone"].widget = forms.widgets.NumberInput(attrs={ 'required': 'required' })
 		self.fields["access"].widget = forms.widgets.TextInput()
+		self.fields["comment"].widget = forms.widgets.Textarea(attrs={'rows':4, 'cols':40})
 		self.fields["display"].widget = DisplaySelect()
 
 		self.fields["region"].label = _("Region")

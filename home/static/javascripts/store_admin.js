@@ -18,8 +18,12 @@ $(document).ready(function() {
 	$('.label-tag > .required').each(function(index, el) {
 		var t = $(this).html().trim();
 		var required_ = $('<span>').html(' (*)').addClass('text-red text-strong').html();
-		$(this).html(t.substr(0, t.length - 1) + ' <span class="text-red text-strong">(*)</span>' + ':');
-	});;
+		$(this).html(t.substr(0, t.length - 1) + ' <span class="text-red">*</span>' + ':');
+	});
+	$('.label-tag > label').each(function(index, el) {
+		var t = $(this).html().trim();
+		$(this).html(t.substr(0, t.length - 1));
+	});
 
 	$('.add-row').hide();
 	// $('.vTextField, .vLargeTextField').addClass('form-control');

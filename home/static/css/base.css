@@ -340,6 +340,11 @@ span.clinic_hack_first_column select {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .store-display-False {
