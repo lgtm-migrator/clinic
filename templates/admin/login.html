@@ -8,9 +8,10 @@
 {% block navbar %}{% endblock %}
 {% block breadcrumbs %}{% endblock %}
 {% block usertools %}{% endblock %}
+
+
 {% block extrastyle %}
 <style type="text/css">
-@media (min-width: 768px) {
 .form-signin {
     max-width: 380px;
     margin: 0 auto 20px;
@@ -38,7 +39,6 @@
     height: 44px;
     width: 100%;
 }
-}
 </style>
 {% endblock %}
 
@@ -61,14 +61,14 @@
     </div>
   {% endif %}
 
-  <div class="form-group">
+  <div class="form-group" style="margin-bottom: 15px">
     {{ form.username.label_tag }}
-    <p class="text-danger">{{ form.username.errors|striptags }}</p>
+    <!-- <p class="text-danger">{{ form.username.errors|striptags }}</p> -->
     {% dab_field_rendering form.username %}
   </div>
-  <div class="form-group">
+  <div class="form-group" style="margin-bottom: 15px">
     {{ form.password.label_tag }}
-    <p class="text-danger">{{ form.password.errors|striptags }}</p>
+    <!-- <p class="text-danger">{{ form.password.errors|striptags }}</p> -->
     {% dab_field_rendering form.password %}
     <input type="hidden" name="next" value="{{ next }}" />
   </div>
@@ -80,7 +80,7 @@
     </div>
   </div>
   {% endif %}
-  <div class="form-actions clearfix">
+  <div class="form-actions clearfix" style="margin-top: 20px">
       <input type="submit" value="{% trans 'Log in' %}" class="btn btn-lg btn-primary btn-block" />
   </div>
   </div>

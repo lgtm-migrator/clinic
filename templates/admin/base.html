@@ -53,6 +53,7 @@
     {% if not is_popup %}
     <!-- Header -->
 
+    {% block admin_header %}
     <div class="container" id="header">
     <div class="row">
       <div class="col-xs-6 col-sm-4 col-md-4">
@@ -90,6 +91,7 @@
       </div>
     </div>
     </div>
+    {% endblock %}
 
     <!-- END Header -->
     <div class="container">
