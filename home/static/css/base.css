@@ -406,3 +406,7 @@ ul.errorlist {
 .text-strong {
     font-weight: 700;
 }
+
+#reserve-table td.today {
+  background-color: #fcf8e3;
+}

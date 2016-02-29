@@ -35,6 +35,7 @@
           {% with t=week_day|format_date:"%A"|slice:'2' full_date=week_day|date:"d/m/Y" holidays=schedule|get_item:"holiday"%}
             {% with holiday=holidays|get_item:full_date %}
               <th class="time-slot
+              {% if full_date == today_str %}today{% endif %}
               {% if t == 'Sa' %}color-saturday{% endif %}
               {% if t == 'Su' or holiday %}color-holiday{% endif %}
               {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">
@@ -54,20 +55,20 @@
               {% with data=schedule|get_item:t %}
                 {% with detail=data|get_item:d %}
                   {% if detail == None %}
-                    <td class="time-slot not-open {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
+                    <td class="time-slot not-open {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
                   {% else %}
                     {% with is_booked=detail|get_item:'book' holiday=detail|get_item:'holiday' holiday_available=detail|get_item:'holiday_available' available=detail|get_item:'available' %}
                       {% if is_booked %}
-                        <td class="time-slot booked {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
+                        <td class="time-slot booked {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
                       {% else %}
                         {% if holiday and holiday_available or not holiday and available %}
-                          <td class="time-slot date-available {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}"
+                          <td class="time-slot date-available {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}"
                               data-url="{% url 'booking' store.id url_date t %}?back_home_url={{back_url|urlencode}}"
                               data-check="{% url 'timeslot-checking' store.id url_date t %}">
                               ○
                             </td>
                         {% else %}
-                          <td class="time-slot not-open {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
+                          <td class="time-slot not-open {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
                         {% endif %}
                       {% endif %}
                     {% endwith %}

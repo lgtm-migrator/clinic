@@ -178,11 +178,12 @@ class DetailView(generic.DetailView):
 			# back from booking
 			start_week = day_query - timedelta(days=day_query.weekday())
 			current_date = datetime.now().date()
-			current_start_week = current_date - timedelta(days=current_date.weekday())
+			current_start_week = datetime.now().date() - timedelta(days=current_date.weekday())
+			context["today_str"] = datetime.now().date().strftime("%d/%m/%Y")
 			if ((start_week - current_start_week).days / 7 ) % 2 != 0:
 				day_query = day_query - timedelta(days=7)
 
-
+		context["today_str"] = datetime.now().date().strftime("%d/%m/%Y")
 		context["start_day"] = day_query - timedelta(days=day_query.weekday())
 		context["end_day"] = context["start_day"] + timedelta(days=13)
 
