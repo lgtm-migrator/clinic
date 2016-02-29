@@ -139,8 +139,11 @@ class RegionAmin(admin.ModelAdmin):
 class NearestStationAmin(admin.ModelAdmin):
 	list_display = ('code', 'name')
 
+class SortKeyAmin(admin.ModelAdmin):
+	change_list_template = 'admin/sortkey_change_list.html'
+
 admin.site.register(Region, RegionAmin)
 admin.site.register(NearestStation, NearestStationAmin)
-admin.site.register(Sortkey)
+admin.site.register(Sortkey, SortKeyAmin)
 
 admin.site.unregister(Group)
