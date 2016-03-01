@@ -395,7 +395,8 @@ ul.errorlist {
 }
 
 #store_form .errornote {display: none}
-#store_form {
+
+#content-main {
     margin-top: 20px;
 }
 #store_form tr.form-row.errors td {

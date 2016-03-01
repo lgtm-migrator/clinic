@@ -133,9 +133,6 @@ class StoreAmin(admin.ModelAdmin):
 			'javascripts/store_admin.js',
 		)
 
-	def has_add_permission(self, request):
-		return True
-
 class HolidayAdmin(admin.ModelAdmin):
 	pass
 
