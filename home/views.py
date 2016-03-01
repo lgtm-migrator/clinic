@@ -148,8 +148,6 @@ class IndexView(generic.ListView):
 		context["show_last_mobi"] = num_pages not in showing_pages_mobi
 		context["showing_pages_mobi"] = showing_pages_mobi
 
-
-
 		return context
 
 class DetailView(generic.DetailView):
