@@ -11,10 +11,10 @@ class Region(models.Model):
 	name = models.CharField(max_length=254)
 
 	def __unicode__(self):
-		return self.name + self.code
+		return self.name + "　" + self.code
 
 	def __str__(self):
-		return self.name + self.code
+		return self.name + "　" + self.code
 
 # # 最寄り駅テーブル
 class NearestStation(models.Model):
