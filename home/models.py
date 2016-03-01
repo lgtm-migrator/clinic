@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime, timedelta
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinLengthValidator, EmailValidator
 from django.utils.translation import ugettext as _
 
 import calendar
@@ -39,8 +39,8 @@ class Sortkey(models.Model):
 
 class Store(models.Model):
 	id = models.AutoField(primary_key=True, unique=True)
-	store_id = models.CharField(_('Store Code'), max_length=254, unique=True)
-	name = models.TextField(_('Store Name'), max_length=508)
+	store_id = models.CharField(_('Store Code'), max_length=254, unique=True, validators=[MinLengthValidator(1)])
+	name = models.TextField(_('Store Name'), max_length=508, validators=[MinLengthValidator(1)])
 
 	phone = models.CharField(_('Phone'), max_length=15, \
 				validators=[
@@ -50,7 +50,9 @@ class Store(models.Model):
 						code='invalid_phone'
 					),
 				])
-	mail = models.EmailField(verbose_name = _('Email'))
+	mail = models.EmailField(verbose_name = _('Email'), validators=[
+			EmailValidator(message='メールアドレスを正しく入力してください')
+		])
 	image = models.ImageField(_('Store Image'), upload_to = 'static/upload/', blank=True)
 	display = models.BooleanField(_('Store Display'), default=True)
 
