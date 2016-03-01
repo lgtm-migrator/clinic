@@ -89,9 +89,15 @@ class StoreAdminForm(forms.ModelForm):
 		exclude = ['created', ]
 	def __init__(self, *args, **kwargs):
 		super(StoreAdminForm, self).__init__(*args, **kwargs)
-		self.fields["name"].widget = forms.widgets.TextInput(attrs={ 'required': 'required' })
-		self.fields["mail"].widget = forms.widgets.EmailInput(attrs={ 'required': 'required' })
-		self.fields["phone"].widget = forms.widgets.NumberInput(attrs={ 'required': 'required' })
+		self.fields["name"].widget = forms.widgets.TextInput()
+		self.fields["name"].error_messages = { 'required': '店舗名を入力してください。' }
+
+		self.fields["mail"].widget = forms.widgets.EmailInput()
+		self.fields["mail"].error_messages = { 'required': 'メールアドレスを入力してください。' }
+		
+		self.fields["phone"].widget = forms.widgets.NumberInput()
+		self.fields["phone"].error_messages = { 'required': '電話番号を入力してください。' }
+		
 		self.fields["access"].widget = forms.widgets.TextInput()
 		self.fields["comment"].widget = forms.widgets.Textarea(attrs={'rows':4, 'cols':40})
 		self.fields["display"].widget = DisplaySelect()
