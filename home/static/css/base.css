@@ -420,3 +420,8 @@ ul.errorlist {
 #reserve-table td.today {
   background-color: #fcf8e3;
 }
+
+.related-widget-wrapper-link {
+    opacity: 0;
+    display: none;
+}

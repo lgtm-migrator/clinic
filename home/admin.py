@@ -82,13 +82,18 @@ class DisplaySelect(forms.widgets.NullBooleanSelect):
 		super(forms.widgets.NullBooleanSelect, self).__init__(attrs, choices)
 
 class StoreAdminForm(forms.ModelForm):
-	store_id = forms.CharField(label=_('Store ID'), widget=forms.widgets.TextInput(attrs={ 'required': 'required' }), initial = generate_store_id())
+	store_id = forms.CharField(
+		label=_('Store ID'), 
+		widget=forms.widgets.TextInput(attrs={ 'required': 'required' }), 
+		)
 
 	class Meta:
 		model = Store
 		exclude = ['created', ]
 	def __init__(self, *args, **kwargs):
 		super(StoreAdminForm, self).__init__(*args, **kwargs)
+		self.fields["store_id"].initial = generate_store_id()
+
 		self.fields["name"].widget = forms.widgets.TextInput()
 		self.fields["name"].error_messages = { 'required': '店舗名を入力してください。' }
 
@@ -111,7 +116,6 @@ class StoreAdminForm(forms.ModelForm):
 					'class': 'form-control'
 				})
 
-
 class StoreAmin(admin.ModelAdmin):
 	readonly_fields=('id', )
 	form = StoreAdminForm
@@ -124,16 +128,13 @@ class StoreAmin(admin.ModelAdmin):
 	inlines = [ WorkingDayInline, HolidayWorkingInline, ]
 	prepopulated_fields = { 'name': ['name'] }
 
-	readonly_fields = ('image_show', )
-	def image_show(self, instance):
-		return '<img src="/%s" />' % instance.image
-	image_show.allow_tags = True
-	image_show.short_description = 'Image'
-
 	class Media:
 		js = (
 			'javascripts/store_admin.js',
 		)
+
+	def has_add_permission(self, request):
+		return True
 
 class HolidayAdmin(admin.ModelAdmin):
 	pass
