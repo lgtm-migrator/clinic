@@ -98,7 +98,7 @@ class StoreAdminForm(forms.ModelForm):
 		self.fields["name"].error_messages = { 'required': '店舗名を入力してください。' }
 
 		self.fields["mail"].widget = forms.widgets.EmailInput()
-		self.fields["mail"].error_messages = { 'required': 'メールアドレスを入力してください。' }
+		self.fields["mail"].error_messages = { 'required': 'メールアドレスを入力してください。', 'invalid':"メールアドレスの形式が正しくありません。"}
 		
 		self.fields["phone"].widget = forms.widgets.TextInput()
 		self.fields["phone"].error_messages = { 'required': '電話番号を入力してください。' }
