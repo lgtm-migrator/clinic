@@ -1,7 +1,10 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static bootstrapped_goodies_tags %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+{% block extrastyle %}
+<script type="text/javascript">window.location='/admin/store';</script>
+<style type="text/css">#content-main { display: none;  }</style>
+{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -22,7 +25,9 @@
 {% block object-tools %}
 {% endblock %}
 
-{% block content %}
+{% block content %}loading...{% endblock %}
+
+{% block content2 %}
 <div class="row">
     <div id="content-main" class="col-sm-12">
 

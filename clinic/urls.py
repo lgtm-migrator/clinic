@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^timeslot_checking/(?P<store>[0-9]+)/(?P<date>[0-9]{8})/(?P<hour>[0-9]{1,2})/$', views.TimeslotCheck, name='timeslot-checking'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^select2/', include('django_select2.urls')),
-    url(r'^admin/logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'})
+    url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'})
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
