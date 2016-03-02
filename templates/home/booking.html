@@ -12,9 +12,6 @@
       {{ form.email.errors }}
     </div>
   {% endif %}
-  {% if success %}
-    <div class="alert alert-success">{{ success }}</div>
-  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -62,7 +59,7 @@
           </table>
           <!-- Form actions -->
           <div class="form-group text-center">
-            <input type="submit" id="btn-submit" {% if error or success %} disabled {% endif %} class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius btn-no-80px" value="予約">
+            <input type="submit" id="btn-submit" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius btn-no-80px" value="予約">
             <a href="{% url 'store-schedule' store.id %}?back_url={{back_home_url|urlencode}}&start_day={{ date|date:"d/m/Y" }}" class="btn btn-default btn-clinic btn-clinic-primary btn-no-radius btn-no-80px">戻る</a>
           </div>
         </fieldset>

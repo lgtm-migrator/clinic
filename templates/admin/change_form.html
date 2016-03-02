@@ -36,7 +36,6 @@
 {% block content %}<div id="content-main">
 {% block object-tools %}
 {% endblock %}
-
 {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{ message.tags|default:"alert-info" }}">
@@ -68,11 +67,10 @@
 
 {% block submit_buttons_bottom %}
 
-    <div class="clinic-submit-row">
-    <input type="submit" value="{% trans 'Registration and update' %}" class="default btn btn-primary" name="_continue" />
+<div class="clinic-submit-row">
+    <input type="submit" value="{% trans 'Registration and update' %}" class="default btn btn-primary" name="_saveasnew" />
     <a href="/admin/home/store" class="btn btn-primary">{{ _('Back') }}</a>
-
-    </div>
+</div>
 
 {% endblock %}
 

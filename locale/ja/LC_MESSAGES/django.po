@@ -387,7 +387,7 @@ msgstr "次の20行"
 
 #: templates/home/index.html:232
 msgid "No store are available"
-msgstr "利用できない保存"
+msgstr "店舗のデータがありません。"
 
 #: templates/home/submit_line.html:5
 msgid "Save"

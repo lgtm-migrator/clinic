@@ -33,19 +33,6 @@ import django_filters
 import calendar
 import base64
 
-# def get_order_key(key):
-# 	if key == 'region' or key == 'nearest_station':
-# 		return key + '__code'
-# 	return key
-
-# def get_ordering_field_set(model):
-# 	try:
-# 		sort_key = Sortkey.objects.filter(sorttype='001')[0]
-# 		return model.objects.filter(display=True).order_by(get_order_key(sort_key.key1), get_order_key(sort_key.key2))
-# 	except:
-# 		# Default
-# 		return model.objects.filter(display=True).order_by('region__code', 'store_id')
-
 class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 	region = django_filters.ModelChoiceFilter(
@@ -166,6 +153,10 @@ class DetailView(generic.DetailView):
 		if 'error' in self.request.session.keys():
 			context["error"] = self.request.session['error']
 			del self.request.session['error']
+
+		if 'success' in self.request.session.keys():
+			context["success"] = self.request.session['success']
+			del self.request.session['success']
 
 		current_store = context["store"]
 
@@ -319,11 +310,11 @@ def ScheView(request, store, date, hour):
 
 			sche = Schedule.objects.filter(store=store_object, date=booking_date, hour=booking_hour)
 
+			url_back = '/store/' + str(store_object.id) + \
+						"/?back_home_url=" + back_home_url + \
+						"&?start_day=" + booking_date.strftime("%d/%m/%Y")
 			if sche:
 				request.session['error'] = _("This time is registed by another patient. Please choose another time!")
-				url_back = '/store/' + str(store_object.id) + \
-							"/?back_home_url=" + back_home_url + \
-							"&?start_day=" + booking_date.strftime("%d/%m/%Y")
 				return redirect(url_back)
 			else:
 				schedule.save()
@@ -331,6 +322,8 @@ def ScheView(request, store, date, hour):
 				user_agent = parse(request.META['HTTP_USER_AGENT'])
 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
 				success = _("The registration process was successful, Please check email for more information!")
+				request.session['success'] = _("This time is registed by another patient. Please choose another time!")
+				return redirect(url_back)
 
 	else:
 		form = ScheForm()
