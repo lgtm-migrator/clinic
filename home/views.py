@@ -50,12 +50,12 @@ class StoreFilter(django_filters.FilterSet):
 	# See: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 	region = django_filters.ModelChoiceFilter(
 		queryset=Region.objects.all(),
-		widget=Select2Widget,
+		# widget=Select2Widget(attrs={'data-allow-clear':'true'}),
 		# lookup_type='icontains',
 	)
 	nearest_station = django_filters.ModelChoiceFilter(
 		queryset=NearestStation.objects.all(),
-		widget=Select2Widget,
+		# widget=Select2Widget,
 		# lookup_type='icontains'
 	)
 	class Meta:
