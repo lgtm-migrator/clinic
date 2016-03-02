@@ -65,11 +65,16 @@
 
 {% block after_related_objects %}{% endblock %}
 
-{% block submit_buttons_bottom %}
+{% block submit_buttons_bottom2 %}
 
 <div class="clinic-submit-row">
+{% if original.pk %}
+    <input type="submit" value="{% trans 'Registration and update' %}" class="default btn btn-primary" name="_save" />
+{% else %}
     <input type="submit" value="{% trans 'Registration and update' %}" class="default btn btn-primary" name="_saveasnew" />
-    <a href="/admin/home/store" class="btn btn-primary">{{ _('Back') }}</a>
+{% endif %}
+
+<a href="/admin/home/store" class="btn btn-primary">{{ _('Back') }}</a>
 </div>
 
 {% endblock %}
