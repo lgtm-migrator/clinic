@@ -11,10 +11,10 @@ class Region(models.Model):
 	name = models.CharField(max_length=254)
 
 	def __unicode__(self):
-		return self.name + ' ' + self.code
+		return self.name + "　" + self.code
 
 	def __str__(self):
-		return self.name + ' ' + self.code
+		return self.name + "　" + self.code
 
 # # 最寄り駅テーブル
 class NearestStation(models.Model):
@@ -51,7 +51,7 @@ class Store(models.Model):
 					),
 				])
 	mail = models.EmailField(verbose_name = _('Email'), validators=[
-			EmailValidator(message='メールアドレスを正しく入力してください')
+			EmailValidator(message='メールアドレスを正しく入力してください。')
 		])
 	image = models.ImageField(_('Store Image'), upload_to = 'static/upload/', blank=True)
 	display = models.BooleanField(_('Store Display'), default=True)
