@@ -61,10 +61,12 @@
                     <td class="time-slot not-open {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
                   {% else %}
                     {% with is_booked=detail|get_item:'book' holiday=detail|get_item:'holiday' holiday_available=detail|get_item:'holiday_available' available=detail|get_item:'available' %}
-                      {% if is_booked %}
+                      {% if not holiday and available and available <= is_booked  %}
+                        <td class="time-slot booked {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
+                      {% elif holiday and holiday_available and holiday_available <= is_booked  %}
                         <td class="time-slot booked {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
                       {% else %}
-                        {% if holiday and holiday_available or not holiday and available %}
+                        {% if holiday and holiday_available > is_booked or not holiday and available  > is_booked %}
                           <td class="time-slot date-available {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}"
                               data-url="{% url 'booking' store.id url_date t %}?back_home_url={{back_url|urlencode}}"
                               data-check="{% url 'timeslot-checking' store.id url_date t %}">

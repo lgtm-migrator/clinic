@@ -17,3 +17,4 @@ sqlparse==0.1.18
 ua-parser==0.6.1
 user-agents==1.0.1
 wheel==0.24.0
+django-widget-tweaks==1.4.1

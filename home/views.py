@@ -213,9 +213,24 @@ def CheckDataSchedule(store_id, date, hour):
 
 	try:
 		date = datetime.strptime(date, "%Y%m%d").date()
-		schedule = Schedule.objects.filter(store=store, date=date, hour=hour)
-		if schedule:
-			return BOOKING_ERROR[4]
+		weekday = date.strftime("%A")[0:2]
+		working_day = WorkingDay.objects.filter(store_id=store_id, type=weekday).first()
+		default_holiday = WorkingDay.objects.filter(store_id=store_id, type='Ho').first()
+		working_holiday = HolidayWorking.objects.filter(store_id=store_id, date=date).first()
+		current_holiday = Holiday.objects.filter(date=date).first()
+		schedule = Schedule.objects.filter(store=store, date=date, hour=hour).count()
+		if current_holiday == None and working_holiday == None and working_day != None:
+			available_slot = getattr(working_day, "hour_"+str(hour))
+			if available_slot <= schedule:
+				return BOOKING_ERROR[4]
+		elif working_holiday == None and current_holiday != None:
+			available_slot = getattr(default_holiday, "hour_"+str(hour))
+			if available_slot <= schedule:
+				return BOOKING_ERROR[4]
+		elif working_holiday != None:
+			available_slot = getattr(working_holiday, "hour_"+str(hour))
+			if available_slot <= schedule:
+				return BOOKING_ERROR[4]
 	except ValueError as e:
 		return BOOKING_ERROR[2]
 
@@ -308,12 +323,12 @@ def ScheView(request, store, date, hour):
 			schedule.date = booking_date
 			schedule.hour = booking_hour
 
-			sche = Schedule.objects.filter(store=store_object, date=booking_date, hour=booking_hour)
+			# sche = Schedule.objects.filter(store=store_object, date=booking_date, hour=booking_hour)
 
 			url_back = '/store/' + str(store_object.id) + \
 						"/?back_home_url=" + back_home_url + \
 						"&?start_day=" + booking_date.strftime("%d/%m/%Y")
-			if sche:
+			if check_url == BOOKING_ERROR[4]:
 				request.session['error'] = _("This time is registed by another patient. Please choose another time!")
 				return redirect(url_back)
 			else:

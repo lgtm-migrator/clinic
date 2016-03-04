@@ -23,8 +23,8 @@ BASE_DIR = dirname(dirname(abspath(__file__)))
 SECRET_KEY = '_q4j2$ur6ce*4z(m-jy2rm1gn9(x#d!mbpy1td-2ki4kim1g=x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ['localhost', '52.77.208.158']
+DEBUG = True
+ALLOWED_HOSTS = ['localhost', 'clinic.duyetdev.com', 'duyetdev.com', 'ptnhttt.uit.edu.vn', '10.80.13.89']
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

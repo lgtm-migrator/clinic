@@ -22,10 +22,10 @@ class NearestStation(models.Model):
 	name = models.CharField(max_length=254)
 
 	def __unicode__(self):
-		return self.name 
+		return self.name
 
 	def __str__(self):
-		return self.name 
+		return self.name
 
 # ソートキーテーブル
 SORT_KEY = (('store_id', 'Store Code'), ('region__code', 'Region'), ('nearest_station__code', 'Nearest Station'));
@@ -72,14 +72,16 @@ class Store(models.Model):
 		time_range = range(8, 22)
 		for day in working_day:
 			for i in time_range:
-				if getattr(day, "hour_"+str(i)) == True:
+				available_slot = getattr(day, "hour_"+str(i))
+				if available_slot != None and available_slot > 0:
 					if i < open_hr:
 						open_hr = i
 					if i > close_hr:
 						close_hr = i
 		for day in working_holiday:
 			for i in time_range:
-				if getattr(day, "hour_"+str(i)) == True:
+				available_slot = getattr(day, "hour_"+str(i))
+				if available_slot != None and available_slot > 0:
 					if i < open_hr:
 						open_hr = i
 					if i > close_hr:
@@ -101,55 +103,73 @@ class Store(models.Model):
 		# a time slot is booked with hour=h, day=d, then hash table with key = h,
 		# value = d will accept a child object with attributes book = 1
 		for booked_day in schedule_list:
-			mat[str(booked_day.hour)][booked_day.date.strftime("%d/%m/%Y")] = {"book": 1}
+			date_str = booked_day.date.strftime("%d/%m/%Y")
+			if date_str in mat[str(booked_day.hour)]:
+				mat[str(booked_day.hour)][booked_day.date.strftime("%d/%m/%Y")]["book"] += 1
+			else:
+				mat[str(booked_day.hour)][booked_day.date.strftime("%d/%m/%Y")] = {"book": 1}
 
 		# populate all avalable slot in working day to hash table, each available slot with
 		# hour=h, weekday=wd, we will find current dates maps with weekday and set
 		# child object new attributes available = 1
 		for index,day in enumerate(working_day):
 			day_str = days_range[index].strftime("%d/%m/%Y")
+			check_day_off = day.is_dayoff(time_range)
 			if holiday_default == None and day.type == "Ho":
 				holiday_default = day
 				break
 			for i in time_range:
-				if (day.is_dayoff(time_range) == True):
-					mat[str(i)][day_str] = {"dayoff": 1}
-				if getattr(day, "hour_"+str(i)) == True:
+				available_slot = getattr(day, "hour_"+str(i))
+				if check_day_off == True:
+					if day_str in mat[str(i)]:
+						mat[str(i)][day_str]["dayoff"] = 1
+					else:
+						mat[str(i)][day_str] = {"dayoff": 1}
+					if index < 7:
+						next_day_str = days_range[index+7].strftime("%d/%m/%Y")
+						if next_day_str in mat[str(i)]:
+							mat[str(i)][next_day_str]["dayoff"] = 1
+						else:
+							mat[str(i)][next_day_str] = {"dayoff": 1}
+
+				if available_slot != None and available_slot > 0:
 					if not day_str in mat[str(i)]:
 						mat[str(i)][day_str] = {}
 					if days_range[index] > today:
-						mat[str(i)][day_str]["available"] = 1
+						mat[str(i)][day_str]["available"] = available_slot
 					if index < 7:
 						next_day_str = days_range[index+7].strftime("%d/%m/%Y")
 						if not next_day_str in mat[str(i)]:
 							mat[str(i)][next_day_str] = {}
 						if days_range[index+7] > today:
-							mat[str(i)][next_day_str]["available"] = 1
+							mat[str(i)][next_day_str]["available"] = available_slot
+
 
 		# populate available slot in holiday default list
 		for day in holiday_default_list:
 			day_str = day.date.strftime("%d/%m/%Y")
 			mat["holiday"][day_str] = 1
 			for i in time_range:
+				available_slot = getattr(holiday_default, "hour_"+str(i))
 				if day_str in mat[str(i)]:
 					mat[str(i)][day_str]["holiday"] = 1
-					if getattr(holiday_default, "hour_"+str(i)) == True and day.date>today and mat[str(i)][day_str].get("dayoff") != 1:
-						mat[str(i)][day_str]["holiday_available"] = 1
-				elif getattr(holiday_default, "hour_"+str(i)) == True:
-					mat[str(i)][day_str] = {"holiday": 1, "holiday_available": 1}
-				# elif getattr(holiday_default, "hour_"+str(i)) == True:
-					# mat[str(i)][day_str] = {"holiday": 1, "holiday_available": 1}
+					if available_slot != None and available_slot > 0 and day.date>today and mat[str(i)][day_str].get("dayoff") != True:
+						mat[str(i)][day_str]["holiday_available"] = available_slot
+				elif available_slot != None and available_slot > 0:
+					mat[str(i)][day_str] = {"holiday": 1, "holiday_available": available_slot}
 
 		# populate available slot in holiday working to hash table
 		for day in working_holiday:
+			day_str = day.date.strftime("%d/%m/%Y")
 			mat["holiday"][day.date.strftime("%d/%m/%Y")] = 1
 			for i in time_range:
-				if day.is_dayoff(time_range) == False and not day.date.strftime("%d/%m/%Y") in mat[str(i)]:
-					mat[str(i)][day.date.strftime("%d/%m/%Y")] = {}
-				if day.date.strftime("%d/%m/%Y") in mat[str(i)]:
-					mat[str(i)][day.date.strftime("%d/%m/%Y")]["holiday"] = 1
-					if getattr(day, "hour_"+str(i)) == True and day.date>today:
-						mat[str(i)][day.date.strftime("%d/%m/%Y")]["holiday_available"] = 1
+				available_slot = getattr(day, "hour_"+str(i))
+				if day.is_dayoff(time_range) == False and not day_str in mat[str(i)]:
+					mat[str(i)][day_str] = {}
+				if day_str in mat[str(i)]:
+					mat[str(i)][day_str]["holiday"] = 1
+					if available_slot != None and available_slot > 0 and day.date>today:
+						mat[str(i)][day_str]["holiday_available"] = available_slot
 
 		return mat
 
@@ -179,76 +199,77 @@ class WorkingDay(models.Model):
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_9 = models.IntegerField(blank=True, null=True, verbose_name=_('9'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_10 = models.IntegerField(blank=True, null=True, verbose_name=_('10'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_11 = models.IntegerField(blank=True, null=True, verbose_name=_('11'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_12 = models.IntegerField(blank=True, null=True, verbose_name=_('12'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_13 = models.IntegerField(blank=True, null=True, verbose_name=_('13'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_14 = models.IntegerField(blank=True, null=True, verbose_name=_('14'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_15 = models.IntegerField(blank=True, null=True, verbose_name=_('15'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_16 = models.IntegerField(blank=True, null=True, verbose_name=_('16'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_17 = models.IntegerField(blank=True, null=True, verbose_name=_('17'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_18 = models.IntegerField(blank=True, null=True, verbose_name=_('18'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_19 = models.IntegerField(blank=True, null=True, verbose_name=_('19'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_20 = models.IntegerField(blank=True, null=True, verbose_name=_('20'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_21 = models.IntegerField(blank=True, null=True, verbose_name=_('21'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 
 	def is_dayoff(self,time_range):
 		for i in time_range:
-			if getattr(self, "hour_"+str(i)) == True:
+			available_slot = getattr(self, "hour_"+str(i))
+			if available_slot != None and available_slot > 0:
 				return False
 		return True
 
@@ -266,72 +287,72 @@ class HolidayWorking(models.Model):
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_9 = models.IntegerField(blank=True, null=True, verbose_name=_('9'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_10 = models.IntegerField(blank=True, null=True, verbose_name=_('10'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_11 = models.IntegerField(blank=True, null=True, verbose_name=_('11'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_12 = models.IntegerField(blank=True, null=True, verbose_name=_('12'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_13 = models.IntegerField(blank=True, null=True, verbose_name=_('13'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_14 = models.IntegerField(blank=True, null=True, verbose_name=_('14'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_15 = models.IntegerField(blank=True, null=True, verbose_name=_('15'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_16 = models.IntegerField(blank=True, null=True, verbose_name=_('16'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_17 = models.IntegerField(blank=True, null=True, verbose_name=_('17'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_18 = models.IntegerField(blank=True, null=True, verbose_name=_('18'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_19 = models.IntegerField(blank=True, null=True, verbose_name=_('19'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_20 = models.IntegerField(blank=True, null=True, verbose_name=_('20'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 	hour_21 = models.IntegerField(blank=True, null=True, verbose_name=_('21'), \
 	validators=[ \
             MaxValueValidator(99, "枠を正しく入力してください。"), \
             MinValueValidator(0, "枠を正しく入力してください。") \
-        ]) 
+        ])
 
 	class Meta:
 		unique_together = (('store', 'date'), )
