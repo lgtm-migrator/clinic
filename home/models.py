@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime, timedelta
-from django.core.validators import RegexValidator, MinLengthValidator, EmailValidator
+from django.core.validators import RegexValidator, MinLengthValidator, EmailValidator, MaxValueValidator, MinValueValidator
 from django.utils.translation import ugettext as _
 
 import calendar
