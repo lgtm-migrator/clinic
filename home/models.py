@@ -363,9 +363,6 @@ class Schedule(models.Model):
 	email = models.EmailField()
 	symptom = models.TextField(max_length=500, blank=True)
 
-	class Meta:
-		unique_together = (('store', 'date', 'hour'), )
-
 class Holiday(models.Model):
 	date = models.DateField('holiday')
 	def __unicode__(self):
