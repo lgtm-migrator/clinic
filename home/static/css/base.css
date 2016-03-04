@@ -1,4 +1,10 @@
 /* header */
+
+.clinic_hack_first_column .vIntegerField
+{
+    width : 2em;
+}
+
 .header {
     padding: 25px 0;
 }
