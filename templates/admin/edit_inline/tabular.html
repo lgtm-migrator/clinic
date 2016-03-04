@@ -10,11 +10,6 @@
          {{ inline_admin_formset.formset.non_form_errors }}
      </div>
    {% endif %}
-   {% if inline_admin_formset.formset.errors %}
-     <div class="alert alert-danger">
-        枠を正しく入力してください。
-     </div>
-   {% endif %}
    <table class="table table-striped table-bordered">
      <thead><tr>
      {% for field in inline_admin_formset.fields %}
@@ -179,4 +174,7 @@
     });
     {% endif %}
 })(jQuery);
+
+
+
 </script>

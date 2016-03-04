@@ -32,4 +32,13 @@ $(document).ready(function() {
 		var date =  $(this).find('[selected=selected]').text();
 		console.log(date)
 	})
+
+	if ($(".vIntegerField alert-danger")) {
+		if($(".errorlist")[0]) {
+			$(".errorlist")[0].innerHTML = $(".errorlist")[0].innerHTML + "<li>枠を正しく入力してください。</li>";
+		} else {
+			$("fieldset.module.aligned.wide").prepend("<ul class='errorlist'><li>枠を正しく入力してください。</li></ul>");
+		}
+	}
+    
 });
