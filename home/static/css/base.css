@@ -3,6 +3,7 @@
 .clinic_hack_first_column .vIntegerField
 {
     width : 2em;
+    text-align: center;
 }
 
 .header {
