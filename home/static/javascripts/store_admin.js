@@ -33,7 +33,7 @@ $(document).ready(function() {
 		console.log(date)
 	})
 
-	if ($(".vIntegerField alert-danger")) {
+	if ($(".alert-danger").length > 0) {
 		if($(".errorlist")[0]) {
 			$(".errorlist")[0].innerHTML = $(".errorlist")[0].innerHTML + "<li>枠を正しく入力してください。</li>";
 		} else {
