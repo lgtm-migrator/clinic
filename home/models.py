@@ -178,73 +178,73 @@ class WorkingDay(models.Model):
 
 	hour_8 = models.IntegerField(blank=True, null=True, verbose_name=_('8'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_9 = models.IntegerField(blank=True, null=True, verbose_name=_('9'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_10 = models.IntegerField(blank=True, null=True, verbose_name=_('10'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_11 = models.IntegerField(blank=True, null=True, verbose_name=_('11'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_12 = models.IntegerField(blank=True, null=True, verbose_name=_('12'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_13 = models.IntegerField(blank=True, null=True, verbose_name=_('13'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_14 = models.IntegerField(blank=True, null=True, verbose_name=_('14'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_15 = models.IntegerField(blank=True, null=True, verbose_name=_('15'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_16 = models.IntegerField(blank=True, null=True, verbose_name=_('16'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_17 = models.IntegerField(blank=True, null=True, verbose_name=_('17'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_18 = models.IntegerField(blank=True, null=True, verbose_name=_('18'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_19 = models.IntegerField(blank=True, null=True, verbose_name=_('19'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_20 = models.IntegerField(blank=True, null=True, verbose_name=_('20'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_21 = models.IntegerField(blank=True, null=True, verbose_name=_('21'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 
 	def is_dayoff(self,time_range):
@@ -265,73 +265,73 @@ class HolidayWorking(models.Model):
 
 	hour_8 = models.IntegerField(blank=True, null=True, verbose_name=_('8'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_9 = models.IntegerField(blank=True, null=True, verbose_name=_('9'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_10 = models.IntegerField(blank=True, null=True, verbose_name=_('10'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_11 = models.IntegerField(blank=True, null=True, verbose_name=_('11'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_12 = models.IntegerField(blank=True, null=True, verbose_name=_('12'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_13 = models.IntegerField(blank=True, null=True, verbose_name=_('13'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_14 = models.IntegerField(blank=True, null=True, verbose_name=_('14'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_15 = models.IntegerField(blank=True, null=True, verbose_name=_('15'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_16 = models.IntegerField(blank=True, null=True, verbose_name=_('16'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_17 = models.IntegerField(blank=True, null=True, verbose_name=_('17'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_18 = models.IntegerField(blank=True, null=True, verbose_name=_('18'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_19 = models.IntegerField(blank=True, null=True, verbose_name=_('19'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_20 = models.IntegerField(blank=True, null=True, verbose_name=_('20'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 	hour_21 = models.IntegerField(blank=True, null=True, verbose_name=_('21'), \
 	validators=[ \
-            MaxValueValidator(99), \
-            MinValueValidator(0) \
+            MaxValueValidator(99, "枠を正しく入力してください。"), \
+            MinValueValidator(0, "枠を正しく入力してください。") \
         ]) 
 
 	class Meta:

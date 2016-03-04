@@ -32,7 +32,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'duyetdev',
+        'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -41,7 +41,7 @@ DATABASES = {
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Host for sending e-mail.
 EMAIL_HOST = 'smtp.gmail.com'
@@ -89,10 +89,10 @@ CLINIC_APPS = (
     'home',
     'home.templatetags',
     'home.middleware.force_default_language',
+    'widget_tweaks',
 )
 
 INSTALLED_APPS = DJANGO_APPS + CLINIC_APPS
-
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
@@ -142,8 +142,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'clinic.wsgi.application'
-
-DEFAULT_INDEX_TABLESPACE = ''
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

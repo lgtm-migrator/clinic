@@ -1,15 +1,20 @@
 {% load i18n admin_static admin_urls admin_modify bootstrapped_goodies_tags %}
+{% load widget_tweaks %}
 <div class="_inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
   <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}">
 {{ inline_admin_formset.formset.management_form }}
 <fieldset class="module">
    <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
    {% if inline_admin_formset.formset.non_form_errors %}
-   <div class="alert alert-danger">
-       {{ inline_admin_formset.formset.non_form_errors }}
-   </div>
+     <div class="alert alert-danger">
+         {{ inline_admin_formset.formset.non_form_errors }}
+     </div>
    {% endif %}
-
+   {% if inline_admin_formset.formset.errors %}
+     <div class="alert alert-danger">
+        枠を正しく入力してください。
+     </div>
+   {% endif %}
    <table class="table table-striped table-bordered">
      <thead><tr>
      {% for field in inline_admin_formset.fields %}
@@ -62,11 +67,15 @@
                   <p>{{ field.contents }}</p>
               {% else %}
                   {% if field.errors %}
-                  <div class="alert alert-danger">{{ field.errors|striptags }}</div>
+                  
                   {% endif %}
                   <span class="clinic_hack_first_column">
                     <span class="value_here"></span>
-                  {% dab_field_rendering field.field %}
+                  {% if field.errors %}
+                    {% dab_field_rendering field.field|add_class:"alert-danger" %}
+                  {% else %}
+                    {% dab_field_rendering field.field %}
+                  {% endif %}
                   </span>
               {% endif %}
               </td>
