@@ -12,6 +12,10 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 }
 
 $(document).ready(function() {
+	if ($(".alert-danger").length > 0) {
+		$("fieldset.module.aligned.wide").prepend("<ul class='errorlist'><li>枠を正しく入力してください。</li></ul>");
+	}
+
 	$('.btn').addClass('btn-no-radius');
 	$('.btn-primary').addClass('btn-default btn-clinic btn-clinic-primary btn-no-radius').removeClass('btn-primary');
 	$('#store_form #workingday_set-group .field-type select').css('pointerEvents','none');
@@ -32,13 +36,5 @@ $(document).ready(function() {
 		var date =  $(this).find('[selected=selected]').text();
 		console.log(date)
 	})
-
-	if ($(".alert-danger").length > 0) {
-		if($(".errorlist")[0]) {
-			$(".errorlist")[0].innerHTML = $(".errorlist")[0].innerHTML + "<li>枠を正しく入力してください。</li>";
-		} else {
-			$("fieldset.module.aligned.wide").prepend("<ul class='errorlist'><li>枠を正しく入力してください。</li></ul>");
-		}
-	}
     
 });
