@@ -5,12 +5,13 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.template.response import TemplateResponse
 from django.forms.widgets import HiddenInput
-from django.forms.models import BaseModelFormSet
+from django.forms.models import BaseModelFormSet, BaseInlineFormSet
 from django.db import models
 from django.contrib.auth.models import Group
 from bootstrap3_datetime.widgets import DateTimePicker
 from django.utils.translation import ugettext as _
 from django.utils import translation
+from django.core.exceptions import ValidationError
 
 from clinic import settings
 admin.site.site_header = settings.ADMIN_SITE_HEADER
@@ -96,11 +97,18 @@ class HolidayWorkingInlineForm(forms.ModelForm):
 		label=_("Holiday working days"),
 		widget=CustomDateTimePicker(options={"format": "YYYY-MM-DD", "pickTime": False}))
 
+class HolidayWorkingInlineFormSet(BaseInlineFormSet):
+	def clean(self):
+		super(HolidayWorkingInlineFormSet, self).clean()
+		# TODO: fix exeption when date is null, but time fields.
+
 class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking
 	form = HolidayWorkingInlineForm
+	formset = HolidayWorkingInlineFormSet
 	extra = 30
 	verbose_name_plural = _('Holiday working days')
+
 
 def generate_store_id():
 	try:
