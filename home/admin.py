@@ -10,6 +10,7 @@ from django.db import models
 from django.contrib.auth.models import Group
 from bootstrap3_datetime.widgets import DateTimePicker
 from django.utils.translation import ugettext as _
+from django.utils import translation
 
 from clinic import settings
 admin.site.site_header = settings.ADMIN_SITE_HEADER
@@ -31,7 +32,7 @@ class WorkingDayInlineFormSet(BaseModelFormSet):
 	model = WorkingDay
 	def __init__(self, *args, **kwargs):
 		kwargs['initial'] = [
-		    {'type': 'Mo'}, {'type': 'Tu'}, {'type': 'We'}
+			{'type': 'Mo'}, {'type': 'Tu'}, {'type': 'We'}
 		]
 		super(WorkingDayInlineFormSet, self).__init__(*args, **kwargs)
 
@@ -56,12 +57,44 @@ class WorkingDayInline(admin.TabularInline):
 
 		return formset
 
+class CustomDateTimePicker(DateTimePicker):
+	class Media:
+		class JsFiles(object):
+			def __iter__(self):
+				yield 'bootstrap3_datetime/js/moment.min.js'
+				yield 'bootstrap3_datetime/js/bootstrap-datetimepicker-reset.min.js'
+				yield 'bootstrap3_datetime/js/bootstrap-datetimepicker-custom.min.js'
+				lang = translation.get_language()
+				if lang:
+					lang = lang.lower()
+					if lang.startswith('zh') and lang not in ('zh-cn', 'zh-tw',):
+						if lang == 'zh-hk':
+							lang = 'zh-tw'
+						else:
+							lang = 'zh-cn'
+					elif len(lang) > 2 and lang not in ('ar-ma', 'en-au', 'en-ca', 'en-gb', 
+														'fa-ir', 'fr-ca', 'ms-my', 'pt-br', 
+														'rs-latin', 'tzm-la', ):
+						lang = lang[:2]
+					if lang != 'en':
+						yield 'bootstrap3_datetime/js/locales/bootstrap-datetimepicker.%s.js' % (lang)
+
+		js = JsFiles()
+		css = {'all': ('bootstrap3_datetime/css/bootstrap-datetimepicker.min.css',), }
+
+	js_template = '''
+		<script>
+			$(function() {
+				$("#%(picker_id)s").datetimepicker(%(options)s);
+			});
+		</script>'''
+
 class HolidayWorkingInlineForm(forms.ModelForm):
 	model = HolidayWorking
 	date = forms.DateTimeField(
 		required=False,
 		label=_("Holiday working days"),
-		widget=DateTimePicker(options={"format": "YYYY-MM-DD", "pickSeconds": False}))
+		widget=CustomDateTimePicker(options={"format": "YYYY-MM-DD", "pickTime": False}))
 
 class HolidayWorkingInline(admin.TabularInline):
 	model = HolidayWorking

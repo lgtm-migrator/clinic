@@ -92,6 +92,7 @@
                     e.preventDefault();
                     showRelatedObjectLookupPopup(this);
                 });
+
             {% if adminform and add %}
                 $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
             {% endif %}
