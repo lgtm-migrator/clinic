@@ -98,7 +98,7 @@
 									{% if store.region and store.nearest_station %}
 										<div class="panel panel-default panel-clinic-address">
 										<div class="panel-body text-success">
-											{{ store.region.name }}　{{ store.nearest_station.name }}
+											{{ _('Region') }}：{{ store.region.name }}　{{ _('Nearest station') }}：{{ store.nearest_station.name }}
 										</div>
 										</div>
 									{% endif %}
