@@ -104,13 +104,17 @@
 									{% endif %}
 
 									<div class="">
+										{% if can_call %}
 										<a href="tel:{{ store.phone }} ">
+										{% endif %}
 											<div class="col-xs-8 well well-white well-no-radius store-phone">
 												<span>
 													<i class="glyphicon glyphicon-earphone"></i> {{ store.phone }}
 												</span>
 											</div>
+										{% if store.region and store.nearest_station %}
 										</a>
+										{% endif %}
 		  								<div class="col-xs-4 well well-white well-no-border store-select">
 		  									<span>
 		  										{% if is_admin_store %}

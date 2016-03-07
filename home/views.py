@@ -77,6 +77,7 @@ class IndexView(generic.ListView):
 		# context['filter'] = StoreFilter(self.request.GET, queryset=store_queryset)
 
 		sort_key = Sortkey.objects.filter(sorttype='001')
+
 		if sort_key:
 			context['filter'].queryset = context['filter'].queryset.order_by(sort_key[0].key1, sort_key[0].key2)
 
@@ -98,6 +99,9 @@ class IndexView(generic.ListView):
 
 		context['paging'] = paging
 
+		user_agent = parse(self.request.META['HTTP_USER_AGENT'])
+		if user_agent.is_mobile or user_agent.is_tablet:
+			context['can_call'] = True 
 
 		# format paging
 		current_page = int(page)
