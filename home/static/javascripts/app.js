@@ -1,10 +1,49 @@
+
+(function() {
+  var autoLink,
+    __slice = [].slice;
+
+  autoLink = function() {
+    var k, linkAttributes, option, options, pattern, v;
+    options = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+
+    pattern = /(^|[\s\n]|<br\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
+    if (!(options.length > 0)) {
+      return this.replace(pattern, "$1<a href='$2'>$2</a>");
+    }
+    option = options[0];
+    linkAttributes = ((function() {
+      var _results;
+      _results = [];
+      for (k in option) {
+        v = option[k];
+        if (k !== 'callback') {
+          _results.push(" " + k + "='" + v + "'");
+        }
+      }
+      return _results;
+    })()).join('');
+    return this.replace(pattern, function(match, space, url) {
+      var link;
+      link = (typeof option.callback === "function" ? option.callback(url) : void 0) || ("<a href='" + url + "'" + linkAttributes + ">" + url + "</a>");
+      return "" + space + link;
+    });
+  };
+
+  String.prototype['autoLink'] = autoLink;
+
+}).call(this);
+
+
 $(document).ready(function() {
     setTimeout(function(){
       fixedFooter();
+      autoLink();
     },100);
 
     $(window).resize(function() {
         fixedFooter();
+
     });
 
     function fixedFooter() {
@@ -16,6 +55,11 @@ $(document).ready(function() {
         if ((header + main + footer) < w) {
             $('#main').css({ minHeight: (w - header - footer - 62) + 'px' });
         }
+    }
+
+    function autoLink() {
+        var html = $('.panel-clinic-store').html();
+        $('.panel-clinic-store').html(html.autoLink());
     }
 });
 

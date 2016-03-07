@@ -82,7 +82,7 @@
 		  							{% if store.access %}
 										<div class="panel panel-default panel-clinic-store">
 										<div class="panel-body">
-											{{ store.access }}
+											{{ store.access|linebreaksbr }}
 										</div>
 										</div>
 									{% endif %}
@@ -90,7 +90,7 @@
 									{% if store.comment %}
 										<div class="panel panel-default panel-clinic-store">
 										<div class="panel-body">
-											{{ store.comment }}
+											{{ store.comment|linebreaksbr }}
 										</div>
 										</div>
 									{% endif %}
