@@ -9,10 +9,10 @@ class ScheForm(forms.ModelForm):
         model = Schedule
         fields = ('name', 'phone', 'email', 'symptom')
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'氏名'}),
-            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'メールアドレス'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'電話番号'}),
-            'symptom': forms.Textarea(attrs={'class': 'form-control', 'rows':'5', 'placeholder':'症状などをご入力ください'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'氏名', 'autocomplete': 'off'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'メールアドレス', 'autocomplete': 'off'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'電話番号', 'autocomplete': 'off'}),
+            'symptom': forms.Textarea(attrs={'class': 'form-control', 'rows':'5', 'placeholder':'症状などをご入力ください', 'autocomplete': 'off'}),
         }
 
     def __init__(self, *args, **kwargs):

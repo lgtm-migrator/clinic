@@ -77,6 +77,7 @@ class IndexView(generic.ListView):
 		# context['filter'] = StoreFilter(self.request.GET, queryset=store_queryset)
 
 		sort_key = Sortkey.objects.filter(sorttype='001')
+
 		if sort_key:
 			context['filter'].queryset = context['filter'].queryset.order_by(sort_key[0].key1, sort_key[0].key2)
 
@@ -98,6 +99,9 @@ class IndexView(generic.ListView):
 
 		context['paging'] = paging
 
+		user_agent = parse(self.request.META['HTTP_USER_AGENT'])
+		if user_agent.is_mobile or user_agent.is_tablet:
+			context['can_call'] = True 
 
 		# format paging
 		current_page = int(page)
@@ -337,7 +341,7 @@ def ScheView(request, store, date, hour):
 				user_agent = parse(request.META['HTTP_USER_AGENT'])
 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
 				success = _("The registration process was successful, Please check email for more information!")
-				request.session['success'] = _("This time is registed by another patient. Please choose another time!")
+				request.session['success'] = success
 				return redirect(url_back)
 
 	else:
