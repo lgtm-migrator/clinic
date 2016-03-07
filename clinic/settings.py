@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['localhost', 'clinic.duyetdev.com', 'duyetdev.com', 'ptnhttt.ui
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'clinic_prod',
+        'NAME': 'clinic_dev',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': 'localhost',
