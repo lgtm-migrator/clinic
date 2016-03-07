@@ -379,11 +379,11 @@ msgstr "予約"
 
 #: templates/home/index.html:183
 msgid "Prev 20 lines"
-msgstr "前の20行"
+msgstr "前の20件"
 
 #: templates/home/index.html:221
 msgid "Next 20 lines"
-msgstr "次の20行"
+msgstr "次の20件"
 
 #: templates/home/index.html:232
 msgid "No store are available"

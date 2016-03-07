@@ -337,7 +337,7 @@ def ScheView(request, store, date, hour):
 				user_agent = parse(request.META['HTTP_USER_AGENT'])
 				SendEmail(schedule, ip, user_agent.device.family + " " + user_agent.os.family + " " + user_agent.os.version_string)
 				success = _("The registration process was successful, Please check email for more information!")
-				request.session['success'] = _("This time is registed by another patient. Please choose another time!")
+				request.session['success'] = success
 				return redirect(url_back)
 
 	else:
