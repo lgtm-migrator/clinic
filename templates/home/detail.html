@@ -20,7 +20,7 @@
     <thead>
       <tr>
         <th rowspan="2" id="prev_week_btn" class="navigate-week-btn"
-          data-url="{% url 'store-schedule' store.id  %}?back_url={{back_url|urlencode}}&start_day={{prev_2_weeks|date:'d/m/Y'}}&direction=prev#schedule_subtitle">{{ _('Prev week') }}</th>
+          data-url="{% url 'store-schedule' store.id  %}?back_url={{back_url|urlencode}}&start_day={{prev_2_weeks|date:'d/m/Y'}}&direction=prev#schedule_subtitle"><input type="button" class="btn btn-sm btn-info" value="{{ _('Prev week') }}"/></th>
         <th class="colspan-xs7-sm14 day-title" colspan="14">
           {% if start_day.month != end_day.month %}
             <span class="month-lbl two-months">{{start_day.year}}{{_(' Year ')}}{{start_day.month}}{{_(' Month ')}} 〜 {{end_day.year}}{{_(' Year ')}}{{end_day.month}}{{_(' Month ')}}</span>
@@ -31,7 +31,7 @@
           {% endif %}
         </th>
         <th rowspan="2" id="next_week_btn" class="navigate-week-btn"
-            data-url="{% url 'store-schedule' store.id  %}?back_url={{back_url|urlencode}}&start_day={{next_2_weeks|date:'d/m/Y'}}&direction=next#schedule_subtitle">{{ _('Next week') }}</th>
+            data-url="{% url 'store-schedule' store.id  %}?back_url={{back_url|urlencode}}&start_day={{next_2_weeks|date:'d/m/Y'}}&direction=next#schedule_subtitle"><input type="button" class="btn btn-sm btn-info" value="{{ _('Next week') }}"/></th>
       </tr>
       <tr>
         {% for week_day in days_range %}
@@ -64,7 +64,7 @@
                       {% if not holiday and available and available <= is_booked  %}
                         <td class="time-slot booked {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
                       {% elif holiday and holiday_available and holiday_available <= is_booked  %}
-                        <td class="time-slot booked {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">×</td>
+                        <td class="time-slot booked {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">☓</td>
                       {% else %}
                         {% if holiday and holiday_available > is_booked or not holiday and available  > is_booked %}
                           <td class="time-slot date-available {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}"
@@ -73,7 +73,7 @@
                               ○
                             </td>
                         {% else %}
-                          <td class="time-slot not-open {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">－</td>
+                          <td class="time-slot not-open {% if d == today_str %}today{% endif %} {% if forloop.counter0 < 7 %}week-1{% else %}week-2{% endif %}">ー</td>
                         {% endif %}
                       {% endif %}
                     {% endwith %}

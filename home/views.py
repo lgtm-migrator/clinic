@@ -167,17 +167,10 @@ class DetailView(generic.DetailView):
 		day_query = datetime.now().date()
 		if self.request.method == 'GET' and 'start_day' in self.request.GET:
 			day_query = datetime.strptime(self.request.GET["start_day"], '%d/%m/%Y').date()
-
-			# back from booking
-			start_week = day_query - timedelta(days=day_query.weekday())
-			current_date = datetime.now().date()
-			current_start_week = datetime.now().date() - timedelta(days=current_date.weekday())
-			context["today_str"] = datetime.now().date().strftime("%d/%m/%Y")
-			if ((start_week - current_start_week).days / 7 ) % 2 != 0:
-				day_query = day_query - timedelta(days=7)
+			day_query = datetime.now().date() + timedelta(((day_query - datetime.now().date()).days // 7 ) * 7)
 
 		context["today_str"] = datetime.now().date().strftime("%d/%m/%Y")
-		context["start_day"] = day_query - timedelta(days=day_query.weekday())
+		context["start_day"] = day_query
 		context["end_day"] = context["start_day"] + timedelta(days=13)
 
 		working_days = WorkingDay.objects.filter(store_id=current_store.id).order_by('id')
