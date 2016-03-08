@@ -167,7 +167,7 @@ class DetailView(generic.DetailView):
 		day_query = datetime.now().date()
 		if self.request.method == 'GET' and 'start_day' in self.request.GET:
 			day_query = datetime.strptime(self.request.GET["start_day"], '%d/%m/%Y').date()
-			day_query = datetime.now().date() + timedelta(((day_query - datetime.now().date()).days // 7 ) * 7)
+			day_query = datetime.now().date() + timedelta(((day_query - datetime.now().date()).days // 14 ) * 14)
 
 		context["today_str"] = datetime.now().date().strftime("%d/%m/%Y")
 		context["start_day"] = day_query

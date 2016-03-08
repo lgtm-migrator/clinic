@@ -111,7 +111,7 @@ var schedule_table = {
               $td.addClass("date-selected");
               $.get( $td.data("check"), function( data ) {
                 if (data.status[0] == "4") {
-                  $td.html("×");
+                  $td.html("☓");
                   $td.removeClass(".date-available");
                 } else if (data.status[0] == "0") {
                   window.location.href = $td.data('url') + "&token=" + data.token;
