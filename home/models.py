@@ -112,12 +112,14 @@ class Store(models.Model):
 		# populate all avalable slot in working day to hash table, each available slot with
 		# hour=h, weekday=wd, we will find current dates maps with weekday and set
 		# child object new attributes available = 1
+
 		for index,day in enumerate(working_day):
 			day_str = days_range[index].strftime("%d/%m/%Y")
+			weekday_index = int(days_range[index].strftime("%w")) - 1
+			if weekday_index == -1:
+				weekday_index = 6
+			day = working_day[weekday_index]
 			check_day_off = day.is_dayoff(time_range)
-			if holiday_default == None and day.type == "Ho":
-				holiday_default = day
-				break
 			for i in time_range:
 				available_slot = getattr(day, "hour_"+str(i))
 				if check_day_off == True:
@@ -144,7 +146,7 @@ class Store(models.Model):
 						if days_range[index+7] > today:
 							mat[str(i)][next_day_str]["available"] = available_slot
 
-
+		holiday_default = working_day[7]
 		# populate available slot in holiday default list
 		for day in holiday_default_list:
 			day_str = day.date.strftime("%d/%m/%Y")
