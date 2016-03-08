@@ -150,6 +150,10 @@ class StoreAdminForm(forms.ModelForm):
 
 		self.fields["region"].label = _("Region")
 		self.fields["nearest_station"].label = _("Nearest station")
+
+		self.fields['region'].queryset = Region.objects.all()
+		self.fields['region'].label_from_instance = lambda obj: "%s　%s" % (obj.name, obj.code)
+
 		# self.fields["store_id"].widget = forms.widgets.TextInput()
 		for field in iter(self.fields):
 			if not isinstance(self.fields[field].widget, forms.widgets.CheckboxInput):
