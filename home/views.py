@@ -100,7 +100,7 @@ class IndexView(generic.ListView):
 		context['paging'] = paging
 
 		user_agent = parse(self.request.META['HTTP_USER_AGENT'])
-		if user_agent.is_mobile or user_agent.is_tablet:
+		if user_agent.is_mobile:
 			context['can_call'] = True 
 
 		# format paging
