@@ -36,5 +36,21 @@ $(document).ready(function() {
 		var date =  $(this).find('[selected=selected]').text();
 		console.log(date)
 	})
+
+	$("#store_form").submit(function(event) { 
+        $('.dynamic-holidayworking_set').each(function() {
+			if ($(this).find('.form-control').first().val() == "") {
+				$(this).find('.vIntegerField').each(function() {
+					$(this).removeClass("alert-danger");
+					if ($(this).val() != "") {
+						$(this).addClass("alert-danger");
+						$("fieldset.module.aligned.wide").prepend("<ul class='errorlist'><li>特別な営業日が設定されていないため登録できません。</li></ul>");
+						event.preventDefault();
+					}
+				})
+			}
+
+		})
+    });
     
 });
