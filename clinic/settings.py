@@ -32,7 +32,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'postgres',
+        'USER': 'duyetdev',
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -136,6 +136,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -215,6 +216,16 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+
+############## TEMPLATE VARIABLES
 ADMIN_LOGIN_REDIRECT_URL = '/admin/home/store'
 ADMIN_LOGOUT_REDIRECT_URL = '/admin'
 ADMIN_SITE_HEADER = '鍼灸接骨師予約'
+
+SITE_TITLE = '鍼灸接骨師予約'
+SITE_LOGO = STATIC_URL + 'home/images/logo.png'
+
+SETTINGS_EXPORT = [
+    'SITE_TITLE',
+    'SITE_LOGO',
+]

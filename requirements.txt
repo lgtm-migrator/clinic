@@ -18,3 +18,4 @@ ua-parser==0.6.1
 user-agents==1.0.1
 wheel==0.24.0
 django-widget-tweaks==1.4.1
+django-settings-export==1.0.6
