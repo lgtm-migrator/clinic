@@ -58,8 +58,11 @@ $(document).ready(function() {
     }
 
     function autoLink() {
-        var html = $('.panel-clinic-store').html();
-        $('.panel-clinic-store').html(html.autoLink());
+        $('.panel-clinic-store').each(function() {
+            var html = $(this).html();
+            $(this).html(html.autoLink());
+        })
+        
     }
 });
 
