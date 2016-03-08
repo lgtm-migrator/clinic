@@ -32,7 +32,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'clinic_dev',
-        'USER': 'duyetdev',
+        'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -223,9 +223,16 @@ ADMIN_LOGOUT_REDIRECT_URL = '/admin'
 ADMIN_SITE_HEADER = '鍼灸接骨師予約'
 
 SITE_TITLE = '鍼灸接骨師予約'
-SITE_LOGO = STATIC_URL + 'home/images/logo.png'
+
+SITE_LOGO = STATIC_URL + 'images/logo.png'
+SITE_LOGO_WIDTH = '150px'
+SITE_LOGO_HEIGHT = ''
+SITE_LOGO_CSS = ''
 
 SETTINGS_EXPORT = [
     'SITE_TITLE',
     'SITE_LOGO',
+    'SITE_LOGO_WIDTH',
+    'SITE_LOGO_HEIGHT',
+    'SITE_LOGO_CSS'
 ]

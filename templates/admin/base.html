@@ -67,7 +67,13 @@
     <div class="row">
       <div class="col-xs-9 col-sm-4 col-md-4">
         <div class="header clinic-header clearfix">
-            {% block branding %}{{ _('Clinic Admin') }}{% endblock %}
+                
+                {% if settings.SITE_LOGO %}
+                <img src="{{settings.SITE_LOGO}}" width="{{settings.SITE_LOGO_WIDTH}}" height="{{settings.SITE_LOGO_HEIGHT}}" styles="{{settings.SITE_LOGO_CSS}}" />
+                {% else %}
+                {{ _('Clinic Admin') }}
+                {% endif %}
+                
         </div>
       </div>
       <div class="col-xs-3 col-sm-8 col-md-8 text-right">
