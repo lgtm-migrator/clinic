@@ -38,6 +38,7 @@ $(document).ready(function() {
 	})
 
 	$("#store_form").submit(function(event) {
+		$(".errorlist").remove();
 		var errors = false;
         $('.dynamic-holidayworking_set').each(function() {
 			if ($(this).find('.form-control').first().val() == "") {
