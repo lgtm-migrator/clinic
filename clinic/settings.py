@@ -220,9 +220,9 @@ LOCALE_PATHS = (
 ############## TEMPLATE VARIABLES
 ADMIN_LOGIN_REDIRECT_URL = '/admin/home/store'
 ADMIN_LOGOUT_REDIRECT_URL = '/admin'
-ADMIN_SITE_HEADER = '鍼灸接骨師予約'
+ADMIN_SITE_HEADER = '鍼灸接骨院予約'
 
-SITE_TITLE = '鍼灸接骨師予約'
+SITE_TITLE = '鍼灸接骨院予約'
 
 SITE_LOGO = STATIC_URL + 'images/logo.png'
 SITE_LOGO_WIDTH = '150px'
